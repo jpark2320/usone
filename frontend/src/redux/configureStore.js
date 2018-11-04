@@ -1,21 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-<<<<<<< HEAD
-=======
 import { routerReducer, routerMiddleware } from "react-router-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createHistory from "history/createBrowserHistory";
->>>>>>> JP-1
 import thunk from "redux-thunk";
 import user from "redux/modules/user";
 
 const env = process.env.NODE_ENV;
-<<<<<<< HEAD
 
 const middlewares = [thunk];
-=======
 const history = createHistory();
 const middlewares = [thunk, routerMiddleware(history)];
->>>>>>> JP-1
 
 if (env === "development") {
   const { logger } = require("redux-logger");
@@ -27,10 +21,8 @@ const reducer = combineReducers({
   user
 });
 
-<<<<<<< HEAD
 let store = initialState =>
   createStore(reducer, applyMiddleware(...middlewares));
-=======
 let store;
 
 if (env === "development") {
@@ -41,6 +33,5 @@ if (env === "development") {
 }
 
 export { history };
->>>>>>> JP-1
 
 export default store();
