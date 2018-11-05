@@ -6,8 +6,6 @@ import thunk from "redux-thunk";
 import user from "redux/modules/user";
 
 const env = process.env.NODE_ENV;
-
-const middlewares = [thunk];
 const history = createHistory();
 const middlewares = [thunk, routerMiddleware(history)];
 
@@ -21,8 +19,6 @@ const reducer = combineReducers({
   user
 });
 
-let store = initialState =>
-  createStore(reducer, applyMiddleware(...middlewares));
 let store;
 
 if (env === "development") {
