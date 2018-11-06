@@ -9,7 +9,7 @@ class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
     # around the globe.
     name = CharField(_("Name of User"), blank=True, max_length=255)
-    nike_name = CharField(_("Nick Name"), blank=True, max_length=255)
+    nick_name = CharField(_("Nick Name"), blank=True, max_length=255)
 
     updated_at = DateTimeField(auto_now=True)
 
