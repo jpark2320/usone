@@ -6,18 +6,10 @@ from django.utils.translation import ugettext_lazy as _
 
 class User(AbstractUser):
 
-    REGION_CHOICES = (
-        ('georgia', 'Georgia'),
-        ('new_york', 'New York'),
-        ('los_angeles', 'Los Angeles'),
-        ('san_francisco', 'San Francisco'),
-    )
-
     # First Name and Last Name do not cover name patterns
     # around the globe.
     name = CharField(_("Name of User"), blank=True, max_length=255)
-    region = CharField(default='georgia', max_length=100,
-                       choices=REGION_CHOICES)
+    nike_name = CharField(_("Nick Name"), blank=True, max_length=255)
 
     updated_at = DateTimeField(auto_now=True)
 
