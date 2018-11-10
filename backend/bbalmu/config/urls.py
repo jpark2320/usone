@@ -19,6 +19,10 @@ urlpatterns = [
         "users/",
         include("bbalmu.users.urls", namespace="users"),
     ),
+    path(
+        "posts/",
+        include("bbalmu.posts.urls", namespace="posts"),
+    ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
