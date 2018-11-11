@@ -14,7 +14,7 @@ const styles = (theme: Theme) => createStyles({
     },
   },
   menuButton: {
-  marginRight: 20,
+    marginRight: 20,
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
