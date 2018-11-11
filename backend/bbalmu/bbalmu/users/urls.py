@@ -1,16 +1,11 @@
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
 
 from bbalmu.users import views
 
 app_name = "users"
 urlpatterns = [
     # --------------- REST API ---------------
-    url(
-        regex=r'^all-users/$',
-        view=views.ListAllUsers.as_view(),
-        name='all_users'
-    ),
+    re_path(r'^all-users/$', views.ListAllUsers.as_view(), name='all_users'),
     # --------------- REST API ---------------
 
     path("", view=views.user_list_view, name="list"),
