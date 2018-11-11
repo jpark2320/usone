@@ -11,8 +11,22 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from .models import User
 from . import serializers
+# ------------------ REST API views ------------------
+
+# ------------------ Social Login ------------------
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+# ------------------ Social Login ------------------
+
+# ------------------ Social Login ------------------
 
 
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+# ------------------ Social Login ------------------
+
+
+# ------------------ REST API views ------------------
 @authentication_classes([])
 @permission_classes([])
 class ListAllUsers(ListAPIView):

@@ -4,6 +4,10 @@ from bbalmu.users import views
 
 app_name = "users"
 urlpatterns = [
+    # --------------- Social Login ---------------
+    re_path(r'^login/facebook/$', views.FacebookLogin.as_view(), name='fb_login'),
+    # --------------- Social Login ---------------
+
     # --------------- REST API ---------------
     re_path(r'^all-users/$', views.ListAllUsers.as_view(), name='all_users'),
     # --------------- REST API ---------------
