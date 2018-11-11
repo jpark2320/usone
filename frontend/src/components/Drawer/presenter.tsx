@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
@@ -103,12 +103,13 @@ class MyDrawer extends React.Component<IamProps> {
         <nav className={classes.drawer}>
           {/* The implementation can be swap with js to avoid SEO duplication of links. */}
           <Hidden mdUp={true} implementation="css">
-            <Drawer
+            <SwipeableDrawer
               container={this.props.container}
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={this.props.mobileOpen}
               onClose={this.props.handleDrawerToggle}
+              onOpen={this.props.handleDrawerToggle}
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -117,18 +118,21 @@ class MyDrawer extends React.Component<IamProps> {
               }}
             >
             {drawer}
-            </Drawer>
+            </SwipeableDrawer>
           </Hidden>
           <Hidden smDown={true} implementation="css">
-            <Drawer
+            <SwipeableDrawer
                     classes={{
                       paper: classes.drawerPaper,
                     }}
                     variant="permanent"
-                    open={true}
+                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                    open={this.props.mobileOpen}
+                    onClose={this.props.handleDrawerToggle}
+                    onOpen={this.props.handleDrawerToggle}
             >
               {drawer}
-            </Drawer>
+            </SwipeableDrawer>
           </Hidden>
         </nav>
     );
