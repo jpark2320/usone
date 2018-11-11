@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = [
     'rest_framework.authtoken',
     'rest_auth',  # Django REST Auth
     'rest_auth.registration',  # Enable registration
+    'corsheaders',
 ]
 LOCAL_APPS = [
     'bbalmu.users.apps.UsersAppConfig',
@@ -135,6 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -151,6 +153,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
     str(APPS_DIR.path('static')),
+    str((ROOT_DIR - 2).path('frontend', 'build', 'static')),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -253,3 +256,5 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+
+CORS_ORIGIN_ALLOW_ALL = True
