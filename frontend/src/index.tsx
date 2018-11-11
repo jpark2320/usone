@@ -1,14 +1,21 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import App from "./views/App";
+import { Route, Switch } from "react-router-dom";
+import { ConnectedRouter } from "react-router-redux";
+import store, { history } from "./redux/configureStore";
+
+import MainView from "./views/MainView";
 
 import "./index.css";
-import store from "./redux/configureStore";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route exact={true} path="/" component={MainView} />
+      </Switch>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById("root") as HTMLElement
 );
