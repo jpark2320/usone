@@ -1,20 +1,9 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import Header from '../../components/Header/presenter';
-
-const styles = (theme: Theme) => createStyles({
-    root: {
-        display: 'flex',
-    },
-    toolbar: theme.mixins.toolbar,
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing.unit * 3,
-    },
-});
+import styles from './styles';
 
 export interface IamProps extends WithStyles<typeof styles> {
     theme: Theme;

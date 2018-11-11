@@ -1,6 +1,5 @@
 import React from 'react';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,50 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import RegionNaviBar from '../../components/RegionNaviBar/presenter';
 import MyDrawer from '../../components/Drawer/presenter';
-
-const drawerWidth = 245;
-
-const styles = (theme: Theme) => createStyles({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    [theme.breakpoints.up('md')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  },
-  menuButton: {
-  marginRight: 20,
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-  },
-  RegionNaviBarContainer: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'contents',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    }
-  },
-  appBar: {
-        color: 'black',
-        backgroundColor: 'white',
-        marginLeft: drawerWidth,
-        [theme.breakpoints.up('md')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
-        },
-    },
-});
+import styles from './styles';
 
 interface IState {
   mobileOpen: boolean;
@@ -94,7 +50,6 @@ class Header extends React.Component<IamProps, IState> {
             >
               <MenuIcon />
             </IconButton>
-
             <Typography variant="h6" color="inherit" noWrap={true}>
               Responsive drawer
             </Typography>
