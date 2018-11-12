@@ -1,4 +1,4 @@
-from bbalmu.users.models import User
+from usone.users.models import User
 from django.db import models
 
 

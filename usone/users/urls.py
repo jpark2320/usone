@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 
-from bbalmu.users import views
+from usone.users import views
 
 app_name = "users"
 urlpatterns = [

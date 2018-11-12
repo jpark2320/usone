@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Post, Image
-from bbalmu.users.serializers import UserSerializer
+from usone.users.serializers import UserSerializer
 
 
 class BackupImageSerializer(serializers.ModelSerializer):

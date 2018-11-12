@@ -40,5 +40,5 @@ ex) `Search` component is a view component. `Post` is a ordinary component. When
 # Back End
 
 ```
-You MUST run `pipenv sehll` under .../bbalmu/backend/bbalmu where manage.py is.
+You MUST run `pipenv sehll`
 ```

@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework_jwt.views import obtain_jwt_token
-from bbalmu import views
+from usone import views
 
 
 urlpatterns = [
@@ -16,11 +16,11 @@ urlpatterns = [
     re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     path(
         "users/",
-        include("bbalmu.users.urls", namespace="users"),
+        include("usone.users.urls", namespace="users"),
     ),
     path(
         "posts/",
-        include("bbalmu.posts.urls", namespace="posts"),
+        include("usone.posts.urls", namespace="posts"),
     ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here

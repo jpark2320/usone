@@ -4,8 +4,8 @@ Base settings to build other settings files upon.
 
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # (bbalmu/config/settings/base.py - 3 = bbalmu/)
-APPS_DIR = ROOT_DIR.path('bbalmu')
+ROOT_DIR = environ.Path(__file__) - 3  # (usone/config/settings/base.py - 3 = usone/)
+APPS_DIR = ROOT_DIR.path('usone')
 
 env = environ.Env()
 
@@ -39,7 +39,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///bbalmu'),
+    'default': env.db('DATABASE_URL', default='postgres:///usone'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -75,8 +75,8 @@ THIRD_PARTY_APPS = [
     'corsheaders',
 ]
 LOCAL_APPS = [
-    'bbalmu.users.apps.UsersAppConfig',
-    'bbalmu.posts.apps.PostsAppConfig',
+    'usone.users.apps.UsersAppConfig',
+    'usone.posts.apps.PostsAppConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -86,7 +86,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
 MIGRATION_MODULES = {
-    'sites': 'bbalmu.contrib.sites.migrations'
+    'sites': 'usone.contrib.sites.migrations'
 }
 
 # AUTHENTICATION
@@ -239,9 +239,9 @@ ACCOUNT_EMAIL_REQUIRED = False
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = 'bbalmu.users.adapters.AccountAdapter'
+ACCOUNT_ADAPTER = 'usone.users.adapters.AccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = 'bbalmu.users.adapters.SocialAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'usone.users.adapters.SocialAccountAdapter'
 
 
 # Your stuff...
