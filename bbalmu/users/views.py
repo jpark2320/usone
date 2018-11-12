@@ -3,6 +3,38 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
+# ------------------ REST API views ------------------
+from rest_framework.decorators import (
+    authentication_classes, permission_classes
+)
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.response import Response
+from .models import User
+from . import serializers
+# ------------------ REST API views ------------------
+
+# ------------------ Social Login ------------------
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+# ------------------ Social Login ------------------
+
+# ------------------ Social Login ------------------
+
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+# ------------------ Social Login ------------------
+
+
+# ------------------ REST API views ------------------
+@authentication_classes([])
+@permission_classes([])
+class ListAllUsers(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+# ------------------ REST API views ------------------
+
+
 User = get_user_model()
 
 

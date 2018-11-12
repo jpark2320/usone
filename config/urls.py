@@ -1,26 +1,30 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from rest_framework_jwt.views import obtain_jwt_token
+from bbalmu import views
+
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/",
-        TemplateView.as_view(template_name="pages/about.html"),
-        name="about",
-    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
+    re_path(r'^rest-auth/', include('rest_auth.urls')),
+    re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     path(
         "users/",
         include("bbalmu.users.urls", namespace="users"),
     ),
+    path(
+        "posts/",
+        include("bbalmu.posts.urls", namespace="posts"),
+    ),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    re_path(r'^', views.ReactAppView.as_view()),
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )
