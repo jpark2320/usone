@@ -1,25 +1,24 @@
-import React from 'react';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import AppBar from '@material-ui/core/AppBar';
-import RegionNaviBar from '../../components/RegionNaviBar/presenter';
-import MyDrawer from '../../components/Drawer/presenter';
-import PrimaryAppBar from '../../components/PrimaryAppBar/presenter';
-import styles from './styles';
+import React, { Fragment } from "react";
+import { Theme } from "@material-ui/core/styles/createMuiTheme";
+import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import AppBar from "@material-ui/core/AppBar";
+import RegionNaviBar from "components/RegionNaviBar/presenter";
+import MyDrawer from "components/Drawer/presenter";
+import PrimaryAppBar from "components/PrimaryAppBar/presenter";
+import styles from "./styles";
 
 interface IState {
   mobileOpen: boolean;
-};
+}
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
   container: Element;
-};
+}
 
 class Header extends React.Component<IamProps, IState> {
-
   public state = {
-    mobileOpen: false,
+    mobileOpen: false
   };
 
   public handleDrawerToggle = () => {
@@ -27,10 +26,9 @@ class Header extends React.Component<IamProps, IState> {
   };
 
   public render() {
-
     const { classes, container } = this.props;
     return (
-      <div>
+      <Fragment>
         <AppBar position="fixed" className={classes.appBar}>
           {/* Region Navi Bar*/}
           <div className={classes.RegionNaviBarContainer}>
@@ -38,14 +36,18 @@ class Header extends React.Component<IamProps, IState> {
           </div>
           {/* End Region Navi Bar*/}
           {/* Primary NaviMenu*/}
-            <PrimaryAppBar container={container} handleDrawerToggle={this.handleDrawerToggle} />
+          <PrimaryAppBar
+            container={container}
+            handleDrawerToggle={this.handleDrawerToggle}
+          />
           {/* End Primary NaviMenu*/}
         </AppBar>
-        <MyDrawer 
-          container={container} 
-          handleDrawerToggle={this.handleDrawerToggle} 
-        mobileOpen={this.state.mobileOpen} />
-    </div>
+        <MyDrawer
+          container={container}
+          handleDrawerToggle={this.handleDrawerToggle}
+          mobileOpen={this.state.mobileOpen}
+        />
+      </Fragment>
     );
   }
 }
