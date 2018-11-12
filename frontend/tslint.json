@@ -9,10 +9,10 @@
   },
   "rules": {
     "ordered-imports": [false],
-    "object-literal-sort-keys": [false]
-    "no-console": false //Disable for typescript
+    "object-literal-sort-keys": [false],
+    "no-console": false
   },
   "jsRules": {
-    "no-console": false //Disable for javascript
+    "no-console": false
   }
 }
