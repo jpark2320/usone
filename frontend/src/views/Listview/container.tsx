@@ -2,35 +2,6 @@ import  { Component } from "react";
 import * as React from "react";
 import Listview from "./presenter"
 
-
-
-
-// interfcaces 
-// interface IListViewRecipeProps {
-//     data:any;
-//     botnavValue:number,
-//     onSelectAllClick:any,
-//     order:any,
-//     orderBy:any,
-//     numSelected:any,
-//     rowCount :any,
-//     classes:any,
-//     props:any
-
-
-//     handleSelectAllClick:any,
-//     createSortHandler:any,
-//     handleRequestSort:any,
-//     stableSort:any,
-//     getSorting:any,
-//     isSelected:any,
-//     handleClick:any,
-//     handleChangePage:any,
-//     handleChangeRowsPerPage:any
-
-//   }
-
-
 interface IListViewState{
     data:any,
     order:any,
@@ -38,22 +9,9 @@ interface IListViewState{
     page:any
     rowsPerPage:any,
     selected: any[],
-     
-     
-
+    rowsPerPageOptions:any[]
 }
-
-
-let counter = 0;
-
-// test data  
-// const TestData =[
-//   {id:1, title:'Test List Item1 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-//   {id:2, title:'Test List Item2 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-//   {id:3, title:'Test List Item3 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-//   {id:4, title:'Test List Item4 ', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:{} },
-// ]
-
+// let counter = 0;
 
 class Container extends Component<any, IListViewState> {
       constructor(props:any) {
@@ -61,66 +19,31 @@ class Container extends Component<any, IListViewState> {
         this.state = {
             
             data: [
-                // this.createData(TestData.title, 305, 3.7, 67, 4.3),
-                // this.createData('Donut', 452, 25.0, 51, 4.9),
-                // this.createData('Eclair', 262, 16.0, 24, 6.0),
-                // this.createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-                // this.createData('Gingerbread', 356, 16.0, 49, 3.9),
-                // this.createData('Honeycomb', 408, 3.2, 87, 6.5),
-                // this.createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-                // this.createData('Jelly Bean', 375, 0.0, 94, 0.0),
-                // this.createData('KitKat', 518, 26.0, 65, 7.0),
-                // this.createData('Lollipop', 392, 0.2, 98, 0.0),
-                // this.createData('Marshmallow', 318, 0, 81, 2.0),
-                // this.createData('Nougat', 360, 19.0, 9, 37.0),
-                // this.createData('Oreo', 437, 18.0, 63, 4.0),
-                {id:1, title:'Test List Item1 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:2, title:'Test List Item2 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:3, title:'Test List Item3 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-                {id:4, title:'Test List Item4 ', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:{} },
+      
+                {id:1, title:'Test List Item1 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:'2018-11-21' },
+                {id:2, title:'Test List Item2 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:'2018-12-04' },
+                {id:3, title:'Test List Item3 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:'2018-12-12' },
+                {id:4, title:'Test List Item4 ', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:'2018-12-13' },
 
-                {id:11, title:'Test List Item12 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:21, title:'Test List Item22 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:31, title:'Test List Item32 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-                {id:41, title:'Test List Item42', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:{} },
+                {id:11, title:'Test List Item12 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:'2018-12-26' },
+                {id:21, title:'Test List Item22 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:'2018-11-12' },
+                {id:31, title:'Test List Item32 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:'2018-12-10' },
+                {id:41, title:'Test List Item42', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:'2018-12-14' },
 
-                {id:12, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:22, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:3211, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-                {id:4211, title:'Test List Item43 ', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:{} },
-                {id:1211, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:2211, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:32112, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
+                {id:12, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:'2008-12-02' },
+                {id:22, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:'2016-03-17' },
+                {id:3211, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:'2017-06-08' },
+                {id:4211, title:'Test List Item43 ', description:'Fake des4',creator: {firstname:'firstname4', lastname:' lastname4'}, region:'NY',category:'Annoucement',like:1,view:4222,created_at:'2017-08-10' },
+                {id:1211, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:'2011-12-30' },
+                {id:2211, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:'2013-07-12' },
+                {id:32112, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:'2009-09-24' },
      
-                {id:121, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:221, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:321, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-        
-                {id:122, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:222, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:322, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-      
-                {id:123, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:223, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:323, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-        
-                {id:124, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:224, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:324, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-    
-                {id:125, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:225, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:325, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-      
-                {id:126, title:'Test List Item13 ', description:'Fake des1',creator: {firstname:'firstname1', lastname:' lastname1'}, region:'GA',category:'sales',like:14,view:42,created_at:{} },
-                {id:226, title:'Test List Item23 ', description:'Fake des2',creator: {firstname:'firstname2', lastname:' lastname2'}, region:'TX',category:'work',like:4,view:4212,created_at:{} },
-                {id:326, title:'Test List Item33 ', description:'Fake des3',creator: {firstname:'firstname3', lastname:' lastname3'}, region:'VA',category:'FAQ',like:55,view:424,created_at:{} },
-               
               ],
-            order: 'asc',
-            orderBy: 'calories',
+            order: 'desc',
+            orderBy: 'created_at',
             page: 0,
             rowsPerPage: 5,
+            rowsPerPageOptions:[5,25,50,100],
             selected: [],
             
         }
@@ -138,10 +61,10 @@ public createSortHandler = (property:any) => (event:any) => {
 
 // talbe functiosn 
 
-public createData(name:any, calories:any, fat:any, carbs:any, protein:any) {
-  counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
-}
+// public createData(name:any, calories:any, fat:any, carbs:any, protein:any) {
+//   counter += 1;
+//   return { id: counter, name, calories, fat, carbs, protein };
+// }
 
 public desc(a:any, b:any, orderBy:any) {
   if (b[orderBy] < a[orderBy]) {
@@ -244,8 +167,4 @@ return (
   );
 }
 }
-
-// const ListviewContainer = (props: any) => <Listview {...props} />;
-
 export default Container; 
-// export default ListviewContainer;

@@ -34,3 +34,26 @@ $font-color: brown;
   }
 }
 
+.sideCateogryRow{
+  color: inherit;
+  height: 48px;
+  display: table-row;
+  outline: none;
+  vertical-align: middle;
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+
+
+.sideCateogryCell {
+  display: table-cell;
+  text-align: left;
+  vertical-align: inherit;
+}
+.sideCateogryPill{
+  padding:10px 40px;
+  background-color:lightgray;
+  text-align: center;
+  border-radius: 13px;
+}
