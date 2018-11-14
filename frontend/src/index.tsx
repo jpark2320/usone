@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
-import store, { history } from "redux/configureStore";
+import store, { history } from "./redux/configureStore";
 
 import App from "components/App";
 

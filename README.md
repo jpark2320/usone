@@ -40,5 +40,7 @@ ex) `Search` component is a view component. `Post` is a ordinary component. When
 # Back End
 
 ```
-You MUST run `pipenv sehll`
+pipenv sehll
+pip install -r requirements/local.txt
+pipenv install -r requirements/local.txt
 ```

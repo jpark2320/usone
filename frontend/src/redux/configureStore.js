@@ -3,7 +3,7 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createHistory from "history/createBrowserHistory";
 import thunk from "redux-thunk";
-import user from "redux/modules/user";
+import user from "./modules/user";
 
 const env = process.env.NODE_ENV;
 const history = createHistory();
