@@ -1,7 +1,4 @@
 import React from 'react';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import styles from './styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,44 +13,21 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import styles from "./styles";
 
-interface IState {
-  anchorEl: object | null;
-  mobileMoreAnchorEl: object | null;
+export interface IProps extends WithStyles<typeof styles> {
+  anchorEl: HTMLElement | null;
+  mobileMoreAnchorEl: HTMLElement | null;
+  handleDrawerToggle: () => any;
+  handleProfileMenuOpen: (event: any) => void;
+  handleMenuClose: () => any;
+  handleMobileMenuOpen: (event: any) => void;
+  handleMobileMenuClose: () => any;
 };
 
-export interface IamProps extends WithStyles<typeof styles> {
-  theme: Theme;
-  container: Element;
-  handleDrawerToggle: () => void;
-};
-
-class PrimaryAppBar extends React.Component<IamProps, IState> {
-  public state = {
-    anchorEl: null,
-    mobileMoreAnchorEl: null,
-  };
-
-  public handleProfileMenuOpen = event => {
-    this.setState(state => ({ anchorEl: event.currentTarget }));
-  };
-
-  public handleMenuClose = () => {
-    this.setState(state => ({ anchorEl: null }));
-    this.handleMobileMenuClose();
-  };
-
-  public handleMobileMenuOpen = event => {
-    this.setState(state => ({ mobileMoreAnchorEl: event.currentTarget }));
-  };
-
-  public handleMobileMenuClose = () => {
-    this.setState(state => ({ mobileMoreAnchorEl: null }));
-  };
-
-  public render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
-    const { classes } = this.props;
+export const PrimaryAppBar: React.SFC<IProps> = (props) => {
+    const { anchorEl, mobileMoreAnchorEl, classes } = props
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -63,10 +37,10 @@ class PrimaryAppBar extends React.Component<IamProps, IState> {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMenuOpen}
-        onClose={this.handleMenuClose}
+        onClose={props.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={props.handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={props.handleMenuClose}>My account</MenuItem>
       </Menu>
     );
 
@@ -76,7 +50,7 @@ class PrimaryAppBar extends React.Component<IamProps, IState> {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMobileMenuOpen}
-        onClose={this.handleMobileMenuClose}
+        onClose={props.handleMobileMenuClose}
       >
         <MenuItem>
           <IconButton color="inherit">
@@ -94,7 +68,7 @@ class PrimaryAppBar extends React.Component<IamProps, IState> {
           </IconButton>
           <p>Notifications</p>
         </MenuItem>
-        <MenuItem onClick={this.handleProfileMenuOpen}>
+        <MenuItem onClick={props.handleProfileMenuOpen}>
           <IconButton color="inherit">
             <AccountCircle />
           </IconButton>
@@ -104,13 +78,13 @@ class PrimaryAppBar extends React.Component<IamProps, IState> {
     );
 
     return (
-      <div className={classes.root}>
+      <div className={props.classes.root}>
         <AppBar position="static">
           <Toolbar>
             <IconButton className={classes.menuButton}
                         color="inherit"
                         aria-label="Open drawer"
-                        onClick={this.props.handleDrawerToggle}
+              onClick={props.handleDrawerToggle}
             >
               <MenuIcon />
             </IconButton>
@@ -144,14 +118,14 @@ class PrimaryAppBar extends React.Component<IamProps, IState> {
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
-                onClick={this.handleProfileMenuOpen}
+                onClick={props.handleProfileMenuOpen}
                 color="inherit"
               >
                 <AccountCircle />
               </IconButton>
             </div>
             <div className={classes.sectionMobile}>
-              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+              <IconButton aria-haspopup="true" onClick={props.handleMobileMenuOpen} color="inherit">
                 <MoreIcon />
               </IconButton>
             </div>
@@ -162,6 +136,5 @@ class PrimaryAppBar extends React.Component<IamProps, IState> {
       </div>
     );
   }
-}
 
-export default withStyles(styles, { withTheme: true })(PrimaryAppBar);
+export default withStyles(styles)(PrimaryAppBar);

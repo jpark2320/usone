@@ -9,33 +9,34 @@ export interface IamProps extends WithStyles<typeof styles> {
 }
 
 export const RegionNavBar: React.SFC<IamProps> = (props) => {
-    const images = props.images
+  const { images, classes }= props
+
       return (
-      <div className={props.classes.root}>
+      <div className={classes.root}>
         {images.map(image => (
         <ButtonBase
                 focusRipple ={true}
                 key={image.title}
-                className={props.classes.image}
-                focusVisibleClassName={props.classes.focusVisible}
+                className={classes.image}
+                focusVisibleClassName={classes.focusVisible}
                 style={{
                 width: image.width,
                 }}
         >
           <span
-            className={props.classes.imageSrc}
+            className={classes.imageSrc}
             style={{backgroundImage: `url(${image.url})`}}
           />
-          <span className={props.classes.imageBackdrop} />
-          <span className={props.classes.imageButton}>
+          <span className={classes.imageBackdrop} />
+          <span className={classes.imageButton}>
             <Typography
               component="span"
               variant="subtitle1"
               color="inherit"
-              className={props.classes.imageTitle}
+              className={classes.imageTitle}
             >
               {image.title}
-              <span className={props.classes.imageMarked} />
+              <span className={classes.imageMarked} />
             </Typography>
           </span>
         </ButtonBase>

@@ -7,64 +7,24 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 import logo from "../../logo.svg";
-
-const firstItems = [
-  {
-    text: 'HOME',
-    url: '',
-  },
-  {
-    text: '삽니다',
-    url: '',
-  },
-  {
-    text: '팝니다',
-    url: '',
-  },
-];
-
-const secondItems = [
-  {
-    text: '렌트/룸메/서브리스',
-    url: '',
-  },
-  {
-    text: 'Jobs',
-    url: '',
-  },
-  {
-    text: '비자문의',
-    url: '',
-  },
-];
-
-const thirdItems = [
-  {
-    text: '광고문의',
-    url:'',  
-  }
-]
+import { Theme } from '@material-ui/core';
 
 export interface IamProps extends WithStyles<typeof styles> {
-  theme: Theme;
-  container: Element;
   handleDrawerToggle: () => void;
   mobileOpen: boolean;
+  firstItems: any;
+  secondItems: any;
+  thirdItems: any;
+  theme: Theme;
+  container: HTMLElement | null;
 };
 
-class MyDrawer extends React.Component<IamProps> {
+export const MyDrawer : React.SFC<IamProps> = (props) => {
 
-  public state = {
-    mobileOpen: false,
-  };
-
-  public render() {
-
-    const { classes, theme } = this.props;
+    const { classes, firstItems, secondItems, thirdItems } = props;
 
     const drawer = (
     <div>
@@ -104,12 +64,12 @@ class MyDrawer extends React.Component<IamProps> {
           {/* The implementation can be swap with js to avoid SEO duplication of links. */}
           <Hidden mdUp={true} implementation="css">
             <SwipeableDrawer
-              container={this.props.container}
+              container={props.container}
               variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={this.props.mobileOpen}
-              onClose={this.props.handleDrawerToggle}
-              onOpen={this.props.handleDrawerToggle}
+              anchor={props.theme.direction === 'rtl' ? 'right' : 'left'}
+              open={props.mobileOpen}
+              onClose={props.handleDrawerToggle}
+              onOpen={props.handleDrawerToggle}
               classes={{
                 paper: classes.drawerPaper,
               }}
@@ -126,17 +86,16 @@ class MyDrawer extends React.Component<IamProps> {
                       paper: classes.drawerPaper,
                     }}
                     variant="permanent"
-                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                    open={this.props.mobileOpen}
-                    onClose={this.props.handleDrawerToggle}
-                    onOpen={this.props.handleDrawerToggle}
+                    anchor={props.theme.direction === 'rtl' ? 'right' : 'left'}
+                    open={props.mobileOpen}
+                    onClose={props.handleDrawerToggle}
+                    onOpen={props.handleDrawerToggle}
             >
               {drawer}
             </SwipeableDrawer>
           </Hidden>
         </nav>
     );
-  }
 }
 
 export default withStyles(styles, { withTheme: true })(MyDrawer);

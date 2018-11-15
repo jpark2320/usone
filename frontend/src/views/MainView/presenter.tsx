@@ -12,12 +12,12 @@ export interface IamProps extends WithStyles<typeof styles> {
 
 class MainView extends React.Component<IamProps> {
   public render() {
-    const { classes, container } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <Header container={container} />
+        <Header />
         {/* Main */}
         <main className={classes.content}>
           <div className={classes.toolbar} />

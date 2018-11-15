@@ -1,22 +1,19 @@
 import React, { Fragment } from "react";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import RegionNavBar from "components/RegionNavBar";
-import MyDrawer from "components/Drawer/presenter";
-import PrimaryAppBar from "components/PrimaryAppBar/presenter";
+import MyDrawer from "components/Drawer";
+import PrimaryAppBar from "components/PrimaryAppBar/";
 import styles from "./styles";
 
 interface IState {
   mobileOpen: boolean;
 }
 
-export interface IamProps extends WithStyles<typeof styles> {
-  theme: Theme;
-  container: Element;
+export interface IProps extends WithStyles<typeof styles> {
 }
 
-class Header extends React.Component<IamProps, IState> {
+class Header extends React.Component<IProps, IState> {
   public state = {
     mobileOpen: false
   };
@@ -26,7 +23,7 @@ class Header extends React.Component<IamProps, IState> {
   };
 
   public render() {
-    const { classes, container } = this.props;
+    const { classes } = this.props;
     return (
       <Fragment>
         <AppBar position="fixed" className={classes.appBar}>
@@ -37,13 +34,11 @@ class Header extends React.Component<IamProps, IState> {
           {/* End Region Nav Bar*/}
           {/* Primary NavMenu*/}
           <PrimaryAppBar
-            container={container}
             handleDrawerToggle={this.handleDrawerToggle}
           />
           {/* End Primary NavMenu*/}
         </AppBar>
         <MyDrawer
-          container={container}
           handleDrawerToggle={this.handleDrawerToggle}
           mobileOpen={this.state.mobileOpen}
         />
