@@ -2,7 +2,8 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
-import Header from "../../components/Header/presenter";
+import Header from "../../components/Header";
+import SummaryView from "../../components/SummaryView";
 import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
@@ -20,7 +21,7 @@ class MainView extends React.Component<IamProps> {
         <Header />
         {/* Main */}
         <main className={classes.content}>
-          <div className={classes.toolbar} />
+          <SummaryView />
         </main>
         {/* End Main */}
       </div>
