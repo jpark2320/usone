@@ -38,7 +38,6 @@ class Container extends React.Component<IProps, IState> {
   public render() {
     return(
       <PrimaryAppBar
-        {...this.props}
         {...this.state}
         handleDrawerToggle={this.props.handleDrawerToggle}
         handleProfileMenuOpen={this.handleProfileMenuOpen}

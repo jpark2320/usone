@@ -20,7 +20,7 @@ class MainView extends React.Component<IamProps> {
         <CssBaseline />
         <Header />
         {/* Main */}
-        <main className={classes.content}>
+        <main className={classes.bodyContainer}>
           <SummaryView />
         </main>
         {/* End Main */}

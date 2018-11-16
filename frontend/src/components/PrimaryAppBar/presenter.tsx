@@ -16,7 +16,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 
-export interface IProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   anchorEl: HTMLElement | null;
   mobileMoreAnchorEl: HTMLElement | null;
   handleDrawerToggle: () => any;
@@ -26,57 +26,60 @@ export interface IProps extends WithStyles<typeof styles> {
   handleMobileMenuClose: () => any;
 };
 
-export const PrimaryAppBar: React.SFC<IProps> = (props) => {
+
+
+const PrimaryAppBar: React.SFC<IProps> = (props) => {
     const { anchorEl, mobileMoreAnchorEl, classes } = props
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-    const renderMenu = (
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMenuOpen}
-        onClose={props.handleMenuClose}
-      >
-        <MenuItem onClick={props.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={props.handleMenuClose}>My account</MenuItem>
-      </Menu>
-    );
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={props.handleMenuClose}
+    >
+      <MenuItem onClick={props.handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={props.handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
 
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={props.handleMobileMenuClose}
-      >
-        <MenuItem>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>Messages</p>
-        </MenuItem>
-        <MenuItem>
-          <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={props.handleProfileMenuOpen}>
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    );
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={props.handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton color="inherit">
+          <Badge badgeContent={11} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
+      <MenuItem onClick={props.handleProfileMenuOpen}>
+        <IconButton color="inherit">
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+    </Menu>
+  );
 
+    
     return (
       <div className={props.classes.root}>
         <AppBar position="static">

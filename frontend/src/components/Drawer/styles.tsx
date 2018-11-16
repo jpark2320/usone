@@ -42,7 +42,7 @@ const styles = (theme: Theme) => createStyles({
         [theme.breakpoints.up('md')]: {
             width: `calc(100% - ${drawerWidth}px)`,
         },
-    },
+  },
   App__logo: {
     animation: 'App-logo-spin infinite 20s linear',
     height: 80,
