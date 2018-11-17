@@ -17,6 +17,7 @@ const rows = [
 ];
 
 interface IProps {
+  title: string;
   rows: any;
 };
 
@@ -38,6 +39,7 @@ class Container extends React.Component<IProps, IState> {
   public render() {
     return (
       <SummaryView
+        title={this.props.title}
         rows={rows}
       />
     );

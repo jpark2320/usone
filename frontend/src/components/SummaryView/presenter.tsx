@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,33 +8,32 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
+import { Typography } from '@material-ui/core';
 
 export interface IProps extends WithStyles<typeof styles> {
+  title: string;
   rows: any;
 };
 
 export const SummaryView: React.SFC<IProps> = (props) => {
   
-  const { rows , classes} = props
+  const { title, rows , classes} = props
 
   return <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
-          <TableRow>
-            <TableCell>카테고리</TableCell>
-            <TableCell>제목</TableCell>
-            <TableCell>코멘트</TableCell>
-          </TableRow>
+          <Typography gutterBottom={true} variant="h5" component="h2">
+            {title} 
+          </Typography>
         </TableHead>
         <TableBody>
           {rows.map(row => {
             return <TableRow key={row.id}>
-                <TableCell component="th" scope="row">
-                  {row.name}
+                <TableCell >
+                  {row.category}
+                  {row.title}
+                  {row.comments}
                 </TableCell>
-                <TableCell numeric={true}>{row.category}</TableCell>
-                <TableCell numeric={true}>{row.title}</TableCell>
-              <TableCell numeric={true}>{row.comments}</TableCell>
               </TableRow>;
           })}
         </TableBody>

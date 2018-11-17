@@ -3,8 +3,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Header from "../../components/Header";
-import SummaryView from "../../components/SummaryView";
 import styles from "./styles";
+import MainViewGrid from 'components/MainViewGrid';
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
@@ -21,7 +21,7 @@ class MainView extends React.Component<IamProps> {
         <Header />
         {/* Main */}
         <main className={classes.bodyContainer}>
-          <SummaryView />
+          <MainViewGrid />
         </main>
         {/* End Main */}
       </div>
