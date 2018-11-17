@@ -4,14 +4,13 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
 import styles from './styles';
 
-export interface IamProps extends WithStyles<typeof styles> {
+interface IamProps extends WithStyles<typeof styles> {
   images: any
 }
 
-export const RegionNavBar: React.SFC<IamProps> = (props) => {
+const RegionNavBar: React.SFC<IamProps> = (props) => {
   const { images, classes }= props
-
-      return (
+    return (
       <div className={classes.root}>
         {images.map(image => (
         <ButtonBase
