@@ -22,7 +22,7 @@ import Paper from "@material-ui/core/Paper"
 
 
 // interfcaces
-interface IListViewRecipeProps extends WithStyles<typeof styles>  {
+interface IBoardListStateRecipeProps extends WithStyles<typeof styles>  {
   data: any[];
   // getListdata: typeof listviewDispatch;
   botnavValue: number;
@@ -44,7 +44,7 @@ interface IListViewRecipeProps extends WithStyles<typeof styles>  {
   displayNumberOfCharacters:any,
   dynamicClassNameBasedOnLabelID:any
 }
-interface IListViewState {
+interface IBoardListState {
   data: any[],
   numSelected: any,
   order: any,
@@ -60,7 +60,7 @@ interface IListViewState {
 
 }
 
-class TableComponent extends React.Component<IListViewRecipeProps, IListViewState> {
+class BoardList extends React.Component<IBoardListStateRecipeProps, IBoardListState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -79,7 +79,7 @@ class TableComponent extends React.Component<IListViewRecipeProps, IListViewStat
     // const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
-      <div className={classes.tempContainerStyle}>
+      <div >
       <Grid item={true} xs={12}>
         <Paper className={classes.paper}>
         <div id="list" className={classes.tableContainer} >
@@ -188,6 +188,6 @@ class TableComponent extends React.Component<IListViewRecipeProps, IListViewStat
   }
 }
 
-export default withStyles(styles, { withTheme: true })(TableComponent);
+export default withStyles(styles, { withTheme: true })(BoardList);
 
 

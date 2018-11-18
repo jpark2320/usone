@@ -13,14 +13,12 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
                 marginTop:'10%',
                 marginLeft:'3%',
                 marginRight:'3%',
-                ontSize: '3rem',
+                fontSize: '2rem',
                },
           },
-
         listViewHeader:{
 
         },
-
         hr:{
             border: 'none',
             borderTop:' 5px solid #3CB371 ',
@@ -28,7 +26,6 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
             textAlign: 'center',
             color: '#3CB371',
             height: '5px',
-
         },
         search: {
             float:'right',
@@ -47,7 +44,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
             },
           },
           searchIcon: {
-            width: theme.spacing.unit * 9,
+            // width: theme.spacing.unit * 9,
             height: '100%',
             position: 'absolute',
             pointerEvents: 'none',
@@ -63,12 +60,23 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
             paddingTop: theme.spacing.unit,
             paddingRight: theme.spacing.unit,
             paddingBottom: theme.spacing.unit,
-            paddingLeft: theme.spacing.unit * 10,
+            paddingLeft: theme.spacing.unit * 4,
             transition: theme.transitions.create('width'),
             width: '100%',
             [theme.breakpoints.up('md')]: {
               width: 200,
             },
+
+            [theme.breakpoints.down('xs')]: {
+              display:'none'
+            },
           },
+          toggleWhenMobile:{
+
+            [theme.breakpoints.down('md')]: {
+              color:'red'
+            }
+          },
+      
     })
 export default styles
