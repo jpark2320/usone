@@ -1,16 +1,25 @@
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import createStyles from '@material-ui/core/styles/createStyles';
+import { Theme } from "@material-ui/core/styles/createMuiTheme";
+import createStyles from "@material-ui/core/styles/createStyles";
 
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
-      marginTop: theme.spacing.unit * 3,
+      width: "100%",
       overflowX: "auto",
-      position: 'relative',
+      position: "relative"
     },
     table: {
-      maxWidth: '100%'
+      maxWidth: "100%"
+    },
+    category__button: {
+      minWidth: 33,
+      marginRight: "10px",
+      backgroundColor: "#636469",
+      padding: "6px",
+      minHeight: "28px"
+    },
+    category__button__label: {
+      fontSize: "11px"
     }
   });
 
