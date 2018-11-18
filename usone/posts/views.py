@@ -7,11 +7,16 @@ from .models import Post, Image
 from . import serializers
 
 
+class BasicSizePagination(pagination.PageNumberPagination):
+    page_size = 10
+
+
 @authentication_classes([])
 @permission_classes([])
 class ListAllPosts(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = serializers.PostSerializer
+    pagination_class = BasicSizePagination
 
 
 @authentication_classes([])
@@ -19,6 +24,23 @@ class ListAllPosts(ListAPIView):
 class ListAllImages(ListAPIView):
     queryset = Image.objects.all()
     serializer_class = serializers.ImageSerializer
+
+
+@authentication_classes([])
+@permission_classes([])
+class PostByRegion(ListAPIView):
+    serializer_class = serializers.PostSerializer
+    pagination_class = BasicSizePagination
+
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        q = self.request.query_params.get('q', None)
+
+        if q is not None:
+            queryset = queryset.filter(region__iexact=q)
+        else:
+            quryset = Post.objects.none()
+        return queryset
 
 # @authentication_classes([])
 # @permission_classes([])
@@ -39,30 +61,6 @@ class ListAllImages(ListAPIView):
 # class ListAllStoreNamesDomains(ListAPIView):
 #     queryset = Store.objects.all()
 #     serializer_class = StoreNameDomainSerializer
-
-
-# class StoreSearchPagination(pagination.PageNumberPagination):
-#     page_size = 10
-
-
-# @authentication_classes([])
-# @permission_classes([])
-# class StoreSearch(ListAPIView):
-#     serializer_class = StoreSerializer
-#     pagination_class = StoreSearchPagination
-
-#     def get_queryset(self):
-#         queryset = Store.objects.filter(status='active')
-#         q = self.request.query_params.get('q', None)
-
-#         if q is not None:
-#             queryset = queryset.filter(Q(businessName__icontains=q)
-#                                        | Q(relatedName__icontains=q)
-#                                        | Q(mKey__icontains=q)
-#                                        | Q(website__icontains=q)
-#                                        | Q(website__icontains='www.' + q)
-#                                        | Q(domainKey__icontains=q))
-#         return queryset
 
 
 # @authentication_classes([])
