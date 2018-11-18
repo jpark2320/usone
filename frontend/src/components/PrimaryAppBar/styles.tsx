@@ -3,7 +3,7 @@ import createStyles from "@material-ui/core/styles/createStyles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
 const headColor = "white";
-const headBackgroundColor = "#666666";
+const headBackgroundColor = "#777777";
 
 const styles = (theme: Theme) =>
   createStyles({

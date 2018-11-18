@@ -14,7 +14,8 @@ const styles = (theme: Theme) =>
     category__button: {
       minWidth: 33,
       marginRight: "10px",
-      backgroundColor: "#636469",
+      backgroundColor: "#d8d8d8",
+      color: "black",
       padding: "6px",
       minHeight: "28px"
     },
