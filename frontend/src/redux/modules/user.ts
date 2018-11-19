@@ -21,7 +21,7 @@ function logoutToken() {
 
 // API actions
 function logout() {
-  return function(dispatch) {
+  return dispatch => {
     fetch("/rest-auth/logout/", {
       headers: {
         "Content-Type": "application/json"
@@ -37,10 +37,10 @@ function logout() {
 }
 
 function facebookLogin(accessToken) {
-  return function(dispatch) {
+  return dispatch => {
     fetch("/accounts/login/facebook/", {
       body: JSON.stringify({
-        access_token
+        accessToken
       }),
       headers: {
         "Content-Type": "application/json"
@@ -82,11 +82,11 @@ function usernameLogin(username, password) {
 }
 
 function createAccount(username, password1, password2) {
-  return function(dispatch) {
+  return dispatch => {
     fetch("/rest-auth/registration/", {
       body: JSON.stringify({
-        password1: password1,
-        password2: password2,
+        password1,
+        password2,
         username
       }),
       headers: {

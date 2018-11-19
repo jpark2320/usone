@@ -14,7 +14,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     image_set = BackupImageSerializer(many=True)
     liked_by = UserSerializer(many=True)
-    creator = UserSerializer()
+    created_by = UserSerializer()
 
     class Meta:
         model = Post

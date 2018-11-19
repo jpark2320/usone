@@ -29,6 +29,7 @@ class PostAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not change:
             obj.created_by = request.user
+            obj.creator = request.user.name
         else:
             obj.updated_by = request.user
         obj.save()
