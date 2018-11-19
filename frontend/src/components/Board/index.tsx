@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Container from "./container";
+import container from "./container";
 
 export function listviewDispatch(data?: any) {
   return {
@@ -8,4 +8,4 @@ export function listviewDispatch(data?: any) {
   };
 }
 
-export default connect()(Container);
+export default connect()(container);
