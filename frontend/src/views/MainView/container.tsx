@@ -1,6 +1,6 @@
 import * as React from "react";
-import MainView2 from "./presenter";
+import MainView from "./presenter";
 
-const Container = (props: any) => <MainView2 {...props} />;
+const Container = (props: any) => <MainView {...props} />;
 
 export default Container;

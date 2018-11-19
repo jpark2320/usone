@@ -1,142 +1,106 @@
-import React from 'react';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
-import Hidden from '@material-ui/core/Hidden';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import styles from './styles';
-import logo from "../../logo.svg";
-
-const firstItems = [
-  {
-    text: 'HOME',
-    url: '',
-  },
-  {
-    text: '삽니다',
-    url: '',
-  },
-  {
-    text: '팝니다',
-    url: '',
-  },
-];
-
-const secondItems = [
-  {
-    text: '렌트/룸메/서브리스',
-    url: '',
-  },
-  {
-    text: 'Jobs',
-    url: '',
-  },
-  {
-    text: '비자문의',
-    url: '',
-  },
-];
-
-const thirdItems = [
-  {
-    text: '광고문의',
-    url:'',  
-  }
-]
+import React, { Fragment } from "react";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import List from "@material-ui/core/List";
+import Hidden from "@material-ui/core/Hidden";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import styles from "./styles";
+import logo from "images/logo/logo_rectangle.svg";
+import { Theme } from "@material-ui/core";
 
 export interface IamProps extends WithStyles<typeof styles> {
-  theme: Theme;
-  container: Element;
   handleDrawerToggle: () => void;
   mobileOpen: boolean;
-};
+  firstItems: any;
+  secondItems: any;
+  thirdItems: any;
+  theme: Theme;
+  container: HTMLElement | null;
+}
 
-class MyDrawer extends React.Component<IamProps> {
+export const MyDrawer: React.SFC<IamProps> = props => {
+  const { classes, firstItems, secondItems, thirdItems } = props;
 
-  public state = {
-    mobileOpen: false,
-  };
-
-  public render() {
-
-    const { classes, theme } = this.props;
-
-    const drawer = (
-    <div>
+  const drawer = (
+    <Fragment>
       <img src={logo} className={classes.App__logo} alt="logo" />
-      <Divider />
+      <Divider classes={{ root: classes.divider }} />
       <List>
         {firstItems.map(item => (
-        <ListItem button={true} key={item.text}>
-          <ListItemIcon>{<MailIcon />}</ListItemIcon>
-          <ListItemText primary={item.text} />
-        </ListItem>
+          <ListItem button={true} key={item.text}>
+            <ListItemText
+              classes={{ primary: classes.drawer__menu__text }}
+              primary={item.text}
+            />
+          </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider classes={{ root: classes.divider }} />
       <List>
         {secondItems.map(item => (
-        <ListItem button={true} key={item.text}>
-          <ListItemIcon>{<MailIcon />}</ListItemIcon>
-          <ListItemText primary={item.text} />
-        </ListItem>
+          <ListItem button={true} key={item.text}>
+            <ListItemText
+              classes={{ primary: classes.drawer__menu__text }}
+              primary={item.text}
+            />
+          </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider classes={{ root: classes.divider }} />
       <List>
         {thirdItems.map(item => (
-        <ListItem button={true} key={item.text}>
-          <ListItemIcon>{<MailIcon />}</ListItemIcon>
-          <ListItemText primary={item.text} />
-        </ListItem>
+          <ListItem button={true} key={item.text}>
+            <ListItemText
+              classes={{ primary: classes.drawer__menu__text }}
+              primary={item.text}
+            />
+          </ListItem>
         ))}
       </List>
-    </div>
-    );
+    </Fragment>
+  );
 
-    return (
-        <nav className={classes.drawer}>
-          {/* The implementation can be swap with js to avoid SEO duplication of links. */}
-          <Hidden mdUp={true} implementation="css">
-            <SwipeableDrawer
-              container={this.props.container}
-              variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={this.props.mobileOpen}
-              onClose={this.props.handleDrawerToggle}
-              onOpen={this.props.handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-            >
-            {drawer}
-            </SwipeableDrawer>
-          </Hidden>
-          <Hidden smDown={true} implementation="css">
-            <SwipeableDrawer
-                    classes={{
-                      paper: classes.drawerPaper,
-                    }}
-                    variant="permanent"
-                    anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                    open={this.props.mobileOpen}
-                    onClose={this.props.handleDrawerToggle}
-                    onOpen={this.props.handleDrawerToggle}
-            >
-              {drawer}
-            </SwipeableDrawer>
-          </Hidden>
-        </nav>
-    );
-  }
-}
+  return (
+    <nav className={classes.drawer}>
+      {/* The implementation can be swap with js to avoid SEO duplication of links. */}
+      <Hidden mdUp={true} implementation="css">
+        <SwipeableDrawer
+          container={props.container}
+          variant="temporary"
+          anchor={props.theme.direction === "rtl" ? "right" : "left"}
+          open={props.mobileOpen}
+          onClose={props.handleDrawerToggle}
+          onOpen={props.handleDrawerToggle}
+          classes={{
+            paper: classes.drawerPaper,
+            paperAnchorDockedLeft: classes.paperAnchorDockedLeft
+          }}
+          ModalProps={
+            { keepMounted: true } // Better open performance on mobile.
+          }
+        >
+          {drawer}
+        </SwipeableDrawer>
+      </Hidden>
+      <Hidden smDown={true} implementation="css">
+        <SwipeableDrawer
+          classes={{
+            paper: classes.drawerPaper,
+            paperAnchorDockedLeft: classes.paperAnchorDockedLeft
+          }}
+          variant="permanent"
+          anchor={props.theme.direction === "rtl" ? "right" : "left"}
+          open={props.mobileOpen}
+          onClose={props.handleDrawerToggle}
+          onOpen={props.handleDrawerToggle}
+        >
+          {drawer}
+        </SwipeableDrawer>
+      </Hidden>
+    </nav>
+  );
+};
 
 export default withStyles(styles, { withTheme: true })(MyDrawer);

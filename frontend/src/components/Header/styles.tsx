@@ -27,7 +27,7 @@ const styles = (theme: Theme) => createStyles({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
-  RegionNaviBarContainer: {
+  RegionNavBarContainer: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'contents',
