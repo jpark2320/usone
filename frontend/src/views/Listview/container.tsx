@@ -1,8 +1,6 @@
-
 import * as React from "react";
-import Listview from "./presenter"
+import ListView from "./presenter";
 
-
-const Container = (props: any) => <Listview {...props} />;
+const Container = (props: any) => <ListView {...props} />;
 
 export default Container;
