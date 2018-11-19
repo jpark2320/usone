@@ -10,7 +10,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import styles from "./styles";
 
-export interface IProps extends WithStyles<typeof styles> {}
+export interface IListViewProps extends WithStyles<typeof styles> {}
 
 class ListView extends React.Component<IListViewProps, any> {
   constructor(props: any) {
