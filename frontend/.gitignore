@@ -6,9 +6,6 @@
 # testing
 /coverage
 
-# production
-/build
-
 # Dependencies
 /node_modules
 
