@@ -4,7 +4,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Header from "../../components/Header";
 import styles from "./styles";
-import MainViewGrid from 'components/MainViewGrid';
+import BoardDetail from "components/BoardDetail";
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
@@ -21,7 +21,7 @@ class MainView extends React.Component<IamProps> {
         <Header />
         {/* Main */}
         <main className={classes.bodyContainer}>
-          <MainViewGrid />
+          <BoardDetail />
         </main>
         {/* End Main */}
       </div>
