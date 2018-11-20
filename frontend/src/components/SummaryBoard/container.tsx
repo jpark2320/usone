@@ -1,5 +1,5 @@
 import * as React from "react";
-import SummaryView from "./presenter";
+import SummaryBoard from "./presenter";
 
 let id = 0;
 function createData(category, title, comments) {
@@ -19,30 +19,24 @@ const rows = [
 interface IProps {
   title: string;
   rows: any;
-};
+}
 
 interface IState {
   anchorEl: HTMLElement | null;
   mobileMoreAnchorEl: HTMLElement | null;
-};
+}
 
 class Container extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
       anchorEl: null,
-      mobileMoreAnchorEl: null,
-    }
+      mobileMoreAnchorEl: null
+    };
   }
 
-  
   public render() {
-    return (
-      <SummaryView
-        title={this.props.title}
-        rows={rows}
-      />
-    );
+    return <SummaryBoard title={this.props.title} rows={rows} />;
   }
 }
 

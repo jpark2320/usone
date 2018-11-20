@@ -7,12 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import { Divider } from "@material-ui/core";
 import styles from "./styles";
 
-export interface IProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   post: any;
   comments: any;
 }
 
-export const BoardDetail: React.SFC<IProps> = props => {
+const DetailBoard: React.SFC<IProps> = props => {
   const { post, comments, classes } = props;
   const talk = "대화";
   const recommend = "추천";
@@ -83,4 +83,4 @@ export const BoardDetail: React.SFC<IProps> = props => {
   );
 };
 
-export default withStyles(styles)(BoardDetail);
+export default withStyles(styles)(DetailBoard);

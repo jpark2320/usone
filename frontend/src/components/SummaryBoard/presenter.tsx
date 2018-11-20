@@ -10,12 +10,12 @@ import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import styles from "./styles";
 
-export interface IProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   title: string;
   rows: any;
 }
 
-export const SummaryView: React.SFC<IProps> = props => {
+const SummaryBoard: React.SFC<IProps> = props => {
   const { title, rows, classes } = props;
 
   return (
@@ -52,4 +52,4 @@ export const SummaryView: React.SFC<IProps> = props => {
   );
 };
 
-export default withStyles(styles)(SummaryView);
+export default withStyles(styles)(SummaryBoard);

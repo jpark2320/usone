@@ -1,30 +1,30 @@
-import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import withStyles, { WithStyles } from '@material-ui/core/styles/withStyles';
-import styles from './styles';
+import * as React from "react";
+import Typography from "@material-ui/core/Typography";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import styles from "./styles";
 
 interface IamProps extends WithStyles<typeof styles> {
-  images: any
+  images: any;
 }
 
-const RegionNavBar: React.SFC<IamProps> = (props) => {
-  const { images, classes }= props
-    return (
-      <div className={classes.root}>
-        {images.map(image => (
+const RegionNavBar: React.SFC<IamProps> = props => {
+  const { images, classes } = props;
+  return (
+    <div className={classes.root}>
+      {images.map(image => (
         <ButtonBase
-                focusRipple ={true}
-                key={image.title}
-                className={classes.image}
-                focusVisibleClassName={classes.focusVisible}
-                style={{
-                width: image.width,
-                }}
+          focusRipple={true}
+          key={image.title}
+          className={classes.image}
+          focusVisibleClassName={classes.focusVisible}
+          style={{
+            width: image.width
+          }}
         >
           <span
             className={classes.imageSrc}
-            style={{backgroundImage: `url(${image.url})`}}
+            style={{ backgroundImage: `url(${image.url})` }}
           />
           <span className={classes.imageBackdrop} />
           <span className={classes.imageButton}>
@@ -39,9 +39,9 @@ const RegionNavBar: React.SFC<IamProps> = (props) => {
             </Typography>
           </span>
         </ButtonBase>
-        ))}
-      </div>
-      );
-}
+      ))}
+    </div>
+  );
+};
 
 export default withStyles(styles)(RegionNavBar);

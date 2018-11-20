@@ -98,7 +98,7 @@ interface IProps extends WithStyles<typeof styles> {
   handleMobileMenuClose: () => any;
 }
 
-const PrimaryAppBar: React.SFC<IProps> = props => {
+const PrimaryNavBar: React.SFC<IProps> = props => {
   const {
     anchorEl,
     mobileMoreAnchorEl,
@@ -117,7 +117,7 @@ const PrimaryAppBar: React.SFC<IProps> = props => {
       <AppBar
         position="static"
         color="default"
-        classes={{ colorDefault: classes.PrimaryAppBar__head }}
+        classes={{ colorDefault: classes.PrimaryNavBar__head }}
       >
         <Toolbar>
           <IconButton
@@ -192,4 +192,4 @@ const PrimaryAppBar: React.SFC<IProps> = props => {
   );
 };
 
-export default withStyles(styles)(PrimaryAppBar);
+export default withStyles(styles)(PrimaryNavBar);

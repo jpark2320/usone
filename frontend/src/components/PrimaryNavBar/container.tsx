@@ -3,20 +3,20 @@ import PrimaryAppBar from "./presenter";
 
 interface IProps {
   handleDrawerToggle: () => any;
-};
+}
 
 interface IState {
   anchorEl: HTMLElement | null;
   mobileMoreAnchorEl: HTMLElement | null;
-};
+}
 
 class Container extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
       anchorEl: null,
-      mobileMoreAnchorEl: null,
-    }
+      mobileMoreAnchorEl: null
+    };
   }
 
   public handleProfileMenuOpen = event => {
@@ -36,7 +36,7 @@ class Container extends React.Component<IProps, IState> {
     this.setState(state => ({ mobileMoreAnchorEl: null }));
   };
   public render() {
-    return(
+    return (
       <PrimaryAppBar
         {...this.state}
         handleDrawerToggle={this.props.handleDrawerToggle}
