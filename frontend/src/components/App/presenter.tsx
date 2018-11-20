@@ -10,10 +10,10 @@ const Routes: React.SFC = () => (
     <Route path={"/"} exact={true} component={MainView} />
     <Route path="/sell" component={ListView} />
     <Route path="/buy" component={ListView} />
-    <Route path="/buy" component={ListView} />
     <Route path="/house" component={ListView} />
     <Route path="/job" component={ListView} />
     <Route path="/visa" component={ListView} />
+    <Route path="/ad" component={MainView} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );

@@ -4,10 +4,10 @@ import List from "@material-ui/core/List";
 import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import logo from "images/logo/logo_rectangle.svg";
 import { Theme } from "@material-ui/core";
+import ListItemLink from "components/ListItemLink";
 import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
@@ -29,21 +29,21 @@ export const MenuDrawer: React.SFC<IamProps> = props => {
       <Divider classes={{ root: classes.divider }} />
       <List>
         {firstItems.map(item => (
-          <ListItem button={true} key={item.text}>
-            <ListItemText
-              classes={{ primary: classes.drawer__menu__text }}
-              primary={item.text}
-            />
-          </ListItem>
+          <ListItemLink
+            primaryStyle={{ primary: classes.drawer__menu__text }}
+            primary={item.text}
+            to={item.url}
+          />
         ))}
       </List>
       <Divider classes={{ root: classes.divider }} />
       <List>
         {secondItems.map(item => (
           <ListItem button={true} key={item.text}>
-            <ListItemText
-              classes={{ primary: classes.drawer__menu__text }}
+            <ListItemLink
+              primaryStyle={{ primary: classes.drawer__menu__text }}
               primary={item.text}
+              to={item.url}
             />
           </ListItem>
         ))}
@@ -51,12 +51,11 @@ export const MenuDrawer: React.SFC<IamProps> = props => {
       <Divider classes={{ root: classes.divider }} />
       <List>
         {thirdItems.map(item => (
-          <ListItem button={true} key={item.text}>
-            <ListItemText
-              classes={{ primary: classes.drawer__menu__text }}
-              primary={item.text}
-            />
-          </ListItem>
+          <ListItemLink
+            primaryStyle={{ primary: classes.drawer__menu__text }}
+            primary={item.text}
+            to={item.url}
+          />
         ))}
       </List>
     </Fragment>

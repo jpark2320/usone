@@ -4,37 +4,37 @@ import MenuDrawer from "./presenter";
 const firstItems = [
   {
     text: "HOME",
-    url: ""
+    url: "/"
   },
   {
     text: "삽니다",
-    url: ""
+    url: "/buy"
   },
   {
     text: "팝니다",
-    url: ""
+    url: "/sell"
   }
 ];
 
 const secondItems = [
   {
     text: "렌트/룸메/서브리스",
-    url: ""
+    url: "/house"
   },
   {
     text: "Jobs",
-    url: ""
+    url: "/job"
   },
   {
     text: "비자문의",
-    url: ""
+    url: "/visa"
   }
 ];
 
 const thirdItems = [
   {
     text: "광고문의",
-    url: ""
+    url: "/ad"
   }
 ];
 
