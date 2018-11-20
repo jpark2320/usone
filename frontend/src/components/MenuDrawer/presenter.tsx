@@ -6,9 +6,9 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
-import styles from "./styles";
 import logo from "images/logo/logo_rectangle.svg";
 import { Theme } from "@material-ui/core";
+import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
   handleDrawerToggle: () => void;
@@ -20,7 +20,7 @@ export interface IamProps extends WithStyles<typeof styles> {
   container: HTMLElement | null;
 }
 
-export const MyDrawer: React.SFC<IamProps> = props => {
+export const MenuDrawer: React.SFC<IamProps> = props => {
   const { classes, firstItems, secondItems, thirdItems } = props;
 
   const drawer = (
@@ -103,4 +103,4 @@ export const MyDrawer: React.SFC<IamProps> = props => {
   );
 };
 
-export default withStyles(styles, { withTheme: true })(MyDrawer);
+export default withStyles(styles, { withTheme: true })(MenuDrawer);

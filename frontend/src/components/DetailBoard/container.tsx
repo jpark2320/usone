@@ -1,5 +1,5 @@
 import * as React from "react";
-import BoardDetail from "./presenter";
+import DetailBoard from "./presenter";
 
 const post = {
   category: "이민",
@@ -49,7 +49,7 @@ class Container extends React.Component<IProps, IState> {
   }
 
   public render() {
-    return <BoardDetail post={post} comments={comments} />;
+    return <DetailBoard post={post} comments={comments} />;
   }
 }
 

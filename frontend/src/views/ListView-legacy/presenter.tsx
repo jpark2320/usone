@@ -1,13 +1,10 @@
 import * as React from "react";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
-import BoardList from "../../components/Board";
-import CreateNewItem from "../../components/CreateNewItem";
-
+import ListBoard from "components/ListBoard";
+import CreatePost from "components/CreatePost";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
-
 import styles from "./styles";
 
 export interface IListViewProps extends WithStyles<typeof styles> {}
@@ -43,16 +40,13 @@ class ListView extends React.Component<IListViewProps, any> {
               </div>
               <InputBase
                 placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
+                classes={{ root: classes.inputRoot, input: classes.inputInput }}
               />
             </div>
           </div>
           <hr className={classes.hr} />
-          <BoardList />
-          <CreateNewItem />
+          <ListBoard />
+          <CreatePost />
         </div>
       </React.Fragment>
     );

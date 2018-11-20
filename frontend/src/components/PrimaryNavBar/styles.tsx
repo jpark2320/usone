@@ -77,7 +77,7 @@ const styles = (theme: Theme) =>
         display: "none"
       }
     },
-    PrimaryAppBar__head: {
+    PrimaryNavBar__head: {
       color: headColor,
       background: headBackgroundColor
     }
