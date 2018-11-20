@@ -5,6 +5,8 @@ const drawerWidth = 245;
 const regionBarHeight = 81;
 const appBarHeight = 56;
 const drawerHeight = regionBarHeight + appBarHeight;
+const AdWidth = 200;
+
 const styles = (theme: Theme) =>
   createStyles({
     root: {
@@ -20,12 +22,14 @@ const styles = (theme: Theme) =>
       backgroundColor: "white",
       width: `calc(100% - ${drawerWidth}px)`,
       marginTop: `${drawerHeight}px`,
+      marginRight: `${AdWidth}px`,
       [theme.breakpoints.down("md")]: {
         width: "100%"
       },
       [theme.breakpoints.down("xs")]: {
         marginTop: `${appBarHeight}px`,
-        width: "100%"
+        width: "100%",
+        marginRight: 0
       }
     },
     MainView__something: {},
