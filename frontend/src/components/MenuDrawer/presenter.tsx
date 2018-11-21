@@ -3,7 +3,6 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import List from "@material-ui/core/List";
 import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import logo from "images/logo/logo_rectangle.svg";
 import { Theme } from "@material-ui/core";
@@ -39,13 +38,11 @@ export const MenuDrawer: React.SFC<IamProps> = props => {
       <Divider classes={{ root: classes.divider }} />
       <List>
         {secondItems.map(item => (
-          <ListItem button={true} key={item.text}>
-            <ListItemLink
-              primaryStyle={{ primary: classes.drawer__menu__text }}
-              primary={item.text}
-              to={item.url}
-            />
-          </ListItem>
+          <ListItemLink
+            primaryStyle={{ primary: classes.drawer__menu__text }}
+            primary={item.text}
+            to={item.url}
+          />
         ))}
       </List>
       <Divider classes={{ root: classes.divider }} />
