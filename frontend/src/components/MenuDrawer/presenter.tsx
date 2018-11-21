@@ -28,31 +28,37 @@ export const MenuDrawer: React.SFC<IamProps> = props => {
       <Divider classes={{ root: classes.divider }} />
       <List>
         {firstItems.map(item => (
-          <ListItemLink
-            primaryStyle={{ primary: classes.drawer__menu__text }}
-            primary={item.text}
-            to={item.url}
-          />
+          <div key={item.id}>
+            <ListItemLink
+              primaryStyle={{ primary: classes.drawer__menu__text }}
+              primary={item.text}
+              to={item.url}
+            />
+          </div>
         ))}
       </List>
       <Divider classes={{ root: classes.divider }} />
       <List>
         {secondItems.map(item => (
-          <ListItemLink
-            primaryStyle={{ primary: classes.drawer__menu__text }}
-            primary={item.text}
-            to={item.url}
-          />
+          <div key={item.id}>
+            <ListItemLink
+              primaryStyle={{ primary: classes.drawer__menu__text }}
+              primary={item.text}
+              to={item.url}
+            />
+          </div>
         ))}
       </List>
       <Divider classes={{ root: classes.divider }} />
       <List>
         {thirdItems.map(item => (
-          <ListItemLink
-            primaryStyle={{ primary: classes.drawer__menu__text }}
-            primary={item.text}
-            to={item.url}
-          />
+          <div key={item.id}>
+            <ListItemLink
+              primaryStyle={{ primary: classes.drawer__menu__text }}
+              primary={item.text}
+              to={item.url}
+            />
+          </div>
         ))}
       </List>
     </Fragment>

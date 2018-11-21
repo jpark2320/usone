@@ -3,14 +3,17 @@ import MenuDrawer from "./presenter";
 
 const firstItems = [
   {
+    id: 1,
     text: "HOME",
     url: "/"
   },
   {
+    id: 2,
     text: "삽니다",
     url: "/buy"
   },
   {
+    id: 3,
     text: "팝니다",
     url: "/sell"
   }
@@ -18,14 +21,17 @@ const firstItems = [
 
 const secondItems = [
   {
+    id: 4,
     text: "렌트/룸메/서브리스",
     url: "/house"
   },
   {
+    id: 5,
     text: "Jobs",
     url: "/job"
   },
   {
+    id: 6,
     text: "비자문의",
     url: "/visa"
   }
@@ -33,6 +39,7 @@ const secondItems = [
 
 const thirdItems = [
   {
+    id: 7,
     text: "광고문의",
     url: "/ad"
   }

@@ -15,11 +15,9 @@ const ListItemLink: React.SFC<IListItemLinkProps> = props => {
   const renderLink = itemProps => <Link to={props.to} {...itemProps} />;
   const { primary, primaryStyle } = props;
   return (
-    <li>
-      <ListItem button={true} component={renderLink}>
-        <ListItemText primary={primary} classes={primaryStyle} />
-      </ListItem>
-    </li>
+    <ListItem button={true} component={renderLink} key={primary}>
+      <ListItemText primary={primary} classes={primaryStyle} />
+    </ListItem>
   );
 };
 
