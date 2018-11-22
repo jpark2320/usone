@@ -45,6 +45,18 @@ class Post(TimeStampedModel):
         return '{} - {} ({})'.format(self.id, self.title, self.region)
 
 
+class Comment(TimeStampedModel):
+    post = models.ForeignKey(Post, null=True, on_delete=models.CASCADE)
+    content = models.TextField()
+
+    updated_by = models.ForeignKey(User, editable=False, null=True, blank=True,
+                                   related_name='comment_updated_by',
+                                   on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, editable=False, null=True, blank=True,
+                                   related_name='comment_created_by',
+                                   on_delete=models.CASCADE)
+
+
 class Image(TimeStampedModel):
 
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
