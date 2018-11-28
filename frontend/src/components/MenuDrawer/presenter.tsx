@@ -7,6 +7,8 @@ import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import logo from "images/logo/logo_rectangle.svg";
 import { Theme } from "@material-ui/core";
 import ListItemLink from "components/ListItemLink";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import { Link } from "react-router-dom";
 import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
@@ -22,9 +24,13 @@ export interface IamProps extends WithStyles<typeof styles> {
 export const MenuDrawer: React.SFC<IamProps> = props => {
   const { classes, firstItems, secondItems, thirdItems } = props;
 
+  const homeLink = itemProps => <Link to={"/"} {...itemProps} />;
+
   const drawer = (
     <Fragment>
-      <img src={logo} className={classes.App__logo} alt="logo" />
+      <ButtonBase focusRipple={true} key={"logo"} component={homeLink}>
+        <img src={logo} className={classes.App__logo} alt="logo" />
+      </ButtonBase>
       <Divider classes={{ root: classes.divider }} />
       <List>
         {firstItems.map(item => (
