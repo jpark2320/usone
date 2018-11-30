@@ -12,10 +12,10 @@ function setAllPosts(allPosts) {
   };
 }
 
-function setPostsByRegion(PostsByRegion) {
+function setPostsByRegion(postsByRegion) {
   return { 
     type: SET_POSTS_BY_REGION, 
-    PostsByRegion 
+    postsByRegion 
   };
 }
 
@@ -29,9 +29,10 @@ function getAllPosts() {
   };
 }
 
-function getPostsByRegion(region: string) {
+function getPostsByRegion(region) {
   return dispatch => {
-    fetch("/posts-by-region/?q = " + region)
+    console.log(`/posts/posts-by-region/?q=${region}`);
+    fetch(`/posts/posts-by-region/?q=${region}`)
       .then(response => response.json())
       .then(json => dispatch(setPostsByRegion(json)))
       .catch(err => console.log(err));
@@ -63,11 +64,10 @@ function applySetAllPosts(state, action) {
 }
 
 function applySetPostsByRegion(state, action) {
-  const { allPosts } = action;
-  return {
-    ...state,
-    allPosts
-  };
+  const { postsByRegion } = action;
+  return { 
+    ...state, 
+    postsByRegion };
 }
 // EXPORT
 const actionCreators = {
