@@ -1,5 +1,5 @@
 import * as React from "react";
-import MyAccountView from "./presenter";
+import UserAddress from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 export interface IContainerProps {
@@ -26,7 +26,7 @@ class Container extends React.Component<IContainerProps> {
     const { allPosts } = this.props;
     console.log(allPosts);
 
-    return <MyAccountView {...this.props} />;
+    return <UserAddress {...this.props} />;
   }
 }
 

@@ -8,11 +8,13 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import SwipeableViews from 'react-swipeable-views';
+// import SwipeableViews from 'react-swipeable-views';
 
-
+import UserAddress from '../../components/Account/UserAddress'
+import UserAddressEdit from'../../components/Account/UserAddressEdit'
 import UserProfile from '../../components/Account/UserProfile'
-import UserInfoEdit from '../../components/Account/UserInfoEdit'
+import UserProfileEdit from '../../components/Account/UserProfileEdit'
+import UserPreferences from'../../components/Account/UserPreferences'
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
@@ -20,24 +22,13 @@ export interface IamProps extends WithStyles<typeof styles> {
   // container: Element;
 }
 
-
-// function TabContainer({ children, dir }) {
-//   return (
-//     <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
-//       {children}
-//     </Typography>
-//   );
-// }
-
-
-
-
-class MainView2 extends React.Component<IamProps,any> {
+class MyAccountView extends React.Component<IamProps,any> {
   constructor(props: any) {
     super(props);
     this.state = {
       expanded: null,
-      check:true,
+      openEditProfile:true,
+      openEditAddress:true,
       value: 0,
     };
   }
@@ -46,10 +37,12 @@ class MainView2 extends React.Component<IamProps,any> {
       expanded: expanded ? panel : false,
     });
   };
-  public changeToEditView = (event, value) => {
-    this.setState({ value:2 });
+  public changeToEditAddressView = (event, value) => {
+    this.setState({ openEditAddress:!this.state.openEditAddress });
   };
-
+  public changeToEditProfileView = (event, value) => {
+    this.setState({ openEditProfile:!this.state.openEditProfile });
+  };
 
   public handleChangeIndex = index => {
     this.setState({ value: index });
@@ -58,11 +51,9 @@ class MainView2 extends React.Component<IamProps,any> {
   public render() {
     const { classes } = this.props;
     const { expanded } = this.state;
-    const { theme } = this.props
+    // const { theme } = this.props
 
     return (
-
-
       <div className={classes.tempContainerStyle}>
             <h1> My Account</h1>
       <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
@@ -71,7 +62,9 @@ class MainView2 extends React.Component<IamProps,any> {
           <div className={classes.secondaryHeading}>유저계정을 열람 및 수정합니다.</div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-         <UserInfoEdit/>
+          {this.state.openEditProfile?
+          <UserProfile changeToEditView={this.changeToEditProfileView}/>:
+         <UserProfileEdit changeToEditView={this.changeToEditProfileView} />}
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel expanded={expanded === 'panel2'} onChange={this.handleChange('panel2')}>
@@ -82,40 +75,45 @@ class MainView2 extends React.Component<IamProps,any> {
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        <SwipeableViews
+        {this.state.openEditAddress?
+          <UserAddress changeToEditView={this.changeToEditAddressView}/>:
+         <UserAddressEdit changeToEditView={this.changeToEditAddressView} />}
+        {/* <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
           animateHeight={true}
         >
-          {this.state.check?
-          <UserProfile  index={1} changeToEditView={this.changeToEditView} dir={theme.direction} onChange={this.handleChange}/>:
-          <UserInfoEdit index={2} dir={theme.direction} onChange={this.handleChange}/>}
-         </SwipeableViews>
+
+          <UserProfile  index={1} changeToEditView={this.changeToEditView} dir={theme.direction} onChange={this.handleChange}/>
+          <UserInfoEdit index={2} dir={theme.direction} onChange={this.handleChange}/>
+          <UserInfoEdit index={2} dir={theme.direction} onChange={this.handleChange}/>
+          <UserInfoEdit index={2} dir={theme.direction} onChange={this.handleChange}/>
+        
+         </SwipeableViews> */}
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Advanced settings</Typography>
+          <Typography className={classes.heading}>유저 세팅</Typography>
           <Typography className={classes.secondaryHeading}>
-            Filtering has been entirely disabled for whole web server
+            유저세팅을 열람 및 수정합니다.
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-            eros, vitae egestas augue. Duis vel est augue.
-          </Typography>
+         <UserPreferences/>
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Personal data</Typography>
+          <Typography className={classes.heading}>유저 기록</Typography>
+          <Typography className={classes.secondaryHeading}>
+            유저가 쓴 글을 조회 및 수정합니다.
+          </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-            eros, vitae egestas augue. Duis vel est augue.
+          차후에 업데이트 됩니다 기다리세요.
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -124,4 +122,4 @@ class MainView2 extends React.Component<IamProps,any> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MainView2);
+export default withStyles(styles, { withTheme: true })(MyAccountView);

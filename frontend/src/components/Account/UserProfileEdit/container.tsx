@@ -1,5 +1,5 @@
 import * as React from "react";
-import MyAccountView from "./presenter";
+import UserProfileEdit from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 export interface IContainerProps {
@@ -21,12 +21,20 @@ class Container extends React.Component<IContainerProps> {
       getAllPosts();
     }
   }
+  
+  public validatePasswordBeforeProceed = (event: any, oldPassword: any) => {
+    // password must be correct prior to proceed. 
+    return false
+  }
 
   public render() {
     const { allPosts } = this.props;
     console.log(allPosts);
 
-    return <MyAccountView {...this.props} />;
+    return <UserProfileEdit 
+            {...this.props} 
+            validatePasswordBeforeProceed = {this.validatePasswordBeforeProceed}
+            />;
   }
 }
 

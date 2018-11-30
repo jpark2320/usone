@@ -9,7 +9,7 @@ import createStyles from "@material-ui/core/styles/createStyles";
 
 const styles = (theme: Theme) =>
   createStyles({
-    paper: {
+    root: {
       width:'100%',
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
@@ -29,7 +29,10 @@ const styles = (theme: Theme) =>
       alignItems: 'center',
       justifycontent: 'center',
     },
-
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
+    },
     // rightAlign:{
     //   marginLeft:'auto'
     // }
