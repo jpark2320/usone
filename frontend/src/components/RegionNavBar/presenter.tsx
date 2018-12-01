@@ -6,21 +6,26 @@ import styles from "./styles";
 
 interface IamProps extends WithStyles<typeof styles> {
   images: any;
+  region: string;
+  onClickRegion: (actions: object) => void;
 }
 
 const RegionNavBar: React.SFC<IamProps> = props => {
-  const { images, classes } = props;
+  const { images, classes, region, onClickRegion } = props;
   return (
     <div className={classes.root}>
       {images.map(image => (
         <ButtonBase
           focusRipple={true}
           key={image.title}
-          className={classes.image}
+          className={
+            region === image.key ? classes.focusVisible : classes.image
+          }
           focusVisibleClassName={classes.focusVisible}
           style={{
             width: image.width
           }}
+          onClick={onClickRegion}
         >
           <span
             className={classes.imageSrc}

@@ -5,8 +5,8 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 export interface IContainerProps {
   theme: Theme;
   container: Element;
-  allPosts: string[];
-  getAllPosts: () => string[];
+  postsByRegion: string[];
+  getSummaryPosts: (region: string) => string[];
 }
 
 class Container extends React.Component<IContainerProps> {
@@ -15,17 +15,14 @@ class Container extends React.Component<IContainerProps> {
   };
 
   public componentDidMount() {
-    const { getAllPosts, allPosts } = this.props;
+    const { getSummaryPosts, postsByRegion } = this.props;
 
-    if (!allPosts) {
-      getAllPosts();
+    if (!postsByRegion) {
+      getSummaryPosts("georgia");
     }
   }
 
   public render() {
-    const { allPosts } = this.props;
-    console.log(allPosts);
-
     return <MainView {...this.props} />;
   }
 }

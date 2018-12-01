@@ -1,40 +1,25 @@
 // IMPORTS
 
 // ACTIONS
-const SET_ALL_POSTS = "SET_ALL_POSTS";
-const SET_POSTS_BY_REGION = "SET_POSTS_BY_REGION";
+const SET_SUMMARY_POSTS = "SET_SUMMARY_POSTS";
 
 // ACTION CREATORS
-function setAllPosts(allPosts) {
-  return {
-    type: SET_ALL_POSTS,
-    allPosts
-  };
-}
-
-function setPostsByRegion(postsByRegion) {
+function setSummaryPosts(summaryPosts) {
   return { 
-    type: SET_POSTS_BY_REGION, 
-    postsByRegion 
+    type: SET_SUMMARY_POSTS, 
+    summaryPosts 
   };
 }
 
 // API ACTIONS
-function getAllPosts() {
+function getSummaryPosts(region, category, limit, order, inDescOrder) {
   return dispatch => {
-    fetch("/posts/all-posts/")
+    console.log(`/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order_by=${order}&inDescOrder=${inDescOrder}`);
+    fetch(
+      `/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`
+    )
       .then(response => response.json())
-      .then(json => dispatch(setAllPosts(json)))
-      .catch(err => console.log(err));
-  };
-}
-
-function getPostsByRegion(region) {
-  return dispatch => {
-    console.log(`/posts/posts-by-region/?q=${region}`);
-    fetch(`/posts/posts-by-region/?q=${region}`)
-      .then(response => response.json())
-      .then(json => dispatch(setPostsByRegion(json)))
+      .then(json => dispatch(setSummaryPosts(json)))
       .catch(err => console.log(err));
   };
 }
@@ -45,34 +30,21 @@ const initialState = {};
 // REDUCER
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_ALL_POSTS:
-      return applySetAllPosts(state, action);
-    case SET_POSTS_BY_REGION:
-      return applySetPostsByRegion(state, action);
+    case SET_SUMMARY_POSTS:
+      return applySetSummaryPosts(state, action);
     default:
       return state;
   }
 }
 
 // REDUCER FUNCTIONS
-function applySetAllPosts(state, action) {
-  const { allPosts } = action;
-  return {
-    ...state,
-    allPosts
-  };
-}
-
-function applySetPostsByRegion(state, action) {
-  const { postsByRegion } = action;
-  return { 
-    ...state, 
-    postsByRegion };
+function applySetSummaryPosts(state, action) {
+  const { summaryPosts } = action;
+  return { ...state, summaryPosts };
 }
 // EXPORT
 const actionCreators = {
-  getAllPosts,
-  getPostsByRegion
+  getSummaryPosts
 };
 export { actionCreators };
 

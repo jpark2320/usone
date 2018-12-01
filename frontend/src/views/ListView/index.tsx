@@ -11,8 +11,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getAllPosts: () => {
-      dispatch(postActions.getAllPosts());
+    getSummaryPosts: () => {
+      dispatch(
+        postActions.getSummaryPosts(
+          ownProps.region,
+          ownProps.category,
+          10,
+          "created_at",
+          "desc"
+        )
+      );
     }
   };
 };

@@ -3,11 +3,11 @@ import MainViewGrid from "./presenter";
 
 interface IProps {
   whatthe: string;
-};
+}
 
 interface IState {
   region: string;
-};
+}
 
 let id = 0;
 function createboard(title, keyword) {
@@ -29,7 +29,13 @@ class Container extends React.Component<IProps, IState> {
   }
 
   public render() {
-    return <MainViewGrid region={this.state.region} boards={boards} />;
+    return (
+      <MainViewGrid
+        {...this.props}
+        region={this.state.region}
+        boards={boards}
+      />
+    );
   }
 }
 

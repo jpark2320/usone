@@ -6,15 +6,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../Header";
 import Footer from "../Footer";
 
-const App: React.SFC = () => (
-  <React.Fragment>
-    <CssBaseline />
-    <Header />
-    <Routes />
-    <Footer />
-  </React.Fragment>
-);
-
 const Routes: React.SFC = () => (
   <Switch>
     <Route path={"/"} exact={true} component={MainView} />
@@ -27,5 +18,34 @@ const Routes: React.SFC = () => (
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
+
+interface IState {
+  region: string;
+}
+
+export interface IProps {
+  region: string;
+}
+
+class App extends React.Component<IProps, IState> {
+  public state = {
+    region: "georgia"
+  };
+
+  public onClickRegion = (actions: object) => {
+    this.setState({ region: "georgia" });
+  };
+
+  public render() {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <Header region={this.state.region} onClickRegion={this.onClickRegion} />
+        <Routes />
+        <Footer />
+      </React.Fragment>
+    );
+  }
+}
 
 export default App;

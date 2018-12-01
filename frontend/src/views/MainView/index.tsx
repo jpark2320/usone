@@ -4,15 +4,17 @@ import { actionCreators as postActions } from "redux/modules/posts";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    posts: { allPosts }
+    posts: { postsByRegion }
   } = state;
-  return { allPosts };
+  return { postsByRegion };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getAllPosts: () => {
-      dispatch(postActions.getAllPosts());
+    getSummaryPosts: () => {
+      dispatch(
+        postActions.getSummaryPosts("georgia", "work", 10, "created_at", "desc")
+      );
     }
   };
 };
