@@ -12,7 +12,7 @@ interface IState {
 
 export interface IProps extends WithStyles<typeof styles> {
   region: string;
-  onClickRegion: (actions: object) => void;
+  onClickRegion: (region: string) => (actions: object) => void;
 }
 
 class Header extends React.Component<IProps, IState> {

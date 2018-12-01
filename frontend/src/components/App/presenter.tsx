@@ -32,8 +32,8 @@ class App extends React.Component<IProps, IState> {
     region: "georgia"
   };
 
-  public onClickRegion = (actions: object) => {
-    this.setState({ region: "georgia" });
+  public onClickRegion = (regionParm: string) => (actions: object) => {
+    this.setState({ region: regionParm });
   };
 
   public render() {

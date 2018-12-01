@@ -7,7 +7,7 @@ import styles from "./styles";
 interface IamProps extends WithStyles<typeof styles> {
   images: any;
   region: string;
-  onClickRegion: (actions: object) => void;
+  onClickRegion: (region: string) => (actions: object) => void;
 }
 
 const RegionNavBar: React.SFC<IamProps> = props => {
@@ -25,22 +25,31 @@ const RegionNavBar: React.SFC<IamProps> = props => {
           style={{
             width: image.width
           }}
-          onClick={onClickRegion}
+          onClick={onClickRegion(image.key)}
         >
           <span
             className={classes.imageSrc}
             style={{ backgroundImage: `url(${image.url})` }}
           />
-          <span className={classes.imageBackdrop} />
+          <span
+            className={classes.imageBackdrop}
+            style={region === image.key ? { opacity: 0.15 } : {}}
+          />
           <span className={classes.imageButton}>
             <Typography
               component="span"
               variant="subtitle1"
               color="inherit"
               className={classes.imageTitle}
+              style={
+                region === image.key ? { border: "4px solid currentColor" } : {}
+              }
             >
               {image.title}
-              <span className={classes.imageMarked} />
+              <span
+                className={classes.imageMarked}
+                style={region === image.key ? { opacity: 0.5 } : {}}
+              />
             </Typography>
           </span>
         </ButtonBase>
