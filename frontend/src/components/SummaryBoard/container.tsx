@@ -5,6 +5,8 @@ interface IProps {
   title: string;
   summaryPosts: any;
   getSummaryPosts: (region, category, limit, order, inDescOrder) => any;
+  region: string;
+  category: string;
 }
 
 class Container extends React.Component<IProps> {
@@ -13,16 +15,16 @@ class Container extends React.Component<IProps> {
   };
 
   public componentDidMount() {
-    const { getSummaryPosts, summaryPosts } = this.props;
+    const { getSummaryPosts, summaryPosts, region, category } = this.props;
 
     if (!summaryPosts) {
-      getSummaryPosts("georgia", "work", 10, "created_at", "desc");
+      getSummaryPosts(region, category, 10, "created_at", "desc");
     }
   }
 
   public render() {
     const { title, summaryPosts } = this.props;
-    console.log(this.props, "여기");
+    // console.log(this.props, "여기");
     // console.log(summaryPosts, "me");
     return <SummaryBoard title={title} summaryPosts={summaryPosts} />;
   }
