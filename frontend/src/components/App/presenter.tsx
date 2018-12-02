@@ -41,11 +41,12 @@ class App extends React.Component<IProps, IState> {
   };
 
   public render() {
+    const region = this.state.region;
     return (
       <React.Fragment>
         <CssBaseline />
-        <Header region={this.state.region} onClickRegion={this.onClickRegion} />
-        <Routes region={this.state.region} />
+        <Header region={region} onClickRegion={this.onClickRegion} />
+        <Routes region={region} />
         <Footer />
       </React.Fragment>
     );

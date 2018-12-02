@@ -4,21 +4,57 @@ import { actionCreators as postActions } from "redux/modules/posts";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    posts: { summaryPosts }
+    posts: {
+      summaryWorkPosts,
+      summaryVisaPosts,
+      summaryRentPosts,
+      summaryQandaPosts
+    }
   } = state;
-  return { summaryPosts };
+  return {
+    summaryWorkPosts,
+    summaryVisaPosts,
+    summaryRentPosts,
+    summaryQandaPosts
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(
-    "summaryboard " + ownProps.region + "category  " + ownProps.category
-  );
   return {
-    getSummaryPosts: () => {
+    getSummaryWorkPosts: () => {
       dispatch(
-        postActions.getSummaryPosts(
+        postActions.getSummaryWorkPosts(
           ownProps.region,
-          ownProps.category,
+          10,
+          "created_at",
+          "desc"
+        )
+      );
+    },
+    getSummaryVisaPosts: () => {
+      dispatch(
+        postActions.getSummaryVisaPosts(
+          ownProps.region,
+          10,
+          "created_at",
+          "desc"
+        )
+      );
+    },
+    getSummaryRentPosts: () => {
+      dispatch(
+        postActions.getSummaryRentPosts(
+          ownProps.region,
+          10,
+          "created_at",
+          "desc"
+        )
+      );
+    },
+    getSummaryQandaPosts: () => {
+      dispatch(
+        postActions.getSummaryQandaPosts(
+          ownProps.region,
           10,
           "created_at",
           "desc"

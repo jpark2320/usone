@@ -13,9 +13,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getSummaryPosts: () => {
       dispatch(
-        postActions.getSummaryPosts(
+        postActions.getSummaryWorkPosts(
           ownProps.region,
-          ownProps.category,
           10,
           "created_at",
           "desc"

@@ -20,17 +20,48 @@ interface IPostPops {
 
 interface IProps extends WithStyles<typeof styles> {
   title: string;
-  summaryPosts: {
+  category: string;
+  summaryWorkPosts: {
     count: number;
-    next: any;
-    previous: any;
+    results: IPostPops[];
+  };
+  summaryVisaPosts: {
+    count: number;
+    results: IPostPops[];
+  };
+  summaryRentPosts: {
+    count: number;
+    results: IPostPops[];
+  };
+  summaryQandaPosts: {
+    count: number;
     results: IPostPops[];
   };
 }
 
 const SummaryBoard: React.SFC<IProps> = props => {
-  const { title, summaryPosts, classes } = props;
-  const posts = summaryPosts ? summaryPosts.results : [];
+  const {
+    title,
+    category,
+    classes,
+    summaryWorkPosts,
+    summaryVisaPosts,
+    summaryRentPosts,
+    summaryQandaPosts
+  } = props;
+
+  let posts;
+  if (summaryWorkPosts && category === "work") {
+    posts = summaryWorkPosts.results;
+  } else if (summaryVisaPosts && category === "visa") {
+    posts = summaryVisaPosts.results;
+  } else if (summaryRentPosts && category === "rent") {
+    posts = summaryRentPosts.results;
+  } else if (summaryQandaPosts && category === "qanda") {
+    posts = summaryQandaPosts.results;
+  } else {
+    posts = [];
+  }
 
   return (
     <Paper className={classes.root}>
