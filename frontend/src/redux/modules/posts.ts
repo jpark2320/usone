@@ -5,15 +5,15 @@ const SET_SUMMARY_POSTS = "SET_SUMMARY_POSTS";
 
 // ACTION CREATORS
 function setSummaryPosts(summaryPosts) {
-  return { 
-    type: SET_SUMMARY_POSTS, 
-    summaryPosts 
+  return {
+    type: SET_SUMMARY_POSTS,
+    summaryPosts
   };
 }
 
 // API ACTIONS
 function getSummaryPosts(region, category, limit, order, inDescOrder) {
-  console.log(`/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`);
+  // console.log(`/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`);
   return dispatch => {
     fetch(
       `/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`

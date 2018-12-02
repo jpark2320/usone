@@ -10,17 +10,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log("summaryboard " + ownProps.region);
+  // console.log("summaryboard " + ownProps.region);
   return {
-    getSummaryPosts: () => {
+    getSummaryPosts: (region, category, limit, order, inDescOrder) => {
       dispatch(
-        postActions.getSummaryPosts(
-          ownProps.region,
-          ownProps.category,
-          10,
-          "created_at",
-          "desc"
-        )
+        postActions.getSummaryPosts(region, category, limit, order, inDescOrder)
       );
     }
   };

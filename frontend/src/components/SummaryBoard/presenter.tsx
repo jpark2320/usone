@@ -9,14 +9,24 @@ import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
   title: string;
-  summaryPosts: JSON;
+  summaryPosts: any;
+  // summaryPosts: {
+  //   count: number;
+  //   next: any;
+  //   previous: any;
+  //   results: string[];
+  // };
+  // 실제로 제대로 object with array를 제대로 타입표현하고싶으면 이렇게 해야할듯
 }
 
 const SummaryBoard: React.SFC<IProps> = props => {
   const { title, summaryPosts, classes } = props;
-  const summaryPosts2 = typeof summaryPosts === undefined ? summaryPosts : [];
-  console.log(summaryPosts);
-  console.log(summaryPosts2);
+  // const summaryPosts2 = typeof summaryPosts === undefined ? summaryPosts : [];
+  if (summaryPosts) {
+    console.log(summaryPosts.results);
+  }
+
+  // console.log(summaryPosts2);
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>

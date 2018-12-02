@@ -3,8 +3,8 @@ import SummaryBoard from "./presenter";
 
 interface IProps {
   title: string;
-  summaryPosts: JSON;
-  getSummaryPosts: () => JSON;
+  summaryPosts: any;
+  getSummaryPosts: (region, category, limit, order, inDescOrder) => any;
 }
 
 class Container extends React.Component<IProps> {
@@ -16,12 +16,14 @@ class Container extends React.Component<IProps> {
     const { getSummaryPosts, summaryPosts } = this.props;
 
     if (!summaryPosts) {
-      getSummaryPosts();
+      getSummaryPosts("georgia", "work", 10, "created_at", "desc");
     }
   }
 
   public render() {
     const { title, summaryPosts } = this.props;
+    console.log(this.props, "여기");
+    // console.log(summaryPosts, "me");
     return <SummaryBoard title={title} summaryPosts={summaryPosts} />;
   }
 }
