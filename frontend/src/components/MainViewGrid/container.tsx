@@ -1,42 +1,21 @@
 import * as React from "react";
 import MainViewGrid from "./presenter";
 
-interface IProps {
-  whatthe: string;
-}
-
-interface IState {
-  region: string;
-}
-
 let id = 0;
-function createboard(title, keyword) {
+function createboard(title, key) {
   id += 1;
-  return { id, title, keyword };
+  return { id, title, key };
 }
 
 const boards = [
-  createboard("삽니다", "sell"),
-  createboard("팝니다", "buy"),
-  createboard("렌트/룸메/서브리스", "house"),
-  createboard("Jobs", "jobs")
+  createboard("비자", "visa"),
+  createboard("묻고답하기", "qanda"),
+  createboard("렌트/룸메/서브리스", "rent"),
+  createboard("Jobs", "work")
 ];
 
-class Container extends React.Component<IProps, IState> {
-  constructor(props: any) {
-    super(props);
-    this.state = { region: "la" };
-  }
-
-  public render() {
-    return (
-      <MainViewGrid
-        {...this.props}
-        region={this.state.region}
-        boards={boards}
-      />
-    );
-  }
-}
+const Container = (props: any) => (
+  <MainViewGrid {...props} region={props.region} boards={boards} />
+);
 
 export default Container;

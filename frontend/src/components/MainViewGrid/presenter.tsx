@@ -12,14 +12,18 @@ interface IProps extends WithStyles<typeof styles> {
 
 const MainViewGrid: React.SFC<IProps> = props => {
   const { classes, boards, region } = props;
-
+  console.log("Mainview " + region);
   return (
     <div className={classes.root}>
       <Grid container={true} spacing={24}>
         {boards.map(board => (
           <Grid key={board.id} item={true} xs={12} sm={6}>
             <Paper className={classes.paper}>
-              <SummaryBoard title={board.title} region={region} />
+              <SummaryBoard
+                title={board.title}
+                region={region}
+                category={board.key}
+              />
             </Paper>
           </Grid>
         ))}

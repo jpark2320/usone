@@ -6,9 +6,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../Header";
 import Footer from "../Footer";
 
-const Routes: React.SFC = () => (
+const Routes: React.SFC<IProps> = props => (
   <Switch>
-    <Route path={"/"} exact={true} component={MainView} />
+    <Route
+      path={"/"}
+      exact={true}
+      render={() => <MainView region={props.region} {...props} />}
+    />
     <Route path="/sell" component={ListView} />
     <Route path="/buy" component={ListView} />
     <Route path="/house" component={ListView} />
@@ -41,7 +45,7 @@ class App extends React.Component<IProps, IState> {
       <React.Fragment>
         <CssBaseline />
         <Header region={this.state.region} onClickRegion={this.onClickRegion} />
-        <Routes />
+        <Routes region={this.state.region} />
         <Footer />
       </React.Fragment>
     );

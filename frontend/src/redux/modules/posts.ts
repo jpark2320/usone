@@ -13,6 +13,7 @@ function setSummaryPosts(summaryPosts) {
 
 // API ACTIONS
 function getSummaryPosts(region, category, limit, order, inDescOrder) {
+  console.log(`/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`);
   return dispatch => {
     fetch(
       `/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`

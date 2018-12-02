@@ -7,18 +7,18 @@ import styles from "../styles";
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
   container: Element;
-  postsByRegion: string[];
+  region: string;
 }
 
 class MainView extends React.Component<IamProps> {
   public render() {
-    const { classes, postsByRegion } = this.props;
-    console.log(postsByRegion);
+    const { classes, region } = this.props;
+
     return (
       <div className={classes.root}>
         {/* Main */}
         <main className={classes.bodyContainer}>
-          <MainViewGrid postsByRegion={postsByRegion} />
+          <MainViewGrid region={region} />
         </main>
         {/* End Main */}
       </div>
