@@ -9,11 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import SwipeableViews from 'react-swipeable-views';
 
-import UserAddress from "components/Account/UserAddress";
-import UserAddressEdit from "components/Account/UserAddressEdit";
-import UserProfile from "components/Account/UserProfile";
-import UserProfileEdit from "components/Account/UserProfileEdit";
-import UserPreferences from "components/Account/UserPreferences";
+import UserAddress from "components/AccountUserAddress";
+import UserAddressEdit from "components/AccountUserAddressEdit";
+import UserProfile from "components/AccountUserProfile";
+import UserProfileEdit from "components/AccountUserProfileEdit";
+import UserPreferences from "components/AccountUserPreferences";
 
 import styles from "./styles";
 

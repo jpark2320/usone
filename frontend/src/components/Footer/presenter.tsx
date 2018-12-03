@@ -6,10 +6,10 @@ interface IProps extends WithStyles<typeof styles> {
   region: string;
 }
 
-const MainViewGrid: React.SFC<IProps> = props => {
+const Footer: React.SFC<IProps> = props => {
   const { classes } = props;
 
   return <div className={classes.Footer}>put footer text here</div>;
 };
 
-export default withStyles(styles)(MainViewGrid);
+export default withStyles(styles)(Footer);

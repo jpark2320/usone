@@ -1,6 +1,6 @@
 import * as React from "react";
-import App from "./presenter";
+import Footer from "./presenter";
 
-const Container = (props: any) => <App {...props} />;
+const Container = (props: any) => <Footer {...props} />;
 
 export default Container;

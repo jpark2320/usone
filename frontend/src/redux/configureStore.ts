@@ -5,14 +5,13 @@ import createHistory from "history/createBrowserHistory";
 import thunk from "redux-thunk";
 import user from "./modules/user";
 import posts from "./modules/posts";
-import { logger } from "redux-logger";
 
 const env = process.env.NODE_ENV;
 const history = createHistory();
 const middlewares = [thunk, routerMiddleware(history)];
 
 if (env === "development") {
-  // const { logger } = require("redux-logger");
+  const { logger } = require("redux-logger");
   middlewares.push(logger);
 }
 

@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import styles from "./styles";
 
-interface IBoardListStateRecipeProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   data: any[];
   // getListdata: typeof listviewDispatch;
   botnavValue: number;
@@ -34,7 +34,7 @@ interface IBoardListStateRecipeProps extends WithStyles<typeof styles> {
   displayNumberOfCharacters: any;
   dynamicClassNameBasedOnLabelID: any;
 }
-interface IBoardListState {
+interface IState {
   data: any[];
   numSelected: any;
   order: any;
@@ -48,10 +48,7 @@ interface IBoardListState {
   rows: any[];
 }
 
-class ListBoard extends React.Component<
-  IBoardListStateRecipeProps,
-  IBoardListState
-> {
+class ListBoard extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {

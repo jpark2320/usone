@@ -1,5 +1,5 @@
 import * as React from "react";
-import PrimaryAppBar from "./presenter";
+import PrimaryNavBar from "./presenter";
 
 interface IProps {
   handleDrawerToggle: () => any;
@@ -37,7 +37,7 @@ class Container extends React.Component<IProps, IState> {
   };
   public render() {
     return (
-      <PrimaryAppBar
+      <PrimaryNavBar
         {...this.state}
         handleDrawerToggle={this.props.handleDrawerToggle}
         handleProfileMenuOpen={this.handleProfileMenuOpen}

@@ -22,7 +22,7 @@ import CloseIcon from "@material-ui/icons/Close";
 //   changeToEditView:any
 // }
 
-class UserProfileEdit extends React.Component<any, any> {
+class AccountUserProfileEdit extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -220,4 +220,4 @@ class UserProfileEdit extends React.Component<any, any> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(UserProfileEdit);
+export default withStyles(styles, { withTheme: true })(AccountUserProfileEdit);

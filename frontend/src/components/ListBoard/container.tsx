@@ -1,13 +1,13 @@
 import { Component } from "react";
 import * as React from "react";
-import TableComponent from "./presenter";
-import styles from "./styles";
+import ListBoard from "./presenter";
 import { WithStyles } from "@material-ui/core/styles/withStyles";
+import styles from "./styles";
 
-interface ITableComponentRecipeProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   classes: any;
 }
-interface ITableComponentState {
+interface IState {
   data: any[];
   order: any;
   orderBy: string;
@@ -20,10 +20,7 @@ interface ITableComponentState {
 }
 // let counter = 0;
 
-class Container extends Component<
-  ITableComponentRecipeProps,
-  ITableComponentState
-> {
+class Container extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -353,7 +350,7 @@ class Container extends Component<
 
   public render() {
     return (
-      <TableComponent
+      <ListBoard
         {...this.state}
         dynamicClassNameBasedOnLabelID={this.dynamicClassNameBasedOnLabelID}
         displayNumberOfCharacters={this.displayNumberOfCharacters}

@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-class UserProfile extends React.Component<any, any> {
+class AccountUserItem extends React.Component<any, any> {
   // constructor(props: any) {
   //   super(props);
   //   this.state = {
@@ -112,4 +112,4 @@ class UserProfile extends React.Component<any, any> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(UserProfile);
+export default withStyles(styles, { withTheme: true })(AccountUserItem);
