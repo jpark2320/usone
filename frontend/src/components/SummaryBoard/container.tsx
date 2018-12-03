@@ -1,42 +1,84 @@
 import * as React from "react";
 import SummaryBoard from "./presenter";
 
-let id = 0;
-function createData(category, title, comments) {
-  id += 1;
-  return { id, category, title, comments };
-}
-
-const rows = [
-  createData("가전제품", "전기 포트 필요합니다.", 30),
-  createData("자동차", "20009년도 중고차 찾습니다.", 29),
-  createData("자동차", "20011년도 중고차 찾습니다.", 29),
-  createData("음식", "아틀란타 김치 만드시는 분 찾습니다.", 13),
-  createData("의류잡화", "나이키 축구화가 필요합니다.", 93),
-  createData("인력", "디벨로퍼 구합니다.", 99)
-];
-
 interface IProps {
   title: string;
-  rows: any;
+  region: string;
+  category: string;
+  summaryWorkPosts: any;
+  getSummaryWorkPosts: (region, limit, order, desc) => object;
+  summaryVisaPosts: any;
+  getSummaryVisaPosts: (region, limit, order, desc) => object;
+  summaryRentPosts: any;
+  getSummaryRentPosts: (region, limit, order, desc) => object;
+  summaryQandaPosts: any;
+  getSummaryQandaPosts: (region, limit, order, desc) => object;
 }
 
-interface IState {
-  anchorEl: HTMLElement | null;
-  mobileMoreAnchorEl: HTMLElement | null;
-}
+class Container extends React.Component<IProps> {
+  public state = {
+    page: 1
+  };
 
-class Container extends React.Component<IProps, IState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      anchorEl: null,
-      mobileMoreAnchorEl: null
-    };
+  public shouldComponentUpdate(nextProps: IProps) {
+    console.log("thisProps " + this.props.region);
+    console.log("nextProps " + nextProps.region);
+    return (
+      nextProps.region !== this.props.region ||
+      nextProps.summaryRentPosts !== this.props.summaryRentPosts ||
+      nextProps.summaryWorkPosts !== this.props.summaryWorkPosts ||
+      nextProps.summaryVisaPosts !== this.props.summaryVisaPosts ||
+      nextProps.summaryQandaPosts !== this.props.summaryQandaPosts
+    );
+  }
+
+  public componentDidMount() {
+    const {
+      region,
+      summaryWorkPosts,
+      getSummaryWorkPosts,
+      summaryVisaPosts,
+      getSummaryVisaPosts,
+      summaryRentPosts,
+      getSummaryRentPosts,
+      summaryQandaPosts,
+      getSummaryQandaPosts
+    } = this.props;
+
+    const limit = 10;
+    const orderBy = "created_at";
+    const inDescOrder = "desc";
+    console.log(region);
+    if (!summaryWorkPosts && this.props.category === "work") {
+      getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
+    } else if (!summaryVisaPosts && this.props.category === "visa") {
+      getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
+    } else if (!summaryRentPosts && this.props.category === "rent") {
+      getSummaryRentPosts(region, limit, orderBy, inDescOrder);
+    } else if (!summaryQandaPosts && this.props.category === "qanda") {
+      getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
+    }
   }
 
   public render() {
-    return <SummaryBoard title={this.props.title} rows={rows} />;
+    const {
+      title,
+      category,
+      summaryWorkPosts,
+      summaryVisaPosts,
+      summaryRentPosts,
+      summaryQandaPosts
+    } = this.props;
+    return (
+      <SummaryBoard
+        title={title}
+        category={category}
+        summaryWorkPosts={summaryWorkPosts}
+        summaryVisaPosts={summaryVisaPosts}
+        summaryRentPosts={summaryRentPosts}
+        summaryQandaPosts={summaryQandaPosts}
+      />
+    );
   }
 }
 
