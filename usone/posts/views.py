@@ -30,7 +30,8 @@ class PostByFilters(ListAPIView):
         reg = self.request.query_params.get('reg', None)
         cat = self.request.query_params.get('cat', None)
         limit = self.request.query_params.get('limit', None)
-        order = self.request.query_params.get('order', None)
+        order_by = self.request.query_params.get('order', None)
+        inDescOrder = self.request.query_params.get('in-desc-order', None)
 
         # By region
         if reg:
@@ -41,10 +42,11 @@ class PostByFilters(ListAPIView):
             queryset = queryset.filter(category__iexact=cat)
 
         # Order based on created date
-        if order == 'dsc':
-            queryset = queryset.order_by('-created_at')
+        if (inDescOrder.lower() == 'desc'.lower() or
+                inDescOrder.lower() == 'true'.lower()):
+            queryset = queryset.order_by('-{0}'.format(order_by))
         else:
-            queryset = queryset.order_by('created_at')
+            queryset = queryset.order_by(order_by)
 
         # Limit the number of tuples
         if limit:

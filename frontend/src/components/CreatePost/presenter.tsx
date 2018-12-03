@@ -197,6 +197,9 @@ class CreatePost extends React.Component<ICreatePostProps, any> {
             </form>
           </DialogContent>
           <DialogActions>
+          <Button className={classes.buttonLeftAlign} onClick={this.submitNewData} color="primary">
+              임시저장
+            </Button> 
             <Button onClick={this.handleClose} color="secondary">
               Cancel
             </Button>

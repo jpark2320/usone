@@ -9,11 +9,10 @@ import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
   post: any;
-  comments: any;
 }
 
 const DetailBoard: React.SFC<IProps> = props => {
-  const { post, comments, classes } = props;
+  const { post, classes } = props;
   const talk = "대화";
   const recommend = "추천";
   const report = "신고";
@@ -58,7 +57,7 @@ const DetailBoard: React.SFC<IProps> = props => {
         </Typography>
         <Divider />
         <Typography>
-          {comments.map(comment => (
+          {post.comments_set.map(comment => (
             <div>
               <div className={classes.BoardDetail__post__username__date}>
                 <Typography color="textSecondary">
