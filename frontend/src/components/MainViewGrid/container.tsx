@@ -1,6 +1,11 @@
 import * as React from "react";
 import MainViewGrid from "./presenter";
 
+interface IProps {
+  region: string;
+  boards: any;
+}
+
 let id = 0;
 function createboard(title, key) {
   id += 1;
@@ -14,8 +19,15 @@ const boards = [
   createboard("Jobs", "work")
 ];
 
-const Container = (props: any) => (
-  <MainViewGrid {...props} region={props.region} boards={boards} />
-);
+class Container extends React.Component<IProps> {
+  public shouldComponentUpdate(nextProps: IProps) {
+    return nextProps.region !== this.props.region;
+  }
+
+  public render() {
+    console.log("main view grid " + this.props.region);
+    return <MainViewGrid region={this.props.region} boards={boards} />;
+  }
+}
 
 export default Container;

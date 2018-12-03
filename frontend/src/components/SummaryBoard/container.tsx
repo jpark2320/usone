@@ -20,6 +20,18 @@ class Container extends React.Component<IProps> {
     page: 1
   };
 
+  public shouldComponentUpdate(nextProps: IProps) {
+    console.log("thisProps " + this.props.region);
+    console.log("nextProps " + nextProps.region);
+    return (
+      nextProps.region !== this.props.region ||
+      nextProps.summaryRentPosts !== this.props.summaryRentPosts ||
+      nextProps.summaryWorkPosts !== this.props.summaryWorkPosts ||
+      nextProps.summaryVisaPosts !== this.props.summaryVisaPosts ||
+      nextProps.summaryQandaPosts !== this.props.summaryQandaPosts
+    );
+  }
+
   public componentDidMount() {
     const {
       region,
@@ -32,6 +44,7 @@ class Container extends React.Component<IProps> {
       summaryQandaPosts,
       getSummaryQandaPosts
     } = this.props;
+
     const limit = 10;
     const orderBy = "created_at";
     const inDescOrder = "desc";
