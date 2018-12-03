@@ -1,33 +1,56 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
+import * as React from "react";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
-import Header from "components//Header";
-import styles from "../styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import ListBoard from "components/ListBoard";
+import CreatePost from "components/CreatePost";
+import InputBase from "@material-ui/core/InputBase";
+import SearchIcon from "@material-ui/icons/Search";
+import styles from "./styles";
 
-export interface IamProps extends WithStyles<typeof styles> {
-  theme: Theme;
-  container: Element;
-}
+export interface IListViewProps extends WithStyles<typeof styles> {}
 
-class MainView extends React.Component<IamProps> {
+class ListView extends React.Component<IListViewProps, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      ...props,
+      value: [],
+      showInputBaseForMobile: false
+    };
+  }
+
+  public displayInputForMobile = event => {
+    this.setState({
+      showInputBaseForMobile: !this.state.showInputBaseForMobile
+    });
+  };
+
   public render() {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <React.Fragment>
         <CssBaseline />
-        <Header />
-        {/* Main */}
-        <main className={classes.bodyContainer}>
-          {/*put body here */}
-          {/*put body here */}
-          {/*put body here */}
-        </main>
-        {/* End Main */}
-      </div>
+        <div className={classes.tempContainerStyle}>
+          <div>
+            삽니다/팝니다
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon onClick={this.displayInputForMobile} />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{ root: classes.inputRoot, input: classes.inputInput }}
+              />
+            </div>
+          </div>
+          <hr className={classes.hr} />
+          <ListBoard />
+          <CreatePost />
+        </div>
+      </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MainView);
+export default withStyles(styles, { withTheme: true })(ListView);

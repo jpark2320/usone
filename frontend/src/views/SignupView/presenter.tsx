@@ -3,8 +3,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Header from "components//Header";
-import styles from "../styles";
 import RegisterComponent from "components/RegisterComponent";
+import styles from "shared/styles/globalStyles";
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;

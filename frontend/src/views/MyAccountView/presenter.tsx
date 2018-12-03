@@ -1,7 +1,6 @@
 import React from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
-import styles from "./styles";
 
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -10,11 +9,13 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // import SwipeableViews from 'react-swipeable-views';
 
-import UserAddress from "../../components/Account/UserAddress";
-import UserAddressEdit from "../../components/Account/UserAddressEdit";
-import UserProfile from "../../components/Account/UserProfile";
-import UserProfileEdit from "../../components/Account/UserProfileEdit";
-import UserPreferences from "../../components/Account/UserPreferences";
+import UserAddress from "components/Account/UserAddress";
+import UserAddressEdit from "components/Account/UserAddressEdit";
+import UserProfile from "components/Account/UserProfile";
+import UserProfileEdit from "components/Account/UserProfileEdit";
+import UserPreferences from "components/Account/UserPreferences";
+
+import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;

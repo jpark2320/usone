@@ -9,10 +9,6 @@ export interface IContainerProps {
 }
 
 class Container extends React.Component<IContainerProps> {
-  public state = {
-    page: 1
-  };
-
   public render() {
     return <MainView {...this.props} region={this.props.region} />;
   }

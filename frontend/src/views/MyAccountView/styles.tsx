@@ -34,21 +34,19 @@ const styles = (theme: Theme) =>
     },
     root_root: {
       backgroundColor: theme.palette.background.paper,
-      width: 500,
+      width: 500
     },
-
     root2: {
-
-      width: '100%',
+      width: "100%"
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
-      flexBasis: '33.33%',
-      flexShrink: 0,
+      flexBasis: "33.33%",
+      flexShrink: 0
     },
     secondaryHeading: {
       fontSize: theme.typography.pxToRem(15),
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.secondary
     },
     tempContainerStyle: {
       marginTop: "5%",
@@ -73,9 +71,7 @@ const styles = (theme: Theme) =>
         marginRight: "3%",
         fontSize: "2rem"
       }
-
     },
-
 
     MainView__something: {},
     Listview__something: {},
