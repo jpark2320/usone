@@ -13,6 +13,17 @@ ALLOWED_HOSTS = [
     "0.0.0.0",
     "127.0.0.1",
 ]
+# Local DATABASES
+# django.db.backends.postgresql_psycopg2
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'usone',
+    'USER': 'postgres',
+    'PASSWORD': 'qor247412',
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
+}}
 
 # CACHES
 # ------------------------------------------------------------------------------

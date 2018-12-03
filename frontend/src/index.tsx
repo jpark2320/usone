@@ -4,14 +4,15 @@ import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import store, { history } from "./redux/configureStore";
 
-import App from "components/App";
 
 import "./index.css";
+// import MainView from 'views/MainView';
+import RegisterView from 'views/RegisterView';
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <RegisterView />
     </ConnectedRouter>
   </Provider>,
   document.getElementById("root") as HTMLElement
