@@ -18,26 +18,26 @@ const Routes: React.SFC<IProps> = props => (
     <Route path="/house" component={ListView} />
     <Route path="/job" component={ListView} />
     <Route path="/visa" component={ListView} />
-    <Route path="/ad" component={MainView} />
+    <Route
+      path="/ad"
+      render={() => <MainView region={props.region} {...props} />}
+    />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
-
-interface IState {
-  region: string;
-}
 
 export interface IProps {
   region: string;
 }
 
-class App extends React.Component<IProps, IState> {
+class App extends React.Component<IProps> {
   public state = {
     region: "georgia"
   };
 
   public onClickRegion = (regionParm: string) => (actions: object) => {
     this.setState({ region: regionParm });
+    location.reload();
   };
 
   public render() {

@@ -6,7 +6,7 @@ export interface IContainerProps {
   theme: Theme;
   container: Element;
   allPosts: string[];
-  getSummaryPosts: (region) => string[];
+  getSummaryPosts: () => string[];
 }
 
 class Container extends React.Component<IContainerProps> {
@@ -18,7 +18,7 @@ class Container extends React.Component<IContainerProps> {
     const { getSummaryPosts, allPosts } = this.props;
 
     if (!allPosts) {
-      getSummaryPosts("georgia");
+      getSummaryPosts();
     }
   }
 
