@@ -21,45 +21,17 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getSummaryWorkPosts: () => {
-      dispatch(
-        postActions.getSummaryWorkPosts(
-          ownProps.region,
-          10,
-          "created_at",
-          "desc"
-        )
-      );
+    getSummaryWorkPosts: (region, limit, order, desc) => {
+      dispatch(postActions.getSummaryWorkPosts(region, limit, order, desc));
     },
-    getSummaryVisaPosts: () => {
-      dispatch(
-        postActions.getSummaryVisaPosts(
-          ownProps.region,
-          10,
-          "created_at",
-          "desc"
-        )
-      );
+    getSummaryVisaPosts: (region, limit, order, desc) => {
+      dispatch(postActions.getSummaryVisaPosts(region, limit, order, desc));
     },
-    getSummaryRentPosts: () => {
-      dispatch(
-        postActions.getSummaryRentPosts(
-          ownProps.region,
-          10,
-          "created_at",
-          "desc"
-        )
-      );
+    getSummaryRentPosts: (region, limit, order, desc) => {
+      dispatch(postActions.getSummaryRentPosts(region, limit, order, desc));
     },
-    getSummaryQandaPosts: () => {
-      dispatch(
-        postActions.getSummaryQandaPosts(
-          ownProps.region,
-          10,
-          "created_at",
-          "desc"
-        )
-      );
+    getSummaryQandaPosts: (region, limit, order, desc) => {
+      dispatch(postActions.getSummaryQandaPosts(region, limit, order, desc));
     }
   };
 };

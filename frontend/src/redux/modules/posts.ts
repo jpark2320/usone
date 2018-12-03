@@ -23,7 +23,7 @@ function setSummaryQandaPosts(summaryQandaPosts) {
 // API ACTIONS
 function getSummaryWorkPosts(region, limit, order, inDescOrder) {
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=work&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`)
+    fetch(`/posts/posts-by-filters/?reg=${region}&cat=work&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
       .then(response => response.json())
       .then(json => dispatch(setSummaryWorkPosts(json)))
       .catch(err => console.log(err));
@@ -31,7 +31,7 @@ function getSummaryWorkPosts(region, limit, order, inDescOrder) {
 }
 function getSummaryVisaPosts(region, limit, order, inDescOrder) {
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=visa&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`)
+    fetch(`/posts/posts-by-filters/?reg=${region}&cat=visa&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
       .then(response => response.json())
       .then(json => dispatch(setSummaryVisaPosts(json)))
       .catch(err => console.log(err));
@@ -39,7 +39,7 @@ function getSummaryVisaPosts(region, limit, order, inDescOrder) {
 }
 function getSummaryRentPosts(region, limit, order, inDescOrder) {
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=rent&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`)
+    fetch(`/posts/posts-by-filters/?reg=${region}&cat=rent&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
       .then(response => response.json())
       .then(json => dispatch(setSummaryRentPosts(json)))
       .catch(err => console.log(err));
@@ -47,7 +47,7 @@ function getSummaryRentPosts(region, limit, order, inDescOrder) {
 }
 function getSummaryQandaPosts(region, limit, order, inDescOrder) {
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=qanda&limit=${limit}&order=${order}&inDescOrder=${inDescOrder}`)
+    fetch(`/posts/posts-by-filters/?reg=${region}&cat=qanda&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
       .then(response => response.json())
       .then(json => dispatch(setSummaryQandaPosts(json)))
       .catch(err => console.log(err));

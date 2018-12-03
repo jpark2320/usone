@@ -14,7 +14,7 @@ class Container extends React.Component<IContainerProps> {
   };
 
   public render() {
-    return <MainView {...this.props} />;
+    return <MainView {...this.props} region={this.props.region} />;
   }
 }
 

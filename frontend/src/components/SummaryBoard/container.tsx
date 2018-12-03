@@ -6,13 +6,13 @@ interface IProps {
   region: string;
   category: string;
   summaryWorkPosts: any;
-  getSummaryWorkPosts: () => object;
+  getSummaryWorkPosts: (region, limit, order, desc) => object;
   summaryVisaPosts: any;
-  getSummaryVisaPosts: () => object;
+  getSummaryVisaPosts: (region, limit, order, desc) => object;
   summaryRentPosts: any;
-  getSummaryRentPosts: () => object;
+  getSummaryRentPosts: (region, limit, order, desc) => object;
   summaryQandaPosts: any;
-  getSummaryQandaPosts: () => object;
+  getSummaryQandaPosts: (region, limit, order, desc) => object;
 }
 
 class Container extends React.Component<IProps> {
@@ -22,6 +22,7 @@ class Container extends React.Component<IProps> {
 
   public componentDidMount() {
     const {
+      region,
       summaryWorkPosts,
       getSummaryWorkPosts,
       summaryVisaPosts,
@@ -31,15 +32,18 @@ class Container extends React.Component<IProps> {
       summaryQandaPosts,
       getSummaryQandaPosts
     } = this.props;
-
+    const limit = 10;
+    const orderBy = "created_at";
+    const inDescOrder = "desc";
+    console.log(region);
     if (!summaryWorkPosts && this.props.category === "work") {
-      getSummaryWorkPosts();
+      getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
     } else if (!summaryVisaPosts && this.props.category === "visa") {
-      getSummaryVisaPosts();
+      getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
     } else if (!summaryRentPosts && this.props.category === "rent") {
-      getSummaryRentPosts();
+      getSummaryRentPosts(region, limit, orderBy, inDescOrder);
     } else if (!summaryQandaPosts && this.props.category === "qanda") {
-      getSummaryQandaPosts();
+      getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
     }
   }
 
@@ -52,7 +56,6 @@ class Container extends React.Component<IProps> {
       summaryRentPosts,
       summaryQandaPosts
     } = this.props;
-
     return (
       <SummaryBoard
         title={title}

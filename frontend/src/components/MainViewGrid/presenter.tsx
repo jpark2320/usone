@@ -12,7 +12,6 @@ interface IProps extends WithStyles<typeof styles> {
 
 const MainViewGrid: React.SFC<IProps> = props => {
   const { classes, boards, region } = props;
-  console.log("Mainview " + region);
   return (
     <div className={classes.root}>
       <Grid container={true} spacing={24}>

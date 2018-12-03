@@ -31,7 +31,7 @@ class PostByFilters(ListAPIView):
         cat = self.request.query_params.get('cat', None)
         limit = self.request.query_params.get('limit', None)
         order_by = self.request.query_params.get('order', None)
-        inDescOrder = self.request.query_params.get('inDescOrder', None)
+        inDescOrder = self.request.query_params.get('in-desc-order', None)
 
         # By region
         if reg:

@@ -6,6 +6,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../Header";
 import Footer from "../Footer";
 
+interface IProps {
+  region: string;
+}
+
 const Routes: React.SFC<IProps> = props => (
   <Switch>
     <Route
@@ -26,26 +30,18 @@ const Routes: React.SFC<IProps> = props => (
   </Switch>
 );
 
-export interface IProps {
+interface IRouteProps {
   region: string;
+  onClickRegion: (region: string) => (actions: object) => void;
 }
 
-class App extends React.Component<IProps> {
-  public state = {
-    region: "georgia"
-  };
-
-  public onClickRegion = (regionParm: string) => (actions: object) => {
-    this.setState({ region: regionParm });
-    location.reload();
-  };
-
+class App extends React.Component<IRouteProps> {
   public render() {
-    const region = this.state.region;
+    const { region, onClickRegion } = this.props;
     return (
       <React.Fragment>
         <CssBaseline />
-        <Header region={region} onClickRegion={this.onClickRegion} />
+        <Header region={region} onClickRegion={onClickRegion} />
         <Routes region={region} />
         <Footer />
       </React.Fragment>
