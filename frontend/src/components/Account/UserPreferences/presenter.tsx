@@ -23,7 +23,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Switch from '@material-ui/core/Switch';
 
 
-class UserProfile extends React.Component<any,any> {
+class UserPreferences extends React.Component<any,any> {
     constructor(props: any) {
       super(props);
       this.state = {
@@ -180,4 +180,4 @@ class UserProfile extends React.Component<any,any> {
 }
 }
 
-export default withStyles(styles, { withTheme: true })(UserProfile);
+export default withStyles(styles, { withTheme: true })(UserPreferences);

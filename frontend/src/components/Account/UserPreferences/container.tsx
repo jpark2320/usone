@@ -1,5 +1,5 @@
 import * as React from "react";
-import UserProfile from "./presenter";
+import UserPreferences from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 export interface IContainerProps {
@@ -26,7 +26,7 @@ class Container extends React.Component<IContainerProps> {
     const { allPosts } = this.props;
     console.log(allPosts);
 
-    return <UserProfile {...this.props} />;
+    return <UserPreferences {...this.props} />;
   }
 }
 
