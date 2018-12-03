@@ -23,7 +23,7 @@ export interface IamProps extends WithStyles<typeof styles> {
   // container: Element;
 }
 
-class MyAccountView extends React.Component<IamProps, any> {
+class AccountView extends React.Component<IamProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -143,4 +143,4 @@ class MyAccountView extends React.Component<IamProps, any> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MyAccountView);
+export default withStyles(styles, { withTheme: true })(AccountView);

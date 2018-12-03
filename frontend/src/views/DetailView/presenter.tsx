@@ -10,7 +10,7 @@ export interface IamProps extends WithStyles<typeof styles> {
   container: Element;
 }
 
-class MainView extends React.Component<IamProps> {
+class DetailView extends React.Component<IamProps> {
   public render() {
     const { classes } = this.props;
 
@@ -30,4 +30,4 @@ class MainView extends React.Component<IamProps> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MainView);
+export default withStyles(styles, { withTheme: true })(DetailView);

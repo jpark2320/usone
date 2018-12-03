@@ -1,5 +1,5 @@
 import * as React from "react";
-import MainView from "./presenter";
+import ListView from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 export interface IContainerProps {
@@ -9,7 +9,7 @@ export interface IContainerProps {
 
 class Container extends React.Component<IContainerProps> {
   public render() {
-    return <MainView {...this.props} />;
+    return <ListView {...this.props} />;
   }
 }
 
