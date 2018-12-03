@@ -1,0 +1,32 @@
+import React from "react";
+import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import { Theme } from "@material-ui/core/styles/createMuiTheme";
+
+import TextField from "@material-ui/core/TextField";
+
+import styles from "./styles";
+import { Grid, Typography, withMobileDialog } from "@material-ui/core";
+import InformationForm from './InformationForm';
+
+export interface IRegisterProps extends WithStyles<typeof styles> {
+  theme: Theme;
+  fullScreen: boolean;
+}
+
+class Container extends React.Component<{}, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {};
+  }
+
+  public render() {
+    return (
+      <div>
+          <InformationForm />
+      </div>
+    );
+  }
+}
+export default withMobileDialog({ breakpoint: "sm" })(
+  withStyles(styles)(Container)
+);
