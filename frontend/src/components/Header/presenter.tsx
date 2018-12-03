@@ -10,7 +10,10 @@ interface IState {
   mobileOpen: boolean;
 }
 
-export interface IProps extends WithStyles<typeof styles> {}
+export interface IProps extends WithStyles<typeof styles> {
+  region: string;
+  onClickRegion: (region: string) => (actions: object) => void;
+}
 
 class Header extends React.Component<IProps, IState> {
   public state = {
@@ -22,13 +25,13 @@ class Header extends React.Component<IProps, IState> {
   };
 
   public render() {
-    const { classes } = this.props;
+    const { classes, region, onClickRegion } = this.props;
     return (
       <Fragment>
         <AppBar position="fixed" className={classes.appBar}>
           {/* Region Nav Bar*/}
           <div className={classes.RegionNavBarContainer}>
-            <RegionNavBar />
+            <RegionNavBar region={region} onClickRegion={onClickRegion} />
           </div>
           {/* End Region Nav Bar*/}
           {/* Primary NavMenu*/}

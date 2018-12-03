@@ -3,38 +3,45 @@ import MenuDrawer from "./presenter";
 
 const firstItems = [
   {
+    id: 1,
     text: "HOME",
-    url: ""
+    url: "/"
   },
   {
+    id: 2,
     text: "삽니다",
-    url: ""
+    url: "/buy"
   },
   {
+    id: 3,
     text: "팝니다",
-    url: ""
+    url: "/sell"
   }
 ];
 
 const secondItems = [
   {
+    id: 4,
     text: "렌트/룸메/서브리스",
-    url: ""
+    url: "/house"
   },
   {
+    id: 5,
     text: "Jobs",
-    url: ""
+    url: "/job"
   },
   {
+    id: 6,
     text: "비자문의",
-    url: ""
+    url: "/visa"
   }
 ];
 
 const thirdItems = [
   {
+    id: 7,
     text: "광고문의",
-    url: ""
+    url: "/ad"
   }
 ];
 
