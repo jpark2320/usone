@@ -11,15 +11,18 @@ interface IProps extends WithStyles<typeof styles> {
 }
 
 const MainViewGrid: React.SFC<IProps> = props => {
-  const { classes, boards } = props;
-
+  const { classes, boards, region } = props;
   return (
     <div className={classes.root}>
       <Grid container={true} spacing={24}>
         {boards.map(board => (
-          <Grid item={true} xs={12} sm={6}>
+          <Grid key={board.id} item={true} xs={12} sm={6}>
             <Paper className={classes.paper}>
-              <SummaryBoard title={board.title} />
+              <SummaryBoard
+                title={board.title}
+                region={region}
+                category={board.key}
+              />
             </Paper>
           </Grid>
         ))}

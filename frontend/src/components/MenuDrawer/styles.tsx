@@ -23,7 +23,7 @@ const styles = (theme: Theme) =>
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
-      background: "#6c5b7b"
+      background: "#6C5B7D"
     },
     drawer__menu__text: {
       color: "white",

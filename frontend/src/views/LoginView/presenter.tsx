@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -10,11 +12,10 @@ import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import LockIcon from "@material-ui/core/Icon";
-import * as PropTypes from "prop-types";
-import * as React from "react";
+
 import styles from "./styles";
 
-function SignIn(props: { classes: any }) {
+function LoginView(props: { classes: any }) {
   const { classes } = props;
 
   return (
@@ -65,8 +66,4 @@ function SignIn(props: { classes: any }) {
   );
 }
 
-SignIn.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(LoginView);
