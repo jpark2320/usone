@@ -10,25 +10,25 @@ import createStyles from "@material-ui/core/styles/createStyles";
 const styles = (theme: Theme) =>
   createStyles({
     paper: {
-      width:'100%',
+      width: "100%",
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
     },
 
-    gridPadding:{
-      paddingTop: theme.spacing.unit *2,
+    gridPadding: {
+      paddingTop: theme.spacing.unit * 2
     },
     button: {
-      color:'grey',
+      color: "grey",
       margin: theme.spacing.unit,
-      marginLeft:'auto'
+      marginLeft: "auto"
     },
-    childCenterAlign:{
-      display: 'flex',
-      alignItems: 'center',
-      justifycontent: 'center',
-    },
+    childCenterAlign: {
+      display: "flex",
+      alignItems: "center",
+      justifycontent: "center"
+    }
 
     // rightAlign:{
     //   marginLeft:'auto'

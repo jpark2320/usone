@@ -7,9 +7,6 @@ import createStyles from "@material-ui/core/styles/createStyles";
 // const drawerHeight = regionBarHeight + appBarHeight;
 // const AdWidth = 200;
 
-const styles = (theme: Theme) =>
-  createStyles({
-   
-  });
+const styles = (theme: Theme) => createStyles({});
 
 export default styles;

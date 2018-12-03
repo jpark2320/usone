@@ -10,23 +10,21 @@ import createStyles from "@material-ui/core/styles/createStyles";
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width:'100%',
+      width: "100%",
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
     },
 
-    childCenterAlign:{
-      display: 'flex',
-      alignItems: 'center',
-      justifycontent: 'center',
+    childCenterAlign: {
+      display: "flex",
+      alignItems: "center",
+      justifycontent: "center"
     },
 
-    rightAlign:{
-      marginLeft:'auto'
+    rightAlign: {
+      marginLeft: "auto"
     }
-   
-    
   });
 
 export default styles;

@@ -10,33 +10,31 @@ import createStyles from "@material-ui/core/styles/createStyles";
 const styles = (theme: Theme) =>
   createStyles({
     paper: {
-      width:'100%',
+      width: "100%",
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
     },
-    childCenterAlign:{
-      display: 'flex',
-      alignItems: 'center',
-      justifycontent: 'center',
+    childCenterAlign: {
+      display: "flex",
+      alignItems: "center",
+      justifycontent: "center"
     },
 
-    rightAlign:{
-      marginLeft:'auto'
+    rightAlign: {
+      marginLeft: "auto"
     },
-    fontColorGrey:{
-      color:'lightgrey'
+    fontColorGrey: {
+      color: "lightgrey"
     },
-    gridPadding:{
-      paddingTop: theme.spacing.unit *2,
+    gridPadding: {
+      paddingTop: theme.spacing.unit * 2
     },
-    lastGridRowForEdit:{
-      display: 'flex',
-      alignItems: 'center',
-      borderTop:'1px grey  solid'
-
+    lastGridRowForEdit: {
+      display: "flex",
+      alignItems: "center",
+      borderTop: "1px grey  solid"
     }
-   
   });
 
 export default styles;

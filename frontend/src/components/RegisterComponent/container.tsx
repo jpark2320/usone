@@ -5,10 +5,8 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 // import TextField from "@material-ui/core/TextField";
 
 import styles from "./styles";
-import {
-  withMobileDialog,
-} from "@material-ui/core";
-import Presenter from './presenter';
+import { withMobileDialog } from "@material-ui/core";
+import Presenter from "./presenter";
 
 export interface IRegisterProps extends WithStyles<typeof styles> {
   theme: Theme;
@@ -27,7 +25,7 @@ class Container extends React.Component<IRegisterProps, any> {
     return (
       <div>
         <Presenter {...this.props} />
-      </div>  
+      </div>
     );
   }
 

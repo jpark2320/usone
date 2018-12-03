@@ -10,29 +10,29 @@ import createStyles from "@material-ui/core/styles/createStyles";
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width:'100%',
+      width: "100%",
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
     },
 
-    gridPadding:{
-      paddingTop: theme.spacing.unit *2,
+    gridPadding: {
+      paddingTop: theme.spacing.unit * 2
     },
     button: {
-      color:'grey',
+      color: "grey",
       margin: theme.spacing.unit,
-      marginLeft:'auto'
+      marginLeft: "auto"
     },
-    childCenterAlign:{
-      display: 'flex',
-      alignItems: 'center',
-      justifycontent: 'center',
+    childCenterAlign: {
+      display: "flex",
+      alignItems: "center",
+      justifycontent: "center"
     },
     formControl: {
       margin: theme.spacing.unit,
-      minWidth: 120,
-    },
+      minWidth: 120
+    }
     // rightAlign:{
     //   marginLeft:'auto'
     // }

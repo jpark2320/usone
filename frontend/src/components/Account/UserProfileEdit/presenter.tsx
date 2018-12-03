@@ -1,23 +1,20 @@
-
-import React from 'react';
+import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
 import Button from "@material-ui/core/Button";
 // import { Divider } from '@material-ui/core';
 // import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
+import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-
-
 
 // interface IUserProfileEditProps  {
 //   classes: any;
@@ -25,173 +22,173 @@ import CloseIcon from "@material-ui/icons/Close";
 //   changeToEditView:any
 // }
 
-
-class UserProfileEdit extends React.Component<any,any> {
+class UserProfileEdit extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
       ...props,
-      doesNotHavePassword:true,
-      cururentPassword:'',
-      value: '',
-      dispaySuccessNotice:false,
+      doesNotHavePassword: true,
+      cururentPassword: "",
+      value: "",
+      dispaySuccessNotice: false
     };
   }
-    public checkPasswordFunc = (event) => {
-      // if(this.state.cururentPassword ===''){
-      //   this.setState({ doesNotHavePassword: true});
-      // }else{
-      //   this.setState({ doesNotHavePassword: false});
-      // }
-      if (this.state.value === '' ){
-        this.setState({ doesNotHavePassword: true});
-      }else{
-        this.setState({dispaySuccessNotice:true})
-      }
+  public checkPasswordFunc = event => {
+    // if(this.state.cururentPassword ===''){
+    //   this.setState({ doesNotHavePassword: true});
+    // }else{
+    //   this.setState({ doesNotHavePassword: false});
+    // }
+    if (this.state.value === "") {
+      this.setState({ doesNotHavePassword: true });
+    } else {
+      this.setState({ dispaySuccessNotice: true });
     }
+  };
 
-    public currentPasswordChanges= (event)=>{
-      this.setState({
-        value: event.target.value,
-      });
-
-    }
-    public snackBarHandleClose = () => {
-      this.setState({ dispaySuccessNotice: false });
-    };
-    public render() {
-      const { classes } = this.props;
-        return (
+  public currentPasswordChanges = event => {
+    this.setState({
+      value: event.target.value
+    });
+  };
+  public snackBarHandleClose = () => {
+    this.setState({ dispaySuccessNotice: false });
+  };
+  public render() {
+    const { classes } = this.props;
+    return (
       <React.Fragment>
-       <Paper className={classes.paper} elevation={1}>
-       <form
-            noValidate={true}
-            autoComplete="off"
-            >
-        <Grid  container={true} spacing={16}>
-          <Grid item={true} xs={12} >
-            <Typography variant={'h5'}  className={classes.secondaryHeading}>
-             계정 수정
-            </Typography>
-          </Grid>
-           <Grid  item={true} xs={12} sm={6}>
-            <TextField
-              required={true}
-              id="firstName"
-              name="firstName"
-              label="이름"
-              fullWidth={true}
-              autoComplete="given-name"
-              margin="normal"
-              variant="outlined"
-            />
-         </Grid>
-        <Grid item={true} xs={12} sm={6}>
-          <TextField
-            required={true}
-            id="lastName"
-            name="lastName"
-            label="성"
-            fullWidth={true}
-            autoComplete="family-name"
-            margin="normal"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item={true} xs={12} sm={12}>
-              <TextField
-               fullWidth={true}
-                id="outlined-email-input"
-                label="이메일 주소"
-                className={classes.textField}
-                type="email"
-                name="email"
-                autoComplete="email"
-                margin="normal"
-                variant="outlined"
-              />
-               </Grid>
-          <Grid item={true} xs={12} sm={12}>
-          <TextField
-            fullWidth={true}
-            id="outlined-email-input"
-            label="이메일 다시 입력"
-            className={classes.textField}
-            type="email"
-            name="email"
-            autoComplete="email"
-            margin="normal"
-            variant="outlined"
-          />
-          </Grid>
-        <Grid item={true} xs={12} sm={6}>
-            <TextField
-              fullWidth={true}
-              id="outlined-phone-input"
-              label="전화번호"
-              className={classes.textField}
-              inputProps={{ pattern: "^[0-9-+s()]*$" }}
-              type="tel"
-              name="tel"
-              autoComplete="tel"
-              margin="normal"
-              variant="outlined"
-              helperText={' 전화번호는 신원확인 용도 의외로는 쓰이지 않습니다.'}
-            />
-          </Grid>
-          <Grid item={true} xs={12} sm={6}/>
-        <Grid item={true} xs={12} sm={6}>
-          <TextField
-            required={true}
-            id="newPassword"
-            label="새로운 비밀번호 입력"
-            className={classes.textField}
-            margin="normal"
-            variant="outlined"
-            fullWidth={true}
-        />
-        </Grid>
-        <Grid item={true}xs={12} sm={6} >
-          <TextField
-            required={true}
-            id="confrimPassword"
-            label="새로운 비밀번호 다시 입력"
-            className={classes.textField}
-            margin="normal"
-            variant="outlined"
-            fullWidth={true}
-        />
-        </Grid>
-        <Grid  className={classes.lastGridRowForEdit} item={true} xs={12} >
-        <Grid className = {classes.rightAlign} item={true} xs={6}  >
-          <TextField
-            error= {this.state.value===''?true:false}
-            required={true}
-            id="passwordForApproval"
-            label="현재 비밀번호 입력"
-            className={classes.textField}
-            margin="normal"
-            variant="outlined"
-            fullWidth={true}
-            onChange={this.currentPasswordChanges}
-            value={this.state.value}
-        />
-        </Grid>
-        <Grid className={classes.childCenterAlign} item={true} xs={6} >
-        <div  className = {classes.rightAlign}>
-        <Button  onClick={this.props.changeToEditView} color="secondary">
-          Cancel
-        </Button>
-        <Button onClick={this.checkPasswordFunc} color="primary">
-          Submit
-        </Button>
-        </div>
-        </Grid>
-        </Grid>
-      </Grid>
-      </form>
-      </Paper>
-      <Snackbar
+        <Paper className={classes.paper} elevation={1}>
+          <form noValidate={true} autoComplete="off">
+            <Grid container={true} spacing={16}>
+              <Grid item={true} xs={12}>
+                <Typography variant={"h5"} className={classes.secondaryHeading}>
+                  계정 수정
+                </Typography>
+              </Grid>
+              <Grid item={true} xs={12} sm={6}>
+                <TextField
+                  required={true}
+                  id="firstName"
+                  name="firstName"
+                  label="이름"
+                  fullWidth={true}
+                  autoComplete="given-name"
+                  margin="normal"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item={true} xs={12} sm={6}>
+                <TextField
+                  required={true}
+                  id="lastName"
+                  name="lastName"
+                  label="성"
+                  fullWidth={true}
+                  autoComplete="family-name"
+                  margin="normal"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item={true} xs={12} sm={12}>
+                <TextField
+                  fullWidth={true}
+                  id="outlined-email-input"
+                  label="이메일 주소"
+                  className={classes.textField}
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  margin="normal"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item={true} xs={12} sm={12}>
+                <TextField
+                  fullWidth={true}
+                  id="outlined-email-input"
+                  label="이메일 다시 입력"
+                  className={classes.textField}
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  margin="normal"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item={true} xs={12} sm={6}>
+                <TextField
+                  fullWidth={true}
+                  id="outlined-phone-input"
+                  label="전화번호"
+                  className={classes.textField}
+                  inputProps={{ pattern: "^[0-9-+s()]*$" }}
+                  type="tel"
+                  name="tel"
+                  autoComplete="tel"
+                  margin="normal"
+                  variant="outlined"
+                  helperText={
+                    " 전화번호는 신원확인 용도 의외로는 쓰이지 않습니다."
+                  }
+                />
+              </Grid>
+              <Grid item={true} xs={12} sm={6} />
+              <Grid item={true} xs={12} sm={6}>
+                <TextField
+                  required={true}
+                  id="newPassword"
+                  label="새로운 비밀번호 입력"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item={true} xs={12} sm={6}>
+                <TextField
+                  required={true}
+                  id="confrimPassword"
+                  label="새로운 비밀번호 다시 입력"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid className={classes.lastGridRowForEdit} item={true} xs={12}>
+                <Grid className={classes.rightAlign} item={true} xs={6}>
+                  <TextField
+                    error={this.state.value === "" ? true : false}
+                    required={true}
+                    id="passwordForApproval"
+                    label="현재 비밀번호 입력"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    fullWidth={true}
+                    onChange={this.currentPasswordChanges}
+                    value={this.state.value}
+                  />
+                </Grid>
+                <Grid className={classes.childCenterAlign} item={true} xs={6}>
+                  <div className={classes.rightAlign}>
+                    <Button
+                      onClick={this.props.changeToEditView}
+                      color="secondary"
+                    >
+                      Cancel
+                    </Button>
+                    <Button onClick={this.checkPasswordFunc} color="primary">
+                      Submit
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
+            </Grid>
+          </form>
+        </Paper>
+        <Snackbar
           open={this.state.dispaySuccessNotice}
           onClose={this.snackBarHandleClose}
           onExited={this.snackBarHandleClose}
@@ -203,7 +200,9 @@ class UserProfileEdit extends React.Component<any,any> {
           ContentProps={{
             "aria-describedby": "message-id"
           }}
-          message={<span id="message-id">계정 정보를 업데이트 하였습니다.</span>}
+          message={
+            <span id="message-id">계정 정보를 업데이트 하였습니다.</span>
+          }
           action={[
             <IconButton
               key="close"
@@ -216,10 +215,9 @@ class UserProfileEdit extends React.Component<any,any> {
             </IconButton>
           ]}
         />
-    </React.Fragment>
-
-);
-}
+      </React.Fragment>
+    );
+  }
 }
 
 export default withStyles(styles, { withTheme: true })(UserProfileEdit);
