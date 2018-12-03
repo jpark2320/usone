@@ -4,7 +4,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 import TextField from "@material-ui/core/TextField";
 
-import styles from "./styles";
+import styles from "../styles";
 import { Grid, Typography, withMobileDialog } from "@material-ui/core";
 
 export interface IRegisterProps extends WithStyles<typeof styles> {

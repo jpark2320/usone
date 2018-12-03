@@ -47,13 +47,14 @@ const styles = (theme: Theme) =>
     },
     layout: {
       width: 'auto',
-      marginLeft: theme.spacing.unit * 2,
+      marginLeft: 600, // theme.spacing.unit * 2,
       marginRight: theme.spacing.unit * 2,
       [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
         width: 600,
-        marginLeft: 'auto',
+        marginLeft: 200, // 'auto'
         marginRight: 'auto',
       },
+      alignItems: "center"
     },
     
     stepper: {

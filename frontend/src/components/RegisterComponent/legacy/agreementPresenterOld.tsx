@@ -7,7 +7,7 @@ import {
   withStyles
 } from "@material-ui/core";
 import React from "react";
-import styles from "./styles";
+import styles from "../styles";
 
 function AgreementPresenter() {
   return (
