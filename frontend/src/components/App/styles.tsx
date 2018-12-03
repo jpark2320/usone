@@ -1,7 +1,3 @@
-const styles = {
-  root: {
-    backgroundColor: "red"
-  }
-};
+const styles = {};
 
 export default styles;

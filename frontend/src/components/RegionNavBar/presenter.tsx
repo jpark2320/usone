@@ -4,13 +4,13 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 
-interface IamProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   images: any;
   region: string;
   onClickRegion: (region: string) => (actions: object) => void;
 }
 
-const RegionNavBar: React.SFC<IamProps> = props => {
+const RegionNavBar: React.SFC<IProps> = props => {
   const { images, classes, region, onClickRegion } = props;
   return (
     <div className={classes.root}>

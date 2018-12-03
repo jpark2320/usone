@@ -5,13 +5,13 @@ import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import styles from "./styles";
 
-interface IListItemLinkProps extends WithStyles<typeof styles> {
+interface IProps extends WithStyles<typeof styles> {
   primary: any;
   to: string;
   primaryStyle: any;
 }
 
-const ListItemLink: React.SFC<IListItemLinkProps> = props => {
+const ListItemLink: React.SFC<IProps> = props => {
   const { to, primary, primaryStyle } = props;
   const renderLink = itemProps => <Link to={to} {...itemProps} />;
 

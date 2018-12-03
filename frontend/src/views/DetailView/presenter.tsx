@@ -3,14 +3,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Header from "components//Header";
-import styles from "../styles";
+import styles from "shared/styles/globalStyles";
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
   container: Element;
 }
 
-class MainView extends React.Component<IamProps> {
+class DetailView extends React.Component<IamProps> {
   public render() {
     const { classes } = this.props;
 
@@ -30,4 +30,4 @@ class MainView extends React.Component<IamProps> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(MainView);
+export default withStyles(styles, { withTheme: true })(DetailView);

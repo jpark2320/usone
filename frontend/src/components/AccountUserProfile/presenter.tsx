@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
-class UserAddress extends React.Component<any, any> {
+class AccountUserProfile extends React.Component<any, any> {
   // constructor(props: any) {
   //   super(props);
   //   this.state = {
@@ -23,11 +23,11 @@ class UserAddress extends React.Component<any, any> {
     const { classes } = this.props;
     return (
       <React.Fragment>
-        <Grid container={true} spacing={24}>
-          <Paper className={classes.root} elevation={1}>
-            <Grid item={true} xs={6}>
+        <Paper className={classes.paper} elevation={1}>
+          <Grid container={true} spacing={24}>
+            <Grid item={true} xs={12}>
               <Typography variant={"h5"} className={classes.secondaryHeading}>
-                현재 사용중인 주소
+                계정 정보
               </Typography>
             </Grid>
             <Grid item={true} xs={6} className={classes.gridPadding}>
@@ -35,15 +35,22 @@ class UserAddress extends React.Component<any, any> {
                 style={{ fontWeight: 900 }}
                 className={classes.secondaryHeading}
               >
+                성
+              </Typography>
+              <Typography className={classes.secondaryHeading}>백</Typography>
+            </Grid>
+            <Grid className={classes.gridPadding} item={true} xs={6}>
+              <Typography
+                style={{ fontWeight: 900 }}
+                className={classes.secondaryHeading}
+              >
                 이름
               </Typography>
-            </Grid>
-            <Grid item={true} xs={6}>
               <Typography
-                style={{ width: "100%" }}
+                style={{ font: "bold" }}
                 className={classes.secondaryHeading}
               >
-                백승현
+                승현
               </Typography>
             </Grid>
             <Grid className={classes.gridPadding} item={true} xs={6}>
@@ -51,15 +58,13 @@ class UserAddress extends React.Component<any, any> {
                 style={{ fontWeight: 900 }}
                 className={classes.secondaryHeading}
               >
-                현재 주소
+                이메일 주소
               </Typography>
-            </Grid>
-            <Grid item={true} xs={6}>
               <Typography
                 style={{ font: "bold" }}
                 className={classes.secondaryHeading}
               >
-                2686 mill ct Doraville GA 30360 USA
+                poolpnd@hotmail.com
               </Typography>
             </Grid>
             <Grid className={classes.gridPadding} item={true} xs={6}>
@@ -67,15 +72,13 @@ class UserAddress extends React.Component<any, any> {
                 style={{ fontWeight: 900 }}
                 className={classes.secondaryHeading}
               >
-                도시
+                핸드폰 번호
               </Typography>
-            </Grid>
-            <Grid item={true} xs={6}>
               <Typography
                 style={{ font: "bold" }}
                 className={classes.secondaryHeading}
               >
-                Doraville
+                (404)-695-5014
               </Typography>
             </Grid>
             <Grid className={classes.gridPadding} item={true} xs={6}>
@@ -83,15 +86,13 @@ class UserAddress extends React.Component<any, any> {
                 style={{ fontWeight: 900 }}
                 className={classes.secondaryHeading}
               >
-                주
+                생년월일
               </Typography>
-            </Grid>
-            <Grid item={true} xs={6}>
               <Typography
                 style={{ font: "bold" }}
                 className={classes.secondaryHeading}
               >
-                GA
+                1990/9/25
               </Typography>
             </Grid>
             <Grid className={classes.gridPadding} item={true} xs={6}>
@@ -99,18 +100,30 @@ class UserAddress extends React.Component<any, any> {
                 style={{ fontWeight: 900 }}
                 className={classes.secondaryHeading}
               >
-                나라
+                성별
               </Typography>
-            </Grid>
-            <Grid item={true} xs={6}>
               <Typography
                 style={{ font: "bold" }}
                 className={classes.secondaryHeading}
               >
-                USA
+                남자
               </Typography>
             </Grid>
-            <Grid className={classes.childCenterAlign} item={true} xs={12}>
+            <Grid className={classes.gridPadding} item={true} xs={6}>
+              <Typography
+                style={{ fontWeight: 900 }}
+                className={classes.secondaryHeading}
+              >
+                비밀번호
+              </Typography>
+              <Typography
+                style={{ font: "bold" }}
+                className={classes.secondaryHeading}
+              >
+                ********
+              </Typography>
+            </Grid>
+            <Grid item={true} className={classes.childCenterAlign} xs={12}>
               <Button
                 onClick={this.props.changeToEditView}
                 className={classes.button}
@@ -118,11 +131,11 @@ class UserAddress extends React.Component<any, any> {
                 <u>수정하기</u>
               </Button>
             </Grid>
-          </Paper>
-        </Grid>
+          </Grid>
+        </Paper>
       </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles, { withTheme: true })(UserAddress);
+export default withStyles(styles, { withTheme: true })(AccountUserProfile);

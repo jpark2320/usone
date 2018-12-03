@@ -14,7 +14,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
-class UserAddressEdit extends React.Component<any, any> {
+class AccountUserAddressEdit extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -158,4 +158,4 @@ class UserAddressEdit extends React.Component<any, any> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(UserAddressEdit);
+export default withStyles(styles, { withTheme: true })(AccountUserAddressEdit);

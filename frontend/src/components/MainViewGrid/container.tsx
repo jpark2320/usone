@@ -6,17 +6,23 @@ interface IProps {
   boards: any;
 }
 
-let id = 0;
-function createboard(title, key) {
-  id += 1;
-  return { id, title, key };
-}
-
 const boards = [
-  createboard("비자", "visa"),
-  createboard("묻고답하기", "qanda"),
-  createboard("렌트/룸메/서브리스", "rent"),
-  createboard("Jobs", "work")
+  {
+    title: "비자",
+    key: "visa"
+  },
+  {
+    title: "묻고답하기",
+    key: "qanda"
+  },
+  {
+    title: "렌트/룸메/서브리스",
+    key: "rent"
+  },
+  {
+    title: "Jobs",
+    key: "work"
+  }
 ];
 
 class Container extends React.Component<IProps> {

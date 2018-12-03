@@ -1,5 +1,5 @@
 import * as React from "react";
-import UserProfileEdit from "./presenter";
+import AccountUserProfileEdit from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 export interface IContainerProps {
@@ -15,7 +15,7 @@ class Container extends React.Component<IContainerProps> {
 
   public render() {
     return (
-      <UserProfileEdit
+      <AccountUserProfileEdit
         {...this.props}
         validatePasswordBeforeProceed={this.validatePasswordBeforeProceed}
       />

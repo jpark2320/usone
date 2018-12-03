@@ -21,7 +21,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Switch from "@material-ui/core/Switch";
 
-class UserPreferences extends React.Component<any, any> {
+class AccountUserPreferences extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -190,4 +190,4 @@ class UserPreferences extends React.Component<any, any> {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(UserPreferences);
+export default withStyles(styles, { withTheme: true })(AccountUserPreferences);
