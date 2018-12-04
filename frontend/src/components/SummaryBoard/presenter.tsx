@@ -10,57 +10,19 @@ import Paper from "@material-ui/core/Paper";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 
-interface IPostPops {
-  id: number;
-  category: string;
-  description: string;
-  title: string;
-  comment_set: string[];
-}
-
 interface IProps extends WithStyles<typeof styles> {
   title: string;
-  category: string;
-  summaryWorkPosts: {
-    count: number;
-    results: IPostPops[];
-  };
-  summaryVisaPosts: {
-    count: number;
-    results: IPostPops[];
-  };
-  summaryRentPosts: {
-    count: number;
-    results: IPostPops[];
-  };
-  summaryQandaPosts: {
-    count: number;
-    results: IPostPops[];
-  };
+  posts: any;
 }
 
 const SummaryBoard: React.SFC<IProps> = props => {
-  const {
-    title,
-    category,
-    classes,
-    summaryWorkPosts,
-    summaryVisaPosts,
-    summaryRentPosts,
-    summaryQandaPosts
-  } = props;
+  const { title, classes } = props;
 
   let posts;
-  if (summaryWorkPosts && category === "work") {
-    posts = summaryWorkPosts.results;
-  } else if (summaryVisaPosts && category === "visa") {
-    posts = summaryVisaPosts.results;
-  } else if (summaryRentPosts && category === "rent") {
-    posts = summaryRentPosts.results;
-  } else if (summaryQandaPosts && category === "qanda") {
-    posts = summaryQandaPosts.results;
-  } else {
+  if (!props.posts) {
     posts = [];
+  } else {
+    posts = props.posts.results;
   }
 
   return (

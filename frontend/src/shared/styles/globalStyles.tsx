@@ -36,6 +36,15 @@ const styles = (theme: Theme) =>
         marginRight: 0
       }
     },
+    MainView_GridContainer: {
+      flexGrow: 1
+    },
+    MainView__paper: {
+      padding: theme.spacing.unit * 2,
+      textAlign: "center",
+      color: theme.palette.text.secondary,
+      boxShadow: "none"
+    },
     MainView__something: {},
     Listview__something: {},
     DetailView__something1: {},

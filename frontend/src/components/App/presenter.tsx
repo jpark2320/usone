@@ -9,6 +9,7 @@ import LoginView from "views/LoginView";
 import SignupView from "views/SignupView";
 
 interface IProps {
+  location: Location;
   region: string;
   onClickRegion: (region: string) => (actions: object) => void;
 }
@@ -19,13 +20,14 @@ const App: React.SFC<IProps> = props => {
     <React.Fragment>
       <CssBaseline />
       <Header region={region} onClickRegion={onClickRegion} />
-      <Routes region={region} />
+      <Routes region={region} location={props.location} />
       <Footer />
     </React.Fragment>
   );
 };
 
 interface IRouteProps {
+  location: Location;
   region: string;
 }
 
