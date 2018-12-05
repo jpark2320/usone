@@ -4,20 +4,16 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const boards = [
   {
-    title: "비자",
-    key: "visa"
+    title: "비자"
   },
   {
-    title: "묻고답하기",
-    key: "qanda"
+    title: "묻고답하기"
   },
   {
-    title: "렌트/룸메/서브리스",
-    key: "rent"
+    title: "렌트/룸메/서브리스"
   },
   {
-    title: "Jobs",
-    key: "work"
+    title: "Jobs"
   }
 ];
 
@@ -55,17 +51,29 @@ class Container extends React.Component<IProps> {
       getSummaryWorkPosts,
       getSummaryVisaPosts,
       getSummaryRentPosts,
-      getSummaryQandaPosts
+      getSummaryQandaPosts,
+      summaryWorkPosts,
+      summaryVisaPosts,
+      summaryRentPosts,
+      summaryQandaPosts
     } = this.props;
 
     const limit = 10;
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
-    getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
-    getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
-    getSummaryRentPosts(region, limit, orderBy, inDescOrder);
-    getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
+    if (!summaryWorkPosts) {
+      getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
+    }
+    if (!summaryVisaPosts) {
+      getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
+    }
+    if (!summaryRentPosts) {
+      getSummaryRentPosts(region, limit, orderBy, inDescOrder);
+    }
+    if (!summaryQandaPosts) {
+      getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
+    }
   }
 
   public componentDidUpdate(prevProps, prevState) {
@@ -81,7 +89,7 @@ class Container extends React.Component<IProps> {
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
-    if (prevProps.region !== this.props.region) {
+    if (prevProps.region !== region) {
       getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
       getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
       getSummaryRentPosts(region, limit, orderBy, inDescOrder);
@@ -96,15 +104,18 @@ class Container extends React.Component<IProps> {
       summaryRentPosts,
       summaryQandaPosts
     } = this.props;
+    const summaryAllPosts = [
+      ["Work", summaryWorkPosts],
+      ["Visa", summaryVisaPosts],
+      ["Rent", summaryRentPosts],
+      ["Q&A", summaryQandaPosts]
+    ];
     return (
       <MainView
         {...this.props}
         region={region}
         boards={boards}
-        summaryWorkPosts={summaryWorkPosts}
-        summaryVisaPosts={summaryVisaPosts}
-        summaryRentPosts={summaryRentPosts}
-        summaryQandaPosts={summaryQandaPosts}
+        summaryAllPosts={summaryAllPosts}
       />
     );
   }

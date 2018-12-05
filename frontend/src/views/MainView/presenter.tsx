@@ -8,7 +8,6 @@ import styles from "shared/styles/globalStyles";
 
 interface IBoard {
   title: string;
-  key: string;
 }
 
 export interface IamProps extends WithStyles<typeof styles> {
@@ -16,28 +15,32 @@ export interface IamProps extends WithStyles<typeof styles> {
   container: Element;
   region: string;
   boards: IBoard[];
-  summaryRentPosts: any;
-  summaryWorkPosts: any;
-  summaryVisaPosts: any;
-  summaryQandaPosts: any;
+  summaryAllPosts: any[];
 }
 
 class MainView extends React.Component<IamProps> {
   public render() {
-    const { classes, boards } = this.props;
-    console.log("redered!!!");
+    const { classes, summaryAllPosts } = this.props;
+
+    let summaryAllPostsOrUndef;
+    if (!summaryAllPosts) {
+      summaryAllPostsOrUndef = [];
+    } else {
+      summaryAllPostsOrUndef = summaryAllPosts;
+    }
+
     return (
       <div className={classes.root}>
         {/* Main */}
         <main className={classes.bodyContainer}>
           <div className={classes.MainView_GridContainer}>
             <Grid container={true} spacing={24}>
-              {boards.map((board, index) => (
+              {summaryAllPostsOrUndef.map((summaryPost, index) => (
                 <Grid key={index} item={true} xs={12} sm={6}>
                   <Paper className={classes.MainView__paper}>
                     <SummaryBoard
-                      title={board.title}
-                      posts={this.props.summaryWorkPosts}
+                      title={summaryPost[0]}
+                      posts={summaryPost[1]}
                     />
                   </Paper>
                 </Grid>

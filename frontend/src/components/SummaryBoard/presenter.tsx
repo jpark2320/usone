@@ -16,13 +16,13 @@ interface IProps extends WithStyles<typeof styles> {
 }
 
 const SummaryBoard: React.SFC<IProps> = props => {
-  const { title, classes } = props;
+  const { title, classes, posts } = props;
 
-  let posts;
-  if (!props.posts) {
-    posts = [];
+  let postsOrUndef;
+  if (!posts) {
+    postsOrUndef = [];
   } else {
-    posts = props.posts.results;
+    postsOrUndef = posts.results;
   }
 
   return (
@@ -34,20 +34,22 @@ const SummaryBoard: React.SFC<IProps> = props => {
           </Typography>
         </TableHead>
         <TableBody>
-          {posts.map(post => {
+          {postsOrUndef.map(post => {
             return (
               <TableRow key={post.id}>
                 <TableCell>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    classes={{
-                      root: classes.category__button,
-                      label: classes.category__button__label
-                    }}
-                  >
-                    {post.category}
-                  </Button>
+                  {post.tag && (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      classes={{
+                        root: classes.category__button,
+                        label: classes.category__button__label
+                      }}
+                    >
+                      {post.tag}
+                    </Button>
+                  )}
                   {post.title}[{post.comment_set.length}]
                 </TableCell>
               </TableRow>
