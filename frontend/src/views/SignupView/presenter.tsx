@@ -4,7 +4,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Header from "components//Header";
 import RegisterComponent from "components/RegisterComponent";
-import styles from "shared/styles/globalStyles";
+import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
