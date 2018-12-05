@@ -49,28 +49,12 @@ export interface IProps {
 }
 
 class Container extends React.Component<IProps> {
-  public shouldComponentUpdate(nextProps: IProps) {
-    console.log("thisProps " + this.props.region);
-    console.log("nextProps " + nextProps.region);
-    return (
-      nextProps.region !== this.props.region ||
-      nextProps.summaryRentPosts !== this.props.summaryRentPosts ||
-      nextProps.summaryWorkPosts !== this.props.summaryWorkPosts ||
-      nextProps.summaryVisaPosts !== this.props.summaryVisaPosts ||
-      nextProps.summaryQandaPosts !== this.props.summaryQandaPosts
-    );
-  }
-
   public componentDidMount() {
     const {
       region,
-      summaryWorkPosts,
       getSummaryWorkPosts,
-      summaryVisaPosts,
       getSummaryVisaPosts,
-      summaryRentPosts,
       getSummaryRentPosts,
-      summaryQandaPosts,
       getSummaryQandaPosts
     } = this.props;
 
@@ -78,16 +62,29 @@ class Container extends React.Component<IProps> {
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
-    if (!summaryWorkPosts) {
+    getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
+    getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
+    getSummaryRentPosts(region, limit, orderBy, inDescOrder);
+    getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
+  }
+
+  public componentDidUpdate(prevProps, prevState) {
+    const {
+      region,
+      getSummaryWorkPosts,
+      getSummaryVisaPosts,
+      getSummaryRentPosts,
+      getSummaryQandaPosts
+    } = this.props;
+
+    const limit = 10;
+    const orderBy = "created_at";
+    const inDescOrder = "desc";
+
+    if (prevProps.region !== this.props.region) {
       getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
-    }
-    if (!summaryVisaPosts) {
       getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
-    }
-    if (!summaryRentPosts) {
       getSummaryRentPosts(region, limit, orderBy, inDescOrder);
-    }
-    if (!summaryQandaPosts) {
       getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
     }
   }
