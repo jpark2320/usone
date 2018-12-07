@@ -2,7 +2,7 @@ import React from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import MainViewGrid from "components/MainViewGrid";
-import styles from "shared/styles/globalStyles";
+import styles from "./styles";
 
 export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
