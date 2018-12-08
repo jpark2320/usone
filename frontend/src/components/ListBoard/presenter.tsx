@@ -12,15 +12,14 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import styles from "./styles";
 
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Typography from "@material-ui/core/Typography";
+
 interface IProps extends WithStyles<typeof styles> {
   data: any[];
-  // getListdata: typeof listviewDispatch;
-  botnavValue: number;
-  onSelectAllClick: any;
   order: any;
   orderBy: any;
-  numSelected: any;
-  rowCount: any;
   classes: any;
   props: any;
   createSortHandler: any;
@@ -33,26 +32,28 @@ interface IProps extends WithStyles<typeof styles> {
   rows: any[];
   displayNumberOfCharacters: any;
   dynamicClassNameBasedOnLabelID: any;
+  pageCounts:number;
+  handlePageSelectChange:any;
+
 }
 interface IState {
   data: any[];
-  numSelected: any;
   order: any;
   orderBy: string;
   page: number;
-  rowCount: any;
   rowsPerPage: number;
   selected: any[];
   rowsPerPageOptions: any[];
   classes: any;
   rows: any[];
+  pageCounts:number[];
 }
 
 class ListBoard extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      ...props
+      ...props,
     };
   }
 
@@ -61,7 +62,7 @@ class ListBoard extends React.Component<IProps, IState> {
       ...nextProps
     });
   }
-  public EnhancedTable = () => {
+  public LitBoard = () => {
     const {
       classes,
       data,
@@ -69,8 +70,10 @@ class ListBoard extends React.Component<IProps, IState> {
       orderBy,
       rowsPerPage,
       page,
-      rows
-    } = this.state; // selected , rowCount
+      rows,
+      pageCounts,
+
+    } = this.state; 
     // const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
@@ -167,7 +170,6 @@ class ListBoard extends React.Component<IProps, IState> {
                               className={classes.midTableCell}
                               numeric={false}
                             >
-                              {" "}
                               {n.nickname}
                             </TableCell>
                             <TableCell
@@ -194,14 +196,33 @@ class ListBoard extends React.Component<IProps, IState> {
                           </TableRow>
                         );
                       })}
-                    {/* {emptyRows > 0 && (
-                        <TableRow style={{ height: 49 * emptyRows }}>
-                        <TableCell colSpan={6} />
-                        </TableRow>
-                    )} */}
                   </TableBody>
                 </Table>
               </div>
+              <Grid container={true} >
+              <Grid className={classes.tableCurrentPagePagination} item={true} sm={2}>
+              <Typography variant={'caption'}  >
+                  Page
+                </Typography>
+                  <Select
+                    value={page+1}
+       
+                    classes={{  
+                      selectMenu:classes.paginationSelectFontSize
+                    }}
+                    onChange={this.props.handlePageSelectChange}
+                    disableUnderline={true}
+                    displayEmpty={true}
+                    >
+                      {pageCounts.map(index => (
+                      <MenuItem key={index} value={index} >
+                        {index}
+                      </MenuItem> 
+                    ))}
+
+                  </Select>
+                  </Grid>
+                  <Grid item={true} xs={12} sm={10}>
               <TablePagination
                 classes={{
                   select: classes.paginationSelect,
@@ -224,6 +245,8 @@ class ListBoard extends React.Component<IProps, IState> {
                 onChangePage={this.props.handleChangePage}
                 onChangeRowsPerPage={this.props.handleChangeRowsPerPage}
               />
+              </Grid>
+              </Grid>
             </div>
           </Paper>
         </Grid>
@@ -235,7 +258,7 @@ class ListBoard extends React.Component<IProps, IState> {
     return (
       <React.Fragment>
         <CssBaseline />
-        {this.EnhancedTable()}
+        {this.LitBoard()}
       </React.Fragment>
     );
   }

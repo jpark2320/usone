@@ -116,13 +116,28 @@ const styles = (theme: Theme) =>
     tablePagination: {
       color: "grey"
     },
+    tableCurrentPagePagination: {
+      display: 'flex',
+      alignItems: 'center',
+      paddingLeft: theme.spacing.unit * 1,
+
+      [theme.breakpoints.down("xs")]: {
+        display: "none"
+      }
+    },
+
     pagenationAction: {
       [theme.breakpoints.down("xs")]: {
         marginLeft: 0
       }
     },
     paginationSelect: {
-      paddingRight: 32
+      paddingRight: theme.spacing.unit * 3,
+    },
+    paginationSelectFontSize:{
+      fontSize:'12px',
+      paddingLeft:theme.spacing.unit * 1,
+      color:'grey'
     },
 
     displayWhenDesktop: {
