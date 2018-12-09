@@ -17,21 +17,11 @@ import styles from "./styles";
 
 interface IProps {
   classes: any;
-  // handleInputChange: (event: any) => void;
   handleSubmit: (event: any) => void;
-  // handleFacebookLogin: (response: any) => void; // Hold until the website is open to public
-  // usernameValue: string;
-  // passwordValue: string;
 }
 
 const LoginView: React.SFC<IProps> = props => {
-  const {
-    classes,
-    // handleInputChange,
-    handleSubmit // handleFacebookLogin, // Hold until the website is open to public
-    // usernameValue,
-    // passwordValue
-  } = props;
+  const { classes, handleSubmit } = props;
 
   return (
     <main className={classes.main}>
@@ -51,8 +41,6 @@ const LoginView: React.SFC<IProps> = props => {
               name="username"
               autoComplete="username"
               autoFocus={true}
-              // value={usernameValue}
-              // onChange={handleInputChange}
             />
           </FormControl>
           <FormControl margin="normal" required={true} fullWidth={true}>
@@ -62,8 +50,6 @@ const LoginView: React.SFC<IProps> = props => {
               type="password"
               id="password"
               autoComplete="current-password"
-              // value={passwordValue}
-              // onChange={handleInputChange}
             />
           </FormControl>
           <FormControlLabel
@@ -77,7 +63,7 @@ const LoginView: React.SFC<IProps> = props => {
             color="primary"
             className={classes.submit}
           >
-            Sign in
+            Login
           </Button>
         </form>
       </Paper>

@@ -1,6 +1,25 @@
 import * as React from "react";
 import SignupView from "./presenter";
 
-const Container = (props: any) => <SignupView {...props} />;
+interface IProps {
+  createAccount: (
+    username: string,
+    password1: string,
+    password2: string
+  ) => void;
+}
+
+const Container: React.SFC<IProps> = props => {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    const { createAccount } = props;
+    const username = event.currentTarget.elements.username.value;
+    const password1 = event.currentTarget.elements.password1.value;
+    const password2 = event.currentTarget.elements.password2.value;
+    createAccount(username, password1, password2);
+  };
+
+  return <SignupView {...props} handleSubmit={handleSubmit} />;
+};
 
 export default Container;

@@ -2,9 +2,9 @@ import * as React from "react";
 import MainView from "views/MainView";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ListView from "views/ListView";
-// import CssBaseline from "@material-ui/core/CssBaseline";
-// import Header from "components/Header";
-// import Footer from "components/Footer";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Header from "components/Header";
+import Footer from "components/Footer";
 import LoginView from "views/LoginView";
 import SignupView from "views/SignupView";
 
@@ -14,8 +14,15 @@ interface IProps {
 }
 
 const App: React.SFC<IProps> = props => {
-  const { region } = props;
-  return <Routes region={region} />;
+  const { region, onClickRegion } = props;
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <Header region={region} onClickRegion={onClickRegion} />
+      <Routes region={region} />
+      <Footer />
+    </React.Fragment>
+  );
 };
 
 interface IRouteProps {
