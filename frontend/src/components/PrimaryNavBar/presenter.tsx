@@ -13,6 +13,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
@@ -118,6 +119,12 @@ const RenderMenu: React.SFC<IrenderProps> = props => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/login">Login</Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/signup">Sign Up</Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>

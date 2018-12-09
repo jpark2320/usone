@@ -15,8 +15,24 @@ import LockIcon from "@material-ui/core/Icon";
 
 import styles from "./styles";
 
-function LoginView(props: { classes: any }) {
-  const { classes } = props;
+interface IProps {
+  classes: any;
+  handleInputChange: (event: any) => void;
+  handleSubmit: (event: any) => void;
+  handleFacebookLogin: (response: any) => void;
+  usernameValue: string;
+  passwordValue: string;
+}
+
+const LoginView: React.SFC<IProps> = props => {
+  const {
+    classes,
+    handleInputChange,
+    handleSubmit,
+    handleFacebookLogin,
+    usernameValue,
+    passwordValue
+  } = props;
 
   return (
     <main className={classes.main}>
@@ -26,7 +42,7 @@ function LoginView(props: { classes: any }) {
           <LockIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required={true} fullWidth={true}>
@@ -36,6 +52,8 @@ function LoginView(props: { classes: any }) {
               name="email"
               autoComplete="email"
               autoFocus={true}
+              value={usernameValue}
+              onChange={handleInputChange}
             />
           </FormControl>
           <FormControl margin="normal" required={true} fullWidth={true}>
@@ -45,6 +63,7 @@ function LoginView(props: { classes: any }) {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleInputChange}
             />
           </FormControl>
           <FormControlLabel
@@ -64,6 +83,6 @@ function LoginView(props: { classes: any }) {
       </Paper>
     </main>
   );
-}
+};
 
 export default withStyles(styles)(LoginView);
