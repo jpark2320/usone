@@ -3,11 +3,11 @@ import ListView from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const categoryExternalNameConversion = {
-  job: "Work",
+  job: "work",
   sell: "",
   buy: "",
-  house: "",
-  visa: ""
+  house: "rent",
+  visa: "visa"
 };
 
 interface IPostProps {
@@ -32,50 +32,42 @@ export interface IProps {
   getFilteredPosts: (region, category, limit, order, desc) => object;
 }
 
-class Container extends React.Component<IProps> {
-  public componentDidMount() {
-    const {
-      getFilteredPosts,
-      // getSummaryVisaPosts,
-      // getSummaryRentPosts,
-      // getSummaryQandaPosts,
-      filteredPosts
-      // summaryVisaPosts,
-      // summaryRentPosts,
-      // summaryQandaPosts
-    } = this.props;
+class Container extends React.Component<IProps, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      ...props
+    };
+  }
 
-    const limit = 20;
+  public componentDidMount() {
+    const { getFilteredPosts, filteredPosts } = this.props;
+
+    const limit = 50;
     const orderBy = "created_at";
     const inDescOrder = "desc";
     if (!filteredPosts) {
-      getFilteredPosts("georgia", "work", limit, orderBy, inDescOrder);
+      getFilteredPosts(
+        this.props.region,
+        categoryExternalNameConversion[this.state.category],
+        limit,
+        orderBy,
+        inDescOrder
+      );
     }
-    // if (!summaryVisaPosts) {
-    //   getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
-    // }
-    // if (!summaryRentPosts) {
-    //   getSummaryRentPosts(region, limit, orderBy, inDescOrder);
-    // }
-    // if (!summaryQandaPosts) {
-    //   getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
-    // }
   }
 
-  public componentDidUpdate(prevProps, prevState) {
-    const {
-      region,
-      getFilteredPosts
-      // getSummaryVisaPosts,
-      // getSummaryRentPosts,
-      // getSummaryQandaPosts
-    } = this.props;
+  public componentDidUpdate(prevprop) {
+    const { region, getFilteredPosts } = this.props;
 
     const limit = 20;
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
-    if (prevProps.region !== region) {
+    if (
+      prevprop.region !== this.props.region ||
+      prevprop.category !== this.props.category
+    ) {
       getFilteredPosts(
         region,
         categoryExternalNameConversion[this.props.category],
@@ -83,32 +75,14 @@ class Container extends React.Component<IProps> {
         orderBy,
         inDescOrder
       );
-      // getSummaryVisaPosts(region, limit, orderBy, inDescOrder);
-      // getSummaryRentPosts(region, limit, orderBy, inDescOrder);
-      // getSummaryQandaPosts(region, limit, orderBy, inDescOrder);
     }
   }
 
   public render() {
-    const {
-      region,
-      filteredPosts,
-      category
-      // summaryVisaPosts,
-      // summaryRentPosts,
-      // summaryQandaPosts
-    } = this.props;
-    // const summaryAllPosts = [
-    //   ["Work", summaryWorkPosts],
-    //   ["Visa", summaryVisaPosts],
-    //   ["Rent", summaryRentPosts],
-    //   ["Q&A", summaryQandaPosts]
-    // ];
-    console.log(filteredPosts, "여기");
-
+    const { region, filteredPosts, category } = this.props;
     return (
       <ListView
-        {...this.props}
+        {...this.state}
         region={region}
         posts={filteredPosts}
         category={category}

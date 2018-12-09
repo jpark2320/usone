@@ -14,9 +14,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 
-
 interface IProps extends WithStyles<typeof styles> {
-  data: any[];
   order: any;
   orderBy: any;
   classes: any;
@@ -35,16 +33,11 @@ interface IProps extends WithStyles<typeof styles> {
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions: any[];
-  posts:any[];
-
-
+  posts: any;
 }
 
 const ListBoard: React.SFC<IProps> = props => {
-
-
   const {
-    data,
     order,
     orderBy,
     classes,
@@ -66,10 +59,16 @@ const ListBoard: React.SFC<IProps> = props => {
     posts
   } = props;
 
+  let postsOrUndef;
+  if (!posts) {
+    postsOrUndef = [];
+  } else {
+    postsOrUndef = posts.results;
+  }
+
   return (
     <React.Fragment>
       <div>
-        {posts}
         <Grid item={true} xs={12}>
           <Paper className={classes.paper}>
             <div id="list" className={classes.tableContainer}>
@@ -105,7 +104,7 @@ const ListBoard: React.SFC<IProps> = props => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {stableSort(data, getSorting(order, orderBy))
+                    {stableSort(postsOrUndef, getSorting(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
@@ -151,7 +150,7 @@ const ListBoard: React.SFC<IProps> = props => {
                                   {n.category}
                                 </span>
                                 <span style={{ float: "right" }}>
-                                  {n.nickname}
+                                  {n.created_by.email}
                                   {n.created_at}
                                 </span>
                               </div>
@@ -161,7 +160,7 @@ const ListBoard: React.SFC<IProps> = props => {
                               className={classes.midTableCell}
                               numeric={false}
                             >
-                              {n.nickname}
+                              {n.created_by.email}
                             </TableCell>
                             <TableCell
                               padding={"none"}
@@ -222,7 +221,7 @@ const ListBoard: React.SFC<IProps> = props => {
                       caption: classes.hideWhenLessThanMobileXS
                     }}
                     component="div"
-                    count={data.length}
+                    count={postsOrUndef.length}
                     rowsPerPage={rowsPerPage}
                     rowsPerPageOptions={rowsPerPageOptions}
                     page={page}

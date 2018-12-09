@@ -5,6 +5,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 export interface IContainerProps {
   theme: Theme;
   container: Element;
+  changeToEditView:any
 }
 
 class Container extends React.Component<IContainerProps> {

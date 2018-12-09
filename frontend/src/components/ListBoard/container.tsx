@@ -6,10 +6,9 @@ import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
   classes: any;
-  posts:any[];
+  posts: any;
 }
 interface IState {
-  data: any[];
   order: any;
   orderBy: string;
   page: number;
@@ -32,7 +31,7 @@ class Container extends Component<IProps, IState> {
       rowsPerPage: 2,
       rowsPerPageOptions: [2, 10, 25, 50, 100],
       selected: [],
-      pageCounts :  [] ,
+      pageCounts: [],
       rows: [
         { id: "id", numeric: false, disablePadding: true, label: "번호" },
         { id: "category", numeric: false, disablePadding: true, label: "구분" },
@@ -51,204 +50,22 @@ class Container extends Component<IProps, IState> {
           disablePadding: true,
           label: "날짜"
         }
-      ],
-      data: [
-        {
-          id: 1,
-          title:
-            "Test List Item1 title over 30 letters asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd ",
-          nickname: "나플라 ",
-          description: "Fake des1",
-          creator: { firstname: "firstname1", lastname: " lastname1" },
-          region: "GA",
-          category: "팝니다",
-          like: 14,
-          view: 42,
-          created_at: "2018-11-21"
-        },
-        {
-          id: 2,
-          title: "Test List Item2 ",
-          description: "Fake des2",
-          nickname: "루피 ",
-          creator: { firstname: "firstname2", lastname: " lastname2" },
-          region: "TX",
-          category: "팝니다",
-          like: 4,
-          view: 4212,
-          created_at: "2018-12-04"
-        },
-        {
-          id: 3,
-          title: "Test List Item3 ",
-          description: "Fake des3",
-          nickname: "키밀리 ",
-          creator: { firstname: "firstname3", lastname: " lastname3" },
-          region: "VA",
-          category: "팝니다",
-          like: 55,
-          view: 424,
-          created_at: "2018-12-12"
-        },
-        {
-          id: 4,
-          title: "Test List Item4 ",
-          description: "Fake des4",
-          nickname: "양홍원 ",
-          creator: { firstname: "firstname4", lastname: " lastname4" },
-          region: "NY",
-          category: "삽니다",
-          like: 1,
-          view: 4222,
-          created_at: "2018-12-13"
-        },
-
-        {
-          id: 11,
-          title: "Test List Item12 ",
-          description: "Fake des1",
-          nickname: "슈퍼비 ",
-          creator: { firstname: "firstname1", lastname: " lastname1" },
-          region: "GA",
-          category: "삽니다",
-          like: 14,
-          view: 42,
-          created_at: "2018-12-26"
-        },
-        {
-          id: 21,
-          title: "Test List Item22 ",
-          description: "Fake des2",
-          nickname: "면도 ",
-          creator: { firstname: "firstname2", lastname: " lastname2" },
-          region: "TX",
-          category: "삽니다",
-          like: 4,
-          view: 4212,
-          created_at: "2018-11-12"
-        },
-        {
-          id: 31,
-          title: "Test List Item32 ",
-          description: "Fake des3",
-          nickname: "비와이",
-          creator: { firstname: "firstname3", lastname: " lastname3" },
-          region: "VA",
-          category: "삽니다",
-          like: 55,
-          view: 424,
-          created_at: "2018-12-10"
-        },
-        {
-          id: 41,
-          title: "Test List Item42",
-          description: "Fake des4",
-          nickname: "지아코 ",
-          creator: { firstname: "firstname4", lastname: " lastname4" },
-          region: "NY",
-          category: "팝니다",
-          like: 1,
-          view: 4222,
-          created_at: "2018-12-14"
-        },
-
-        {
-          id: 12,
-          title: "Test List Item13 ",
-          description: "Fake des1",
-          nickname: "나플라 ",
-          creator: { firstname: "firstname1", lastname: " lastname1" },
-          region: "GA",
-          category: "팝니다",
-          like: 14,
-          view: 42,
-          created_at: "2008-12-02"
-        },
-        {
-          id: 22,
-          title: "Test List Item23 ",
-          description: "Fake des2",
-          nickname: "루피 ",
-          creator: { firstname: "firstname2", lastname: " lastname2" },
-          region: "TX",
-          category: "팝니다",
-          like: 4,
-          view: 4212,
-          created_at: "2016-03-17"
-        },
-        {
-          id: 3211,
-          title: "Test List Item33 ",
-          description: "Fake des3",
-          nickname: "창모",
-          creator: { firstname: "firstname3", lastname: " lastname3" },
-          region: "VA",
-          category: "팝니다",
-          like: 55,
-          view: 424,
-          created_at: "2017-06-08"
-        },
-        {
-          id: 4211,
-          title: "Test List Item43 ",
-          description: "Fake des4",
-          nickname: "나플라 ",
-          creator: { firstname: "firstname4", lastname: " lastname4" },
-          region: "NY",
-          category: "팝니다",
-          like: 1,
-          view: 4222,
-          created_at: "2017-08-10"
-        },
-        {
-          id: 1211,
-          title: "Test List Item13 ",
-          description: "Fake des1",
-          nickname: "수프림 ",
-          creator: { firstname: "firstname1", lastname: " lastname1" },
-          region: "GA",
-          category: "삽니다",
-          like: 14,
-          view: 42,
-          created_at: "2011-12-30"
-        },
-        {
-          id: 2211,
-          title: "Test List Item23 ",
-          description: "Fake des2",
-          nickname: "마미손 ",
-          creator: { firstname: "firstname2", lastname: " lastname2" },
-          region: "TX",
-          category: "팝니다",
-          like: 4,
-          view: 4212,
-          created_at: "2013-07-12"
-        },
-        {
-          id: 32112,
-          title: "Test List Item33 ",
-          description: "Fake des3",
-          nickname: "나플라 ",
-          creator: { firstname: "firstname3", lastname: " lastname3" },
-          region: "VA",
-          category: "삽니다",
-          like: 55,
-          view: 424,
-          created_at: "2009-09-24"
-        }
-      ],
+      ]
     };
   }
 
   public componentDidMount() {
-
-    // get total number pagination 
-    const returnArray:number[] =[];
-    for(let  i = 1; i < this.state.data.length/this.state.rowsPerPage+1; i++){
-       returnArray.push(i)
+    // get total number pagination
+    const returnArray: number[] = [];
+    for (
+      let i = 1;
+      i < this.props.posts.count / this.state.rowsPerPage + 1;
+      i++
+    ) {
+      returnArray.push(i);
     }
-   
-   this.setState({pageCounts: returnArray})
+
+    this.setState({ pageCounts: returnArray });
   }
   //
   public dynamicClassNameBasedOnLabelID = (
@@ -298,8 +115,11 @@ class Container extends Component<IProps, IState> {
     return 0;
   }
 
-  public stableSort(array: any[], cmp:any) {
-    const stabilizedThis = array.map((el: object, index: number) => [el, index]);
+  public stableSort(array: any[], cmp: any) {
+    const stabilizedThis = array.map((el: object, index: number) => [
+      el,
+      index
+    ]);
     stabilizedThis.sort((a: object, b: object) => {
       const order = cmp(a[0], b[0]);
       if (order !== 0) {
@@ -310,12 +130,11 @@ class Container extends Component<IProps, IState> {
     return stabilizedThis.map((el: object) => el[0]);
   }
 
-  public getSorting=(order: string, orderBy: string) =>{
-
+  public getSorting = (order: string, orderBy: string) => {
     return order === "desc"
       ? (a: object, b: object) => this.desc(a, b, orderBy)
       : (a: object, b: object) => -1 * this.desc(a, b, orderBy);
-  }
+  };
 
   // table func
 
@@ -347,8 +166,6 @@ class Container extends Component<IProps, IState> {
         selected.slice(selectedIndex + 1)
       );
     }
-
-    // this.setState({ selected: newSelected });
   };
 
   public handleChangePage = (event: any, page: any) => {
@@ -359,14 +176,14 @@ class Container extends Component<IProps, IState> {
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  public handlePageSelectChange = (event:any)=>{
-      this.setState({ page: event.target.value-1 });
-  }
+  public handlePageSelectChange = (event: any) => {
+    this.setState({ page: event.target.value - 1 });
+  };
 
   public isSelected = (id: number) => this.state.selected.indexOf(id) !== -1;
 
   public render() {
-    const { posts } =this.props
+    const { posts } = this.props;
     return (
       <ListBoard
         {...this.state}
@@ -381,7 +198,6 @@ class Container extends Component<IProps, IState> {
         handleChangeRowsPerPage={this.handleChangeRowsPerPage}
         handlePageSelectChange={this.handlePageSelectChange}
         posts={posts}
-
       />
     );
   }
