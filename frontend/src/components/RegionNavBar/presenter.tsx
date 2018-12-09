@@ -11,7 +11,7 @@ interface IProps extends WithStyles<typeof styles> {
 }
 
 const RegionNavBar: React.SFC<IProps> = props => {
-  const { images, classes, region, onClickRegion } = props;
+  const { images, classes, region } = props;
   return (
     <div className={classes.root}>
       {images.map(image => (
@@ -22,10 +22,12 @@ const RegionNavBar: React.SFC<IProps> = props => {
             region === image.key ? classes.focusVisible : classes.image
           }
           focusVisibleClassName={classes.focusVisible}
-          style={{
-            width: image.width
-          }}
-          onClick={onClickRegion(image.key)}
+          style={
+            {
+              // width: image.width
+            }
+          }
+          // onClick={onClickRegion(image.key)}
         >
           <span
             className={classes.imageSrc}

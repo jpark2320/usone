@@ -1,16 +1,25 @@
 import * as React from "react";
 import SignupView from "./presenter";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
-export interface IContainerProps {
-  theme: Theme;
-  container: Element;
+interface IProps {
+  createAccount: (
+    username: string,
+    password1: string,
+    password2: string
+  ) => void;
 }
 
-class Container extends React.Component<IContainerProps> {
-  public render() {
-    return <SignupView {...this.props} />;
-  }
-}
+const Container: React.SFC<IProps> = props => {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    const { createAccount } = props;
+    const username = event.currentTarget.elements.username.value;
+    const password1 = event.currentTarget.elements.password1.value;
+    const password2 = event.currentTarget.elements.password2.value;
+    createAccount(username, password1, password2);
+  };
+
+  return <SignupView {...props} handleSubmit={handleSubmit} />;
+};
 
 export default Container;
