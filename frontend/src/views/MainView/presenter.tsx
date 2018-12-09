@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SummaryBoard from "components/SummaryBoard";
 import styles from "shared/styles/globalStyles";
+import styles from "./styles";
 
 interface IBoard {
   title: string;
