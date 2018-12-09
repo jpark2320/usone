@@ -17,21 +17,20 @@ import styles from "./styles";
 
 interface IProps {
   classes: any;
-  handleInputChange: (event: any) => void;
+  // handleInputChange: (event: any) => void;
   handleSubmit: (event: any) => void;
-  handleFacebookLogin: (response: any) => void;
-  usernameValue: string;
-  passwordValue: string;
+  // handleFacebookLogin: (response: any) => void; // Hold until the website is open to public
+  // usernameValue: string;
+  // passwordValue: string;
 }
 
 const LoginView: React.SFC<IProps> = props => {
   const {
     classes,
-    handleInputChange,
-    handleSubmit,
-    handleFacebookLogin,
-    usernameValue,
-    passwordValue
+    // handleInputChange,
+    handleSubmit // handleFacebookLogin, // Hold until the website is open to public
+    // usernameValue,
+    // passwordValue
   } = props;
 
   return (
@@ -44,16 +43,16 @@ const LoginView: React.SFC<IProps> = props => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <FormControl margin="normal" required={true} fullWidth={true}>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <InputLabel htmlFor="username">Email Address</InputLabel>
             <Input
-              id="email"
-              name="email"
-              autoComplete="email"
+              id="username"
+              name="username"
+              autoComplete="username"
               autoFocus={true}
-              value={usernameValue}
-              onChange={handleInputChange}
+              // value={usernameValue}
+              // onChange={handleInputChange}
             />
           </FormControl>
           <FormControl margin="normal" required={true} fullWidth={true}>
@@ -63,7 +62,8 @@ const LoginView: React.SFC<IProps> = props => {
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={handleInputChange}
+              // value={passwordValue}
+              // onChange={handleInputChange}
             />
           </FormControl>
           <FormControlLabel
