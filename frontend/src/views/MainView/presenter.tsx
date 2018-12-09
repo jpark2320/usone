@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
-import MainViewGrid from "components/MainViewGrid";
+import CreatePost from "components/CreatePost";
 import styles from "shared/styles/globalStyles";
 
 export interface IamProps extends WithStyles<typeof styles> {
@@ -12,13 +12,13 @@ export interface IamProps extends WithStyles<typeof styles> {
 
 class MainView extends React.Component<IamProps> {
   public render() {
-    const { classes, region } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         {/* Main */}
         <main className={classes.bodyContainer}>
-          <MainViewGrid region={region} />
+          <CreatePost />
         </main>
         {/* End Main */}
       </div>
