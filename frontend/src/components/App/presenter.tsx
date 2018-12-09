@@ -8,6 +8,7 @@ import Footer from "components/Footer";
 import LoginView from "views/LoginView";
 import SignupView from "views/SignupView";
 
+
 interface IProps {
   region: string;
   onClickRegion: (region: string) => (actions: object) => void;
@@ -39,7 +40,10 @@ const Routes: React.SFC<IRouteProps> = props => (
     <Route path={"/sell"} component={ListView} />
     <Route path={"/buy"} component={ListView} />
     <Route path={"/house"} component={ListView} />
-    <Route path={"/job"} component={ListView} />
+    <Route 
+      path={"/job"}
+      render={() => <ListView  category ={"job"} region={props.region}/>} 
+    />
     <Route path={"/visa"} component={ListView} />
     <Route
       path={"/ad"}

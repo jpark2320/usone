@@ -9,7 +9,7 @@ import styles from "./styles";
 
 export interface IListViewProps extends WithStyles<typeof styles> {}
 
-class ListView extends React.Component<IListViewProps, any> {
+class ListView extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -26,14 +26,15 @@ class ListView extends React.Component<IListViewProps, any> {
   };
 
   public render() {
-    const { classes } = this.props;
+    const { classes , category, posts} = this.props;
 
     return (
       <React.Fragment>
         <CssBaseline />
+        {this.state.posts}
         <div className={classes.tempContainerStyle}>
           <div>
-            삽니다/팝니다
+            <h1>{category}</h1>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon onClick={this.displayInputForMobile} />
@@ -45,7 +46,7 @@ class ListView extends React.Component<IListViewProps, any> {
             </div>
           </div>
           <hr className={classes.hr} />
-          <ListBoard />
+          <ListBoard posts={posts} />
           <CreatePost />
         </div>
       </React.Fragment>
