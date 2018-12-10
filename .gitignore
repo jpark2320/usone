@@ -289,3 +289,6 @@ usone/media/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Custom DB Setup (if necessary)
+config/settings/custom_db.py

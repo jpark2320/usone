@@ -28,6 +28,7 @@
     "material-ui-flat-pagination": "^3.1.0",
     "materialui-pagination": "^0.0.6",
     "node-sass": "^4.9.4",
+    "normalize.css": "^8.0.1",
     "object-assign": "4.1.1",
     "pip": "^0.0.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -71,6 +72,7 @@
     "@types/node": "^10.12.1",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
+    "prettier-tslint": "^0.4.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-logger": "^3.0.6",
     "typescript": "^3.1.4"

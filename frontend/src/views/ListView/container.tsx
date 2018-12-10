@@ -2,14 +2,92 @@ import * as React from "react";
 import ListView from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
-export interface IContainerProps {
-  theme: Theme;
-  container: Element;
+const categoryExternalNameConversion = {
+  job: "work",
+  sell: "",
+  buy: "",
+  house: "rent",
+  visa: "visa"
+};
+
+interface IPostProps {
+  id: number;
+  category: string;
+  description: string;
+  title: string;
+  comment_set: string[];
 }
 
-class Container extends React.Component<IContainerProps> {
+export interface IPostsProps {
+  category: string;
+  results: IPostProps[];
+}
+
+export interface IProps {
+  theme: Theme;
+  container: Element;
+  region: string;
+  filteredPosts: any;
+  category: string;
+  getFilteredPosts: (region, category, limit, order, desc) => object;
+}
+
+class Container extends React.Component<IProps, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      ...props
+    };
+  }
+
+  public componentDidMount() {
+    const { getFilteredPosts, filteredPosts } = this.props;
+
+    const limit = 50;
+    const orderBy = "created_at";
+    const inDescOrder = "desc";
+    if (!filteredPosts) {
+      getFilteredPosts(
+        this.props.region,
+        categoryExternalNameConversion[this.state.category],
+        limit,
+        orderBy,
+        inDescOrder
+      );
+    }
+  }
+
+  public componentDidUpdate(prevprop) {
+    const { region, getFilteredPosts } = this.props;
+
+    const limit = 20;
+    const orderBy = "created_at";
+    const inDescOrder = "desc";
+
+    if (
+      prevprop.region !== this.props.region ||
+      prevprop.category !== this.props.category
+    ) {
+      getFilteredPosts(
+        region,
+        categoryExternalNameConversion[this.props.category],
+        limit,
+        orderBy,
+        inDescOrder
+      );
+    }
+  }
+
   public render() {
-    return <ListView {...this.props} />;
+    const { region, filteredPosts, category } = this.props;
+    return (
+      <ListView
+        {...this.state}
+        region={region}
+        posts={filteredPosts}
+        category={category}
+      />
+    );
   }
 }
 

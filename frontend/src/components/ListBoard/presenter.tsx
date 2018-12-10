@@ -1,5 +1,4 @@
 import * as React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,18 +10,14 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import styles from "./styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import Typography from "@material-ui/core/Typography";
 
 interface IProps extends WithStyles<typeof styles> {
-  data: any[];
-  // getListdata: typeof listviewDispatch;
-  botnavValue: number;
-  onSelectAllClick: any;
   order: any;
   orderBy: any;
-  numSelected: any;
-  rowCount: any;
   classes: any;
-  props: any;
   createSortHandler: any;
   stableSort: any;
   getSorting: any;
@@ -33,47 +28,46 @@ interface IProps extends WithStyles<typeof styles> {
   rows: any[];
   displayNumberOfCharacters: any;
   dynamicClassNameBasedOnLabelID: any;
-}
-interface IState {
-  data: any[];
-  numSelected: any;
-  order: any;
-  orderBy: string;
+  pageCounts: any[];
+  handlePageSelectChange: any;
   page: number;
-  rowCount: any;
   rowsPerPage: number;
-  selected: any[];
   rowsPerPageOptions: any[];
-  classes: any;
-  rows: any[];
+  posts: any;
 }
 
-class ListBoard extends React.Component<IProps, IState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      ...props
-    };
+const ListBoard: React.SFC<IProps> = props => {
+  const {
+    order,
+    orderBy,
+    classes,
+    createSortHandler,
+    stableSort,
+    getSorting,
+    isSelected,
+    handleClick,
+    handleChangeRowsPerPage,
+    handleChangePage,
+    rows,
+    displayNumberOfCharacters,
+    dynamicClassNameBasedOnLabelID,
+    pageCounts,
+    handlePageSelectChange,
+    page,
+    rowsPerPage,
+    rowsPerPageOptions,
+    posts
+  } = props;
+
+  let postsOrUndef;
+  if (!posts) {
+    postsOrUndef = [];
+  } else {
+    postsOrUndef = posts.results;
   }
 
-  public UNSAFE_componentWillReceiveProps(nextProps: any) {
-    this.setState({
-      ...nextProps
-    });
-  }
-  public EnhancedTable = () => {
-    const {
-      classes,
-      data,
-      order,
-      orderBy,
-      rowsPerPage,
-      page,
-      rows
-    } = this.state; // selected , rowCount
-    // const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-
-    return (
+  return (
+    <React.Fragment>
       <div>
         <Grid item={true} xs={12}>
           <Paper className={classes.paper}>
@@ -88,7 +82,7 @@ class ListBoard extends React.Component<IProps, IState> {
                       {rows.map(row => {
                         return (
                           <TableCell
-                            className={this.props.dynamicClassNameBasedOnLabelID(
+                            className={dynamicClassNameBasedOnLabelID(
                               row.id,
                               classes
                             )}
@@ -100,34 +94,33 @@ class ListBoard extends React.Component<IProps, IState> {
                             <TableSortLabel
                               hideSortIcon={true}
                               direction={order}
-                              onClick={this.props.createSortHandler(row.id)}
+                              onClick={createSortHandler(row.id)}
                             >
                               {row.label}
                             </TableSortLabel>
                           </TableCell>
                         );
-                      }, this)}
+                      })}
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props
-                      .stableSort(data, this.props.getSorting(order, orderBy))
+                    {stableSort(postsOrUndef, getSorting(order, orderBy))
                       .slice(
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((n: any) => {
-                        const isSelected = this.props.isSelected(n.id);
+                        const isSelectedVal = isSelected(n.id);
                         return (
                           <TableRow
                             style={{ borderBottom: "1px solid  #E0E0E0" }}
                             hover={true}
-                            onClick={this.props.handleClick(event, n.id)}
+                            onClick={handleClick(event, n.id)}
                             role="checkbox"
-                            aria-checked={isSelected}
+                            aria-checked={isSelectedVal}
                             tabIndex={-1}
                             key={n.id}
-                            selected={isSelected}
+                            selected={isSelectedVal}
                           >
                             <TableCell
                               padding={"none"}
@@ -146,7 +139,7 @@ class ListBoard extends React.Component<IProps, IState> {
                               className={classes.titleCell}
                               numeric={false}
                             >
-                              {this.props.displayNumberOfCharacters(n.title)}
+                              {displayNumberOfCharacters(n.title)}
                               <div className={classes.titleCellViewTag}>
                                 [{n.view}]
                               </div>
@@ -157,7 +150,7 @@ class ListBoard extends React.Component<IProps, IState> {
                                   {n.category}
                                 </span>
                                 <span style={{ float: "right" }}>
-                                  {n.nickname}
+                                  {n.created_by.email}
                                   {n.created_at}
                                 </span>
                               </div>
@@ -167,8 +160,7 @@ class ListBoard extends React.Component<IProps, IState> {
                               className={classes.midTableCell}
                               numeric={false}
                             >
-                              {" "}
-                              {n.nickname}
+                              {n.created_by.email}
                             </TableCell>
                             <TableCell
                               padding={"none"}
@@ -194,51 +186,62 @@ class ListBoard extends React.Component<IProps, IState> {
                           </TableRow>
                         );
                       })}
-                    {/* {emptyRows > 0 && (
-                        <TableRow style={{ height: 49 * emptyRows }}>
-                        <TableCell colSpan={6} />
-                        </TableRow>
-                    )} */}
                   </TableBody>
                 </Table>
               </div>
-              <TablePagination
-                classes={{
-                  select: classes.paginationSelect,
-                  root: classes.tablePagination,
-                  actions: classes.pagenationAction,
-                  caption: classes.hideWhenLessThanMobileXS
-                }}
-                component="div"
-                count={data.length}
-                rowsPerPage={this.state.rowsPerPage}
-                rowsPerPageOptions={this.state.rowsPerPageOptions}
-                page={page}
-                labelRowsPerPage="열수"
-                backIconButtonProps={{
-                  "aria-label": "Previous Page"
-                }}
-                nextIconButtonProps={{
-                  "aria-label": "Next Page"
-                }}
-                onChangePage={this.props.handleChangePage}
-                onChangeRowsPerPage={this.props.handleChangeRowsPerPage}
-              />
+              <Grid container={true}>
+                <Grid
+                  className={classes.tableCurrentPagePagination}
+                  item={true}
+                  sm={2}
+                >
+                  <Typography variant={"caption"}>Page</Typography>
+                  <Select
+                    value={page + 1}
+                    classes={{
+                      selectMenu: classes.paginationSelectFontSize
+                    }}
+                    onChange={handlePageSelectChange}
+                    disableUnderline={true}
+                    displayEmpty={true}
+                  >
+                    {pageCounts.map(index => (
+                      <MenuItem key={index} value={index}>
+                        {index}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </Grid>
+                <Grid item={true} xs={12} sm={10}>
+                  <TablePagination
+                    classes={{
+                      select: classes.paginationSelect,
+                      root: classes.tablePagination,
+                      actions: classes.pagenationAction,
+                      caption: classes.hideWhenLessThanMobileXS
+                    }}
+                    component="div"
+                    count={postsOrUndef.length}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={rowsPerPageOptions}
+                    page={page}
+                    labelRowsPerPage="열수"
+                    backIconButtonProps={{
+                      "aria-label": "Previous Page"
+                    }}
+                    nextIconButtonProps={{
+                      "aria-label": "Next Page"
+                    }}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                  />
+                </Grid>
+              </Grid>
             </div>
           </Paper>
         </Grid>
       </div>
-    );
-  };
-
-  public render() {
-    return (
-      <React.Fragment>
-        <CssBaseline />
-        {this.EnhancedTable()}
-      </React.Fragment>
-    );
-  }
-}
-
+    </React.Fragment>
+  );
+};
 export default withStyles(styles, { withTheme: true })(ListBoard);
