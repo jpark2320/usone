@@ -15,9 +15,6 @@ const styles = (theme: Theme) =>
       }
     },
     paper: {
-      // marginTop:'5%',
-      // marginLeft:'3%',
-      // marginRight:'3%',
       textOverflow: "ellipsis",
       padding: theme.spacing.unit * 3,
       textAlign: "center",
@@ -28,24 +25,14 @@ const styles = (theme: Theme) =>
       textOverflow: "ellipsis",
       whiteSpace: "nowrap"
     },
-    tableWrapper: {
-      // border:'solid grey'
-      // overflowX: 'auto',
-    },
-    tableNoOverFlow: {
-      // tableLayout: 'fixed',
-    },
-    tableContainer: {
-      // marginLeft:'3%',
-      // marginRight:'3%'
-    },
+    tableWrapper: {},
+    tableNoOverFlow: {},
+    tableContainer: {},
 
     tableHeaderRow: {
       [theme.breakpoints.down("xs")]: {
         display: "none"
       }
-      // color:'white',
-      // backgroundColor: 'black',
     },
     tableHeaderCell: {
       overflow: "hidden",
@@ -58,8 +45,6 @@ const styles = (theme: Theme) =>
       whiteSpace: "nowrap"
     },
     smallTableCell: {
-      // paddingLeft : theme.spacing.unit * 2 ,
-      // paddingRight: theme.spacing.unit * 2 ,
       width: "5rem",
 
       overflow: "hidden",
@@ -71,8 +56,6 @@ const styles = (theme: Theme) =>
       }
     },
     midTableCell: {
-      // paddingLeft : theme.spacing.unit * 2 ,
-      // paddingRight: theme.spacing.unit * 2 ,
       width: "10rem",
 
       overflow: "hidden",
@@ -117,8 +100,8 @@ const styles = (theme: Theme) =>
       color: "grey"
     },
     tableCurrentPagePagination: {
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
       paddingLeft: theme.spacing.unit * 1,
 
       [theme.breakpoints.down("xs")]: {
@@ -132,18 +115,16 @@ const styles = (theme: Theme) =>
       }
     },
     paginationSelect: {
-      paddingRight: theme.spacing.unit * 3,
+      paddingRight: theme.spacing.unit * 3
     },
-    paginationSelectFontSize:{
-      fontSize:'12px',
-      paddingLeft:theme.spacing.unit * 1,
-      color:'grey'
+    paginationSelectFontSize: {
+      fontSize: "12px",
+      paddingLeft: theme.spacing.unit * 1,
+      color: "grey"
     },
 
     displayWhenDesktop: {
-      [theme.breakpoints.up("lg")]: {
-        // display:'none'
-      }
+      [theme.breakpoints.up("lg")]: {}
     },
     displayWhenMobile: {
       display: "none",

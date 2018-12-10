@@ -5,13 +5,20 @@ const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
 
 // ACTION CREATORS
 function setFilteredPosts(filteredPosts) {
-  return { type: SET_FILTERED_POSTS, filteredPosts };
+  return {
+    type: SET_FILTERED_POSTS,
+    filteredPosts
+  };
 }
-
 // API ACTIONS
 function getFilteredPosts(region, category, limit, order, inDescOrder) {
+  console.log(
+    `/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`
+  );
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=${category}}&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
+    fetch(
+      `/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`
+    )
       .then(response => response.json())
       .then(json => dispatch(setFilteredPosts(json)))
       .catch(err => console.log(err));
@@ -34,8 +41,8 @@ function reducer(state = initialState, action) {
 // REDUCER FUNCTIONS
 
 function applySetFilteredPosts(state, action) {
-  const { summaryQandaPosts } = action;
-  return { ...state, summaryQandaPosts };
+  const { filteredPosts } = action;
+  return { ...state, filteredPosts };
 }
 // EXPORT
 const actionCreators = {

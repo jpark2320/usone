@@ -37,11 +37,26 @@ const Routes: React.SFC<IRouteProps> = props => (
       exact={true}
       render={() => <MainView region={props.region} {...props} />}
     />
-    <Route path={"/sell"} component={ListView} />
-    <Route path={"/buy"} component={ListView} />
-    <Route path={"/house"} component={ListView} />
-    <Route path={"/job"} component={ListView} />
-    <Route path={"/visa"} component={ListView} />
+    <Route
+      path={"/sell"}
+      render={() => <ListView category={"sell"} region={props.region} />}
+    />
+    <Route
+      path={"/buy"}
+      render={() => <ListView category={"buy"} region={props.region} />}
+    />
+    <Route
+      path={"/house"}
+      render={() => <ListView category={"house"} region={props.region} />}
+    />
+    <Route
+      path={"/job"}
+      render={() => <ListView category={"job"} region={props.region} />}
+    />
+    <Route
+      path={"/visa"}
+      render={() => <ListView category={"visa"} region={props.region} />}
+    />
     <Route
       path={"/ad"}
       render={() => <MainView region={props.region} {...props} />}
