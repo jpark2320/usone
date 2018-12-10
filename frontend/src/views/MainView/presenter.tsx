@@ -1,6 +1,7 @@
 import React from "react";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import CreatePost from "components/CreatePost";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import SummaryBoard from "components/SummaryBoard";
