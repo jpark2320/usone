@@ -3,6 +3,8 @@ import PrimaryNavBar from "./presenter";
 
 interface IProps {
   handleDrawerToggle: () => any;
+  isLoggedIn: boolean;
+  logout: () => void;
 }
 
 interface IState {
@@ -35,7 +37,16 @@ class Container extends React.Component<IProps, IState> {
   public handleMobileMenuClose = () => {
     this.setState(state => ({ mobileMoreAnchorEl: null }));
   };
+
+  public handleLogout = () => {
+    const { logout } = this.props;
+    this.setState(state => ({ anchorEl: null }));
+    this.handleMobileMenuClose();
+    logout();
+  };
+
   public render() {
+    const { isLoggedIn } = this.props;
     return (
       <PrimaryNavBar
         {...this.state}
@@ -44,6 +55,8 @@ class Container extends React.Component<IProps, IState> {
         handleMenuClose={this.handleMenuClose}
         handleMobileMenuOpen={this.handleMobileMenuOpen}
         handleMobileMenuClose={this.handleMobileMenuClose}
+        handleLogout={this.handleLogout}
+        isLoggedIn={isLoggedIn}
       />
     );
   }

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,6 +13,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
@@ -23,6 +24,8 @@ interface IProps extends WithStyles<typeof styles> {
   handleMenuClose: () => any;
   handleMobileMenuOpen: (event: any) => void;
   handleMobileMenuClose: () => any;
+  isLoggedIn: any;
+  handleLogout: () => void;
 }
 
 const PrimaryNavBar: React.SFC<IProps> = props => {
@@ -34,7 +37,9 @@ const PrimaryNavBar: React.SFC<IProps> = props => {
     handleProfileMenuOpen,
     handleMenuClose,
     handleMobileMenuOpen,
-    handleMobileMenuClose
+    handleMobileMenuClose,
+    isLoggedIn,
+    handleLogout
   } = props;
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -90,6 +95,8 @@ const PrimaryNavBar: React.SFC<IProps> = props => {
         anchorEl={anchorEl}
         isMenuOpen={isMenuOpen}
         handleMenuClose={handleMenuClose}
+        isLoggedIn={isLoggedIn}
+        handleLogout={handleLogout}
       />
       <RenderMobileMenu
         mobileMoreAnchorEl={mobileMoreAnchorEl}
@@ -105,10 +112,18 @@ interface IrenderProps {
   anchorEl: HTMLElement | null;
   isMenuOpen: boolean;
   handleMenuClose: () => void;
+  isLoggedIn: boolean;
+  handleLogout: () => void;
 }
 
 const RenderMenu: React.SFC<IrenderProps> = props => {
-  const { anchorEl, isMenuOpen, handleMenuClose } = props;
+  const {
+    anchorEl,
+    isMenuOpen,
+    handleMenuClose,
+    isLoggedIn,
+    handleLogout
+  } = props;
 
   return (
     <Menu
@@ -118,8 +133,21 @@ const RenderMenu: React.SFC<IrenderProps> = props => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {isLoggedIn ? (
+        <div>
+          <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </div>
+      ) : (
+        <div>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to="/login">Login</Link>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to="/signup">Sign Up</Link>
+          </MenuItem>
+        </div>
+      )}
     </Menu>
   );
 };

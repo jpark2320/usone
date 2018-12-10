@@ -5,6 +5,10 @@ import createHistory from "history/createBrowserHistory";
 import thunk from "redux-thunk";
 import user from "./modules/user";
 import posts from "./modules/posts";
+import summaryWorkPosts from "./modules/summaryWorkPosts";
+import summaryRentPosts from "./modules/summaryRentPosts";
+import summaryVisaPosts from "./modules/summaryVisaPosts";
+import summaryQandaPosts from "./modules/summaryQandaPosts";
 
 const env = process.env.NODE_ENV;
 const history = createHistory();
@@ -18,7 +22,11 @@ if (env === "development") {
 const reducer = combineReducers({
   routing: routerReducer,
   user,
-  posts
+  posts,
+  summaryWorkPosts,
+  summaryRentPosts,
+  summaryVisaPosts,
+  summaryQandaPosts
 });
 
 let store;

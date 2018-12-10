@@ -17,14 +17,42 @@ interface IState {
   rowsPerPageOptions: any[];
   rows: any[];
   classes: any;
+  pageCounts: any[];
 }
-// let counter = 0;
 
 class Container extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
       ...props,
+      order: "desc",
+      orderBy: "created_at",
+      page: 0,
+      rowsPerPage: 2,
+      rowsPerPageOptions: [2, 10, 25, 50, 100],
+      selected: [],
+      pageCounts :  [] ,
+      rows: [
+        { id: "id", numeric: false, disablePadding: true, label: "번호" },
+        { id: "category", numeric: false, disablePadding: true, label: "구분" },
+        { id: "title", numeric: false, disablePadding: true, label: "제목" },
+        {
+          id: "creator",
+          numeric: false,
+          disablePadding: true,
+          label: "글쓴이"
+        },
+        { id: "view", numeric: false, disablePadding: true, label: "조회수" },
+        { id: "like", numeric: false, disablePadding: true, label: "추천" },
+        {
+          id: "created_at",
+          numeric: false,
+          disablePadding: true,
+          label: "날짜"
+        }
+      ],
+
+
       data: [
         {
           id: 1,
@@ -210,31 +238,8 @@ class Container extends Component<IProps, IState> {
           created_at: "2009-09-24"
         }
       ],
-      order: "desc",
-      orderBy: "created_at",
-      page: 0,
-      rowsPerPage: 10,
-      rowsPerPageOptions: [5, 10, 25, 50, 100],
-      selected: [],
-      rows: [
-        { id: "id", numeric: false, disablePadding: true, label: "번호" },
-        { id: "category", numeric: false, disablePadding: true, label: "구분" },
-        { id: "title", numeric: false, disablePadding: true, label: "제목" },
-        {
-          id: "creator",
-          numeric: false,
-          disablePadding: true,
-          label: "글쓴이"
-        },
-        { id: "view", numeric: false, disablePadding: true, label: "조회수" },
-        { id: "like", numeric: false, disablePadding: true, label: "추천" },
-        {
-          id: "created_at",
-          numeric: false,
-          disablePadding: true,
-          label: "날짜"
-        }
-      ]
+
+
     };
   }
 
@@ -262,6 +267,16 @@ class Container extends Component<IProps, IState> {
         return classes.smallTableCell;
     }
   };
+
+  public componentDidMount(){
+
+    const returnArray:number[] =[];
+     for(let  i = 1; i < this.state.data.length/this.state.rowsPerPage+1; i++){
+        returnArray.push(i)
+     }
+    
+    this.setState({pageCounts: returnArray})
+  }
 
   // table header func
 
@@ -346,6 +361,10 @@ class Container extends Component<IProps, IState> {
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  public handlePageSelectChange = (event:any)=>{
+      this.setState({ page: event.target.value-1 });
+  }
+
   public isSelected = (id: number) => this.state.selected.indexOf(id) !== -1;
 
   public render() {
@@ -362,6 +381,7 @@ class Container extends Component<IProps, IState> {
         handleChangePage={this.handleChangePage}
         handleChangeRowsPerPage={this.handleChangeRowsPerPage}
         desc={this.desc}
+        handlePageSelectChange={this.handlePageSelectChange}
       />
     );
   }

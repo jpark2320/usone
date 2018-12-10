@@ -7,7 +7,7 @@ const appBarHeight = 70;
 const drawerHeight = regionBarHeight + appBarHeight;
 const AdWidth = 200;
 
-const styles = (theme: Theme) =>
+const root = (theme: Theme) =>
   createStyles({
     root: {
       position: "relative",
@@ -26,7 +26,11 @@ const styles = (theme: Theme) =>
         paddingRight: 0,
         left: 0
       }
-    }, // xs sm md lg xl
+    } // xs sm md lg xl
+  });
+
+const bodyContainer = (theme: Theme) =>
+  createStyles({
     bodyContainer: {
       color: "black",
       backgroundColor: "white",
@@ -36,10 +40,19 @@ const styles = (theme: Theme) =>
         marginRight: 0
       }
     },
+    MainView_GridContainer: {
+      flexGrow: 1
+    },
+    MainView__paper: {
+      padding: theme.spacing.unit * 2,
+      textAlign: "center",
+      color: theme.palette.text.secondary,
+      boxShadow: "none"
+    },
     MainView__something: {},
     Listview__something: {},
     DetailView__something1: {},
     DetailView__something2: {}
   });
 
-export default styles;
+export { root, bodyContainer };
