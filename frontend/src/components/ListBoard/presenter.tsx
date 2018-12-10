@@ -14,10 +14,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import Typography from "@material-ui/core/Typography";
-
 interface IProps extends WithStyles<typeof styles> {
   order: any;
   orderBy: any;

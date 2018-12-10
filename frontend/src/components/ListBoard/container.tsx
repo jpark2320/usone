@@ -1,5 +1,5 @@
-import { Component } from "react";
 import * as React from "react";
+import { Component } from "react";
 import ListBoard from "./presenter";
 import { WithStyles } from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
@@ -92,15 +92,18 @@ class Container extends Component<IProps, IState> {
     }
   };
 
-  public componentDidMount(){
+  // public componentDidMount() {
+  //   const returnArray: number[] = [];
+  //   for (
+  //     let i = 1;
+  //     i < this.state.data.length / this.state.rowsPerPage + 1;
+  //     i++
+  //   ) {
+  //     returnArray.push(i);
+  //   }
 
-    const returnArray:number[] =[];
-     for(let  i = 1; i < this.state.data.length/this.state.rowsPerPage+1; i++){
-        returnArray.push(i)
-     }
-    
-    this.setState({pageCounts: returnArray})
-  }
+  //   this.setState({ pageCounts: returnArray });
+  // }
 
   // table header func
 

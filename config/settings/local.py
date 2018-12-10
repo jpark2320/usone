@@ -1,5 +1,6 @@
 from .base import *  # noqa
 from .base import env
+from . import custom_db
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -13,16 +14,6 @@ ALLOWED_HOSTS = [
     "0.0.0.0",
     "127.0.0.1",
 ]
-
-DATABASES = {
-    'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'PASSWORD':'756453',
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
-}}
 
 # CACHES
 # ------------------------------------------------------------------------------
