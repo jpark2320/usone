@@ -7,7 +7,7 @@ const appBarHeight = 70;
 const drawerHeight = regionBarHeight + appBarHeight;
 const AdWidth = 200;
 
-const styles = (theme: Theme) =>
+const root = (theme: Theme) =>
   createStyles({
     root: {
       position: "relative",
@@ -26,7 +26,11 @@ const styles = (theme: Theme) =>
         paddingRight: 0,
         left: 0
       }
-    }, // xs sm md lg xl
+    } // xs sm md lg xl
+  });
+
+const bodyContainer = (theme: Theme) =>
+  createStyles({
     bodyContainer: {
       color: "black",
       backgroundColor: "white",
@@ -51,4 +55,4 @@ const styles = (theme: Theme) =>
     DetailView__something2: {}
   });
 
-export default styles;
+export { root, bodyContainer };

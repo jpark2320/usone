@@ -30,7 +30,7 @@ function logout() {
     })
       .then(() => {
         dispatch(logoutToken());
-        dispatch(push("/login/"));
+        dispatch(push("/login"));
       })
       .catch(err => console.log(err));
   };

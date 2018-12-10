@@ -7,6 +7,7 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import LoginView from "views/LoginView";
 import SignupView from "views/SignupView";
+import "normalize.css";
 
 interface IProps {
   region: string;
