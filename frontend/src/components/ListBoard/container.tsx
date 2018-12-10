@@ -92,21 +92,6 @@ class Container extends Component<IProps, IState> {
     }
   };
 
-  // public componentDidMount() {
-  //   const returnArray: number[] = [];
-  //   for (
-  //     let i = 1;
-  //     i < this.state.data.length / this.state.rowsPerPage + 1;
-  //     i++
-  //   ) {
-  //     returnArray.push(i);
-  //   }
-
-  //   this.setState({ pageCounts: returnArray });
-  // }
-
-  // table header func
-
   public displayNumberOfCharacters = (data: string) => {
     if (data.length > 60) {
       return data.slice(0, 60) + ".....";
