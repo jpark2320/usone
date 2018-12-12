@@ -54,7 +54,7 @@ class ListView extends React.Component<any, any> {
               <hr className={classes.hr} />
               {posts ? <ListBoard posts={posts} /> : ""}
               {/* <ListBoard posts={posts} /> */}
-              <CreatePost />
+              <CreatePost category={category} />
             </div>
           </React.Fragment>
         </main>

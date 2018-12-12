@@ -15,6 +15,15 @@ const tags = [
 
 interface IProps {
   theme: Theme;
+  category: string;
+  addedPost: any;
+  addPost: (
+    tag: string,
+    title: string,
+    location: string,
+    content: string,
+    category: string
+  ) => object;
 }
 
 class Container extends React.Component<IProps> {
@@ -35,7 +44,7 @@ class Container extends React.Component<IProps> {
       <CreatePost
         {...this.props}
         fullScreen={false}
-        category={"work"}
+        category={this.props.category}
         tags={tags}
         open={open}
         snackBarOpen={snackBarOpen}
@@ -63,18 +72,11 @@ class Container extends React.Component<IProps> {
     event.preventDefault();
     const tag = event.currentTarget.elements.tags.value;
     const title = event.currentTarget.elements.title.value;
-    const phone = event.currentTarget.elements.phone.value;
-    const email = event.currentTarget.elements.email.value;
     const location = event.currentTarget.elements.location.value;
     const content = event.currentTarget.elements.content.value;
+    const category = this.props.category;
 
-    console.log(tag);
-    console.log(title);
-    console.log(phone);
-    console.log(email);
-    console.log(location);
-    console.log(content);
-    this.setState({ open: false, snackBarOpen: true });
+    this.props.addPost(tag, title, location, content, category);
   };
 }
 
