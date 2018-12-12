@@ -3,10 +3,8 @@ import Container from "./container";
 import { actionCreators as postActions } from "redux/modules/posts";
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    addedPost: { addedPost }
-  } = state;
-  return { addedPost };
+  const {} = state;
+  return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

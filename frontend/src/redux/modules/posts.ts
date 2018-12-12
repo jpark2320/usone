@@ -2,7 +2,7 @@
 
 // ACTIONS
 const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
-const SET_ADD_POST = "SET_ADD_POST";
+const SET_CREATE_POST = "SET_CREATE_POST";
 
 // ACTION CREATORS
 function setFilteredPosts(filteredPosts) {
@@ -11,11 +11,8 @@ function setFilteredPosts(filteredPosts) {
     filteredPosts
   };
 }
-function setAddPost(addedPost) {
-  return { 
-    type: SET_ADD_POST,
-    addedPost
-   };
+function setCreatePost(addedPost) {
+  return { type: SET_CREATE_POST, addedPost };
 }
 
 // API ACTIONS
@@ -30,9 +27,9 @@ function getFilteredPosts(region, category, limit, order, inDescOrder) {
 
 function addPost(tag, title, location, content, category) {
   return dispatch => {
-  fetch(`/posts/post/add/?tag=${tag}&title=${title}&region=${location}&category=${category}&description=${content}`)
+  fetch(`/posts/create-post/?tag=${tag}&title=${title}&region=${location}&category=${category}&description=${content}`)
     .then(response => response.json())
-    .then(json => dispatch(setAddPost(json)))
+    .then(json => dispatch(setCreatePost(json)))
     .catch(err => console.log(err));
   };
 }
@@ -45,8 +42,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_FILTERED_POSTS:
       return applySetFilteredPosts(state, action);
-    case SET_ADD_POST:
-      return applyAddPost(state, action);
+    case SET_CREATE_POST:
+      return applyCreatePost(state, action);
     default:
       return state;
   }
@@ -57,7 +54,7 @@ function applySetFilteredPosts(state, action) {
   const { filteredPosts } = action;
   return { ...state, filteredPosts };
 }
-function applyAddPost(state, action) {
+function applyCreatePost(state, action) {
   const { addedPost } = action;
   return { ...state, addedPost };
 }
