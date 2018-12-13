@@ -73,7 +73,7 @@ class Container extends React.Component<IProps> {
     const category = this.props.category;
 
     this.props.createPost(tag, title, region, location, description, category);
-    this.setState({ open: false });
+    this.setState({ open: false, snackBarOpen: true });
   };
 }
 
