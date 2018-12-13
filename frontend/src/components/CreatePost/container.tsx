@@ -16,23 +16,19 @@ const tags = [
 interface IProps {
   theme: Theme;
   category: string;
+  region: string;
   createPost: (
     tag: string,
     title: string,
+    region: string,
     location: string,
-    content: string,
+    description: string,
     category: string
   ) => void;
 }
 
 class Container extends React.Component<IProps> {
   public state = {
-    tag: "",
-    title: "",
-    phone: "",
-    email: "",
-    location: "",
-    content: "",
     open: false,
     snackBarOpen: false
   };
@@ -71,11 +67,13 @@ class Container extends React.Component<IProps> {
     event.preventDefault();
     const tag = event.currentTarget.elements.tags.value;
     const title = event.currentTarget.elements.title.value;
+    const region = this.props.region;
     const location = event.currentTarget.elements.location.value;
-    const content = event.currentTarget.elements.content.value;
+    const description = event.currentTarget.elements.description.value;
     const category = this.props.category;
 
-    this.props.createPost(tag, title, location, content, category);
+    this.props.createPost(tag, title, region, location, description, category);
+    this.setState({ open: false });
   };
 }
 

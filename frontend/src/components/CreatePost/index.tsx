@@ -4,8 +4,17 @@ import { actionCreators as postActions } from "redux/modules/posts";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createPost: (tag, title, location, content, category) => {
-      dispatch(postActions.createPost(tag, title, location, content, category));
+    createPost: (tag, title, region, location, description, category) => {
+      dispatch(
+        postActions.createPost(
+          tag,
+          title,
+          region,
+          location,
+          description,
+          category
+        )
+      );
     }
   };
 };
