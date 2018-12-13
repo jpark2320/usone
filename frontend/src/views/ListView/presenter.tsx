@@ -27,7 +27,7 @@ class ListView extends React.Component<any, any> {
   };
 
   public render() {
-    const { classes, category, posts } = this.props;
+    const { classes, category, posts, region } = this.props;
 
     return (
       <div className={classes.root}>
@@ -54,7 +54,7 @@ class ListView extends React.Component<any, any> {
               <hr className={classes.hr} />
               {posts ? <ListBoard posts={posts} /> : ""}
               {/* <ListBoard posts={posts} /> */}
-              <CreatePost category={category} />
+              <CreatePost category={category} region={region} />
             </div>
           </React.Fragment>
         </main>

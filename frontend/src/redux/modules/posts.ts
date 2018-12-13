@@ -11,6 +11,11 @@ function setFilteredPosts(filteredPosts) {
     filteredPosts
   };
 }
+function setCreatePost(addedPost) {
+  return { 
+    type: SET_CREATE_POST, 
+    addedPost };
+}
 
 // API ACTIONS
 function getFilteredPosts(region, category, limit, order, inDescOrder) {
@@ -22,15 +27,16 @@ function getFilteredPosts(region, category, limit, order, inDescOrder) {
   };
 }
 
-function createPost(tag, title, region, content, category) {
+function createPost(tag, title, region, location, description, category) {
   return dispatch => {
-    fetch("/posts/create-post/", {
+    fetch(`/posts/create-post/`, {
       body: JSON.stringify({
-        tag: {tag}, 
-        title: {title},
-        region: {region},
-        category: {category},
-        content: {content}
+        tag,
+        title,
+        region,
+        location,
+        description,
+        category
       }),
       headers: {
         "Content-Type": "application/json"
@@ -38,6 +44,7 @@ function createPost(tag, title, region, content, category) {
       method: "POST"
     })
       .then(response => response.json())
+      .then(json => dispatch(setCreatePost(json)))
       .catch(err => console.log(err));
   };
 }
