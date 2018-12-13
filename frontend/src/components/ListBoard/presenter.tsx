@@ -150,8 +150,8 @@ const ListBoard: React.SFC<IProps> = props => {
                                   {n.category}
                                 </span>
                                 <span style={{ float: "right" }}>
-                                  {n.created_by.email}
-                                  {n.created_at}
+                                  {/* {n.created_by.email}
+                                  {n.created_at}  */}
                                 </span>
                               </div>
                             </TableCell>
@@ -160,7 +160,7 @@ const ListBoard: React.SFC<IProps> = props => {
                               className={classes.midTableCell}
                               numeric={false}
                             >
-                              {n.created_by.email}
+                              {/* {n.created_by.email} */}
                             </TableCell>
                             <TableCell
                               padding={"none"}

@@ -84,7 +84,6 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
               id="title"
               label="제목"
               select={false}
-              required={true}
               className={classes.textField}
               margin="normal"
               variant="outlined"
@@ -131,7 +130,7 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
               variant="outlined"
             />
             <TextField
-              id="content"
+              id="description"
               label="상세 내용"
               placeholder="내용을 입력 하세요..."
               multiline={true}
