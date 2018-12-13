@@ -64,7 +64,7 @@ class PostByFilters(ListAPIView):
 @authentication_classes([])
 @permission_classes([])
 class CreatePost(CreateAPIView):
-    serializer_class = serializers.PostSerializer
+    serializer_class = serializers.CreatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
 
@@ -72,7 +72,7 @@ class CreatePost(CreateAPIView):
 @authentication_classes([])
 @permission_classes([])
 class UpdatePost(UpdateAPIView):
-    serializer_class = serializers.PostSerializer
+    serializer_class = serializers.CreatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
 
@@ -80,6 +80,6 @@ class UpdatePost(UpdateAPIView):
 @authentication_classes([])
 @permission_classes([])
 class DeletePost(DestroyAPIView):
-    serializer_class = serializers.PostSerializer
+    serializer_class = serializers.CreatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()

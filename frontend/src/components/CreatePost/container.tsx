@@ -16,14 +16,13 @@ const tags = [
 interface IProps {
   theme: Theme;
   category: string;
-  addedPost: any;
-  addPost: (
+  createPost: (
     tag: string,
     title: string,
     location: string,
     content: string,
     category: string
-  ) => object;
+  ) => void;
 }
 
 class Container extends React.Component<IProps> {
@@ -76,7 +75,7 @@ class Container extends React.Component<IProps> {
     const content = event.currentTarget.elements.content.value;
     const category = this.props.category;
 
-    this.props.addPost(tag, title, location, content, category);
+    this.props.createPost(tag, title, location, content, category);
   };
 }
 

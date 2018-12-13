@@ -15,7 +15,7 @@ class Post(TimeStampedModel):
     title = models.CharField(max_length=255)
     description = models.TextField()
     creator = models.CharField(max_length=255, editable=False, blank=True)
-    region = models.CharField(default='new-york', max_length=100,
+    region = models.CharField(default='georgia', max_length=100,
                               choices=(
                                   ('georgia', 'Georgia'),
                                   ('new-york', 'New York'),
