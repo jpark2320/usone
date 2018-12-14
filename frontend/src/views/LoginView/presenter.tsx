@@ -3,7 +3,6 @@ import * as React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Input from "@material-ui/core/Input";
@@ -24,50 +23,53 @@ const LoginView: React.SFC<IProps> = props => {
   const { classes, handleSubmit } = props;
 
   return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <FormControl margin="normal" required={true} fullWidth={true}>
-            <InputLabel htmlFor="username">Email Address</InputLabel>
-            <Input
-              id="username"
-              name="username"
-              autoComplete="username"
-              autoFocus={true}
-            />
-          </FormControl>
-          <FormControl margin="normal" required={true} fullWidth={true}>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth={true}
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Login
-          </Button>
-        </form>
-      </Paper>
-    </main>
+    <div className={classes.root}>
+      <main className={classes.bodyContainer}>
+        <main className={classes.main}>
+          <Paper className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Login
+            </Typography>
+            <form className={classes.form} onSubmit={handleSubmit}>
+              <FormControl margin="normal" required={true} fullWidth={true}>
+                <InputLabel htmlFor="username">Email Address</InputLabel>
+                <Input
+                  id="username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus={true}
+                />
+              </FormControl>
+              <FormControl margin="normal" required={true} fullWidth={true}>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input
+                  name="password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              </FormControl>
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth={true}
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Login
+              </Button>
+            </form>
+          </Paper>
+        </main>
+      </main>
+    </div>
   );
 };
 

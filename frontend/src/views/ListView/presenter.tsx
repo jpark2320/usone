@@ -27,30 +27,38 @@ class ListView extends React.Component<any, any> {
   };
 
   public render() {
-    const { classes, category, posts } = this.props;
+    const { classes, category, posts, region } = this.props;
 
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <div className={classes.tempContainerStyle}>
-          <div style={{ display: "flex", alignItems: "baseline" }}>
-            <Typography>{category} </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon onClick={this.displayInputForMobile} />
+      <div className={classes.root}>
+        {/* Main */}
+        <main className={classes.bodyContainer}>
+          <React.Fragment>
+            <CssBaseline />
+            <div className={classes.tempContainerStyle}>
+              <div style={{ display: "flex", alignItems: "baseline" }}>
+                <Typography>{category} </Typography>
+                <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon onClick={this.displayInputForMobile} />
+                  </div>
+                  <InputBase
+                    placeholder="Search…"
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput
+                    }}
+                  />
+                </div>
               </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{ root: classes.inputRoot, input: classes.inputInput }}
-              />
+              <hr className={classes.hr} />
+              {posts ? <ListBoard posts={posts} /> : ""}
+              {/* <ListBoard posts={posts} /> */}
+              <CreatePost category={category} region={region} />
             </div>
-          </div>
-          <hr className={classes.hr} />
-          {posts ? <ListBoard posts={posts} /> : ""}
-          {/* <ListBoard posts={posts} /> */}
-          <CreatePost />
-        </div>
-      </React.Fragment>
+          </React.Fragment>
+        </main>
+      </div>
     );
   }
 }
