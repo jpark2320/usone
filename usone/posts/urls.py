@@ -1,4 +1,4 @@
-from django.urls import re_path
+from django.urls import re_path, path
 from . import views
 
 app_name = "posts"
@@ -29,4 +29,5 @@ urlpatterns = [
         views.DeletePost.as_view(),
         name='delete_post'
     ),
+    path('<pk>', views.ViewPost.as_view())
 ]

@@ -1,36 +1,13 @@
 import * as React from "react";
 import DetailBoard from "./presenter";
+import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
-const post = {
-  category: "이민",
-  title: "고민있습니다.",
-  userName: "티비충",
-  createdDate: "11/11/2018",
-  content:
-    "본론만 짧게 말씀드리면 어머니는 미국 영주권자고 저와 제 동생이 수 년 전에 초대 받았습니다. 제 동생은 미성년자일 때 초대 받아서 벌써 영주권 받고 인스테이트로 대학 다니고 있고,저는 평범하게 한국에서 대학 나와서 국내 중공업계 대기업 R& D 입사한지 얼마 안 됐습니다. 지난 달에 추가 서류 제출하라고 해서 제출하고 슬슬 영주권이 2년(?) 안에는 나올 거 같은 분위인데",
-  recommended: 30,
-  reported: 3,
-  comments_set: [
-    {
-      userName: "신고할거임",
-      createdDate: "11/12/2018",
-      content: " 저는 좀 어렵다고 생각되네요"
-    },
-    {
-      userName: "네네네ㅔㄴ?",
-      createdDate: "11/12/2018",
-      content: "희망을 가지세요"
-    },
-    {
-      userName: "한국이 최고",
-      createdDate: "11/12/2018",
-      content: "저 같으면 그냥 한국에 삽니다."
-    }
-  ]
-};
-
-interface IProps {
+export interface IProps {
+  theme: Theme;
+  container: Element;
+  id: any;
   post: any;
+  getViewPost: (id: any) => object;
 }
 
 interface IState {
@@ -47,8 +24,23 @@ class Container extends React.Component<IProps, IState> {
     };
   }
 
+  public componentDidMount() {
+    const { getViewPost, post, id } = this.props;
+    if (!post) {
+      getViewPost(id);
+    }
+  }
+
+  public componentDidUpdate(prevProps, prevState) {
+    const { id } = this.props;
+    if (prevProps.id !== id) {
+      this.props.getViewPost(id);
+    }
+  }
+
   public render() {
-    return <DetailBoard post={post} />;
+    const { post } = this.props;
+    return <DetailBoard {...this.props} post={post} />;
   }
 }
 
