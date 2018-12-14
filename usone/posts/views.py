@@ -1,7 +1,15 @@
 from django.db.models import Q
 from rest_framework import status, pagination
-from rest_framework import decorators
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.decorators import (
+    authentication_classes, permission_classes
+)
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    CreateAPIView,
+    DestroyAPIView,
+    UpdateAPIView
+)
 from .models import Post, Image
 from . import serializers
 
@@ -55,9 +63,35 @@ class PostByFilters(ListAPIView):
 
 
 class ListAllImages(ListAPIView):
-
+    serializer_class = serializers.ImageSerializer
+    queryset = Image.objects.all()
+    
     authentication_classes = ([])
     permission_classes = ([])
 
-    queryset = Image.objects.all()
-    serializer_class = serializers.ImageSerializer
+    
+class CreatePost(CreateAPIView):
+    serializer_class = serializers.CreatePostSerializer
+    pagination_class = BasicSizePagination
+    queryset = Post.objects.all()
+    
+    authentication_classes = ([])
+    permission_classes = ([])
+
+    
+class UpdatePost(UpdateAPIView):
+    serializer_class = serializers.CreatePostSerializer
+    pagination_class = BasicSizePagination
+    queryset = Post.objects.all()
+    
+    authentication_classes = ([])
+    permission_classes = ([])
+
+    
+class DeletePost(DestroyAPIView):
+    serializer_class = serializers.CreatePostSerializer
+    pagination_class = BasicSizePagination
+    queryset = Post.objects.all()
+    
+    authentication_classes = ([])
+    permission_classes = ([])

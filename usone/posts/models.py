@@ -28,6 +28,8 @@ class Post(TimeStampedModel):
                                     ('visa', 'Visa'),
                                     ('rent', 'Rent'),
                                     ('qanda', 'Q&A'),
+                                    ('sell', 'Sell'),
+                                    ('buy', 'Buy')
                                 ))
     tag = models.CharField(max_length=255, null=True, blank=True)
     view_count = models.IntegerField(editable=False, default=0, blank=True)
@@ -40,6 +42,7 @@ class Post(TimeStampedModel):
     created_by = models.ForeignKey(User, editable=False, null=True, blank=True,
                                    related_name='post_created_by',
                                    on_delete=models.CASCADE)
+    location = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return '{} - {} ({})'.format(self.id, self.title, self.region)
