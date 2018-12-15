@@ -30,6 +30,7 @@ export interface IProps {
   filteredPosts: any;
   category: string;
   getFilteredPosts: (region, category, limit, order, desc) => object;
+  getFilteredPostsWithUrlForNextOrPrevPages: (Pageurl) => object;
 }
 
 class Container extends React.Component<IProps, any> {
@@ -43,7 +44,7 @@ class Container extends React.Component<IProps, any> {
   public componentDidMount() {
     const { getFilteredPosts, filteredPosts } = this.props;
 
-    const limit = 50;
+    const limit = 5000;
     const orderBy = "created_at";
     const inDescOrder = "desc";
     if (!filteredPosts) {
@@ -59,8 +60,7 @@ class Container extends React.Component<IProps, any> {
 
   public componentDidUpdate(prevprop) {
     const { region, getFilteredPosts } = this.props;
-
-    const limit = 20;
+    const limit = 5000;
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
@@ -78,6 +78,11 @@ class Container extends React.Component<IProps, any> {
     }
   }
 
+  public dataReworkRespondforNextPages(PageUrl) {
+    const { getFilteredPostsWithUrlForNextOrPrevPages } = this.props;
+    getFilteredPostsWithUrlForNextOrPrevPages(PageUrl);
+  }
+
   public render() {
     const { region, filteredPosts, category } = this.props;
     return (
@@ -86,6 +91,7 @@ class Container extends React.Component<IProps, any> {
         region={region}
         posts={filteredPosts}
         category={category}
+        dataReworkRespondforNextPages={this.dataReworkRespondforNextPages}
       />
     );
   }

@@ -23,6 +23,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           desc
         )
       );
+    },
+    getFilteredPostsWithUrlForNextOrPrevPages: PageUrl => {
+      dispatch(
+        postFilteredActions.getFilteredPostsWithUrlForNextOrPrevPages(PageUrl)
+      );
     }
   };
 };

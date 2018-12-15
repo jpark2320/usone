@@ -7,6 +7,7 @@ import styles from "./styles";
 interface IProps extends WithStyles<typeof styles> {
   classes: any;
   posts: any;
+  dataReworkRespondforNextPages: (PageUrl) => object;
 }
 interface IState {
   order: any;
@@ -56,6 +57,23 @@ class Container extends Component<IProps, IState> {
 
   public componentDidMount() {
     // get total number pagination
+    this.getPages();
+  }
+
+  public componentDidUpdate(prevprop, prevState) {
+    if (
+      prevprop.posts !== this.props.posts ||
+      prevState.rowsPerPage !== this.state.rowsPerPage
+    ) {
+      this.getPages();
+    }
+
+    if (this.state.page !== prevState.page) {
+      this.props.dataReworkRespondforNextPages(this.props.posts.next);
+    }
+  }
+
+  public getPages = () => {
     const returnArray: number[] = [];
     for (
       let i = 1;
@@ -66,8 +84,8 @@ class Container extends Component<IProps, IState> {
     }
 
     this.setState({ pageCounts: returnArray });
-  }
-  //
+  };
+
   public dynamicClassNameBasedOnLabelID = (
     id: string,
     classes: any = this.props.classes

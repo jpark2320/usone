@@ -11,11 +11,14 @@ function setFilteredPosts(filteredPosts) {
     filteredPosts
   };
 }
+<<<<<<< HEAD
 function setCreatePost(addedPost) {
   return { 
     type: SET_CREATE_POST, 
     addedPost };
 }
+=======
+>>>>>>> aa3d5e4... draft for posts with pagination
 
 // API ACTIONS
 function getFilteredPosts(region, category, limit, order, inDescOrder) {
@@ -27,6 +30,7 @@ function getFilteredPosts(region, category, limit, order, inDescOrder) {
   };
 }
 
+<<<<<<< HEAD
 function createPost(tag, title, region, location, description, category) {
   return dispatch => {
     fetch(`/posts/create-post/`, {
@@ -45,6 +49,14 @@ function createPost(tag, title, region, location, description, category) {
     })
       .then(response => response.json())
       .then(json => dispatch(setCreatePost(json)))
+=======
+function getFilteredPostsWithUrlForNextOrPrevPages(PageUrl: string) {
+  console.log(PageUrl);
+  return dispatch => {
+    fetch(PageUrl)
+      .then(response => response.json())
+      .then(json => dispatch(setFilteredPosts(json)))
+>>>>>>> aa3d5e4... draft for posts with pagination
       .catch(err => console.log(err));
   };
 }
@@ -77,7 +89,11 @@ function applyCreatePost(state, action) {
 // EXPORT
 const actionCreators = {
   getFilteredPosts,
+<<<<<<< HEAD
   createPost
+=======
+  getFilteredPostsWithUrlForNextOrPrevPages
+>>>>>>> aa3d5e4... draft for posts with pagination
 };
 export { actionCreators };
 
