@@ -4,8 +4,8 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const categoryExternalNameConversion = {
   job: "work",
-  sell: "",
-  buy: "",
+  sell: "sell",
+  buy: "buy",
   house: "rent",
   visa: "visa"
 };

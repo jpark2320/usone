@@ -42,6 +42,7 @@ interface IProps extends WithStyles<typeof styles> {
   handleNextButtonClick: any;
   handleLastPageButtonClick: any;
   theme: any;
+  MenuProps: object;
 }
 
 const TablePaginationActions: React.SFC<IProps> = props => {
@@ -124,7 +125,8 @@ const ListBoard: React.SFC<IProps> = props => {
     page,
     rowsPerPage,
     rowsPerPageOptions,
-    posts
+    posts,
+    MenuProps
   } = props;
 
   let postsOrUndef;
@@ -265,6 +267,7 @@ const ListBoard: React.SFC<IProps> = props => {
                     onChange={handlePageSelectChange}
                     disableUnderline={true}
                     displayEmpty={true}
+                    MenuProps={MenuProps}
                   >
                     {pageCounts.map(index => (
                       <MenuItem key={index} value={index}>
@@ -288,7 +291,7 @@ const ListBoard: React.SFC<IProps> = props => {
                     ActionsComponent={() => (
                       <TablePaginationActions {...props} />
                     )}
-                    page={page}
+                    page={page - 1}
                     labelRowsPerPage="열수"
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}

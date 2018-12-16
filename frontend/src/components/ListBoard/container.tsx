@@ -20,6 +20,16 @@ interface IState {
   pageCounts: any[];
 }
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP
+    }
+  }
+};
+
 class Container extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
@@ -28,7 +38,7 @@ class Container extends Component<IProps, IState> {
       order: "desc",
       orderBy: "created_at",
       page: 1,
-      rowsPerPage: 2,
+      rowsPerPage: 5,
       rowsPerPageOptions: [5, 10, 25, 50, 100],
       pageCounts: [],
       rows: [
@@ -84,6 +94,7 @@ class Container extends Component<IProps, IState> {
 
   public getPages = () => {
     const returnArray: number[] = [];
+    // const { page } =this.state;
     let { rowsPerPage } = this.state;
     const { posts } = this.props;
     if (rowsPerPage > posts.count) {
@@ -240,6 +251,7 @@ class Container extends Component<IProps, IState> {
         handleNextButtonClick={this.handleNextButtonClick}
         handleLastPageButtonClick={this.handleLastPageButtonClick}
         posts={posts}
+        MenuProps={MenuProps}
       />
     );
   }
