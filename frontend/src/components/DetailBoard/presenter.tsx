@@ -13,10 +13,10 @@ interface IProps extends WithStyles<typeof styles> {
 
 const DetailBoard: React.SFC<IProps> = props => {
   const { post, classes } = props;
-  const talk = "대화";
-  const recommend = "추천";
-  const report = "신고";
-  console.log("types are" + typeof post);
+  // const talk = "대화";
+  // const recommend = "추천";
+  // const report = "신고";
+
   return (
     <Card className={classes.BoardDetail__card}>
       <CardContent>
@@ -31,7 +31,7 @@ const DetailBoard: React.SFC<IProps> = props => {
           >
             {post.category}
           </Button>
-          {post.title}[{post.recommended}]
+          {post.title} [{post.recommended}]
         </Typography>
         <Divider className={classes.BoardDetail__divider} />
         <div className={classes.BoardDetail__post__username__date}>
@@ -40,7 +40,7 @@ const DetailBoard: React.SFC<IProps> = props => {
           <Typography>{post.createdDate}</Typography>
         </div>
         <Typography className={classes.BoardDetail__post__content}>
-          {post.content}
+          {post.description}
         </Typography>
         <Divider className={classes.BoardDetail__divider} />
         <Typography className={classes.BoardDetail__post__add__comment}>
@@ -56,7 +56,7 @@ const DetailBoard: React.SFC<IProps> = props => {
           </Button>
         </Typography>
         <Divider />
-        <Typography>
+        {/* <Typography>
           {post.comments_set.map(comment => (
             <div>
               <div className={classes.BoardDetail__post__username__date}>
@@ -76,7 +76,7 @@ const DetailBoard: React.SFC<IProps> = props => {
               <Divider />
             </div>
           ))}
-        </Typography>
+        </Typography> */}
       </CardContent>
     </Card>
   );

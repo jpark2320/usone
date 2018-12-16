@@ -7,7 +7,7 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import LoginView from "views/LoginView";
 import SignupView from "views/SignupView";
-import DetailBoard from "components/DetailBoard";
+import DetailView from "views/DetailView";
 import "normalize.css";
 
 interface IProps {
@@ -64,7 +64,7 @@ const Routes: React.SFC<IRouteProps> = props => (
     />
     <Route path={"/login"} component={LoginView} />
     <Route path={"/signup"} component={SignupView} />
-    <Route path={"/posts/post/:postID/"} component={DetailBoard} />
+    <Route path={"/posts/post/:postID/"} component={DetailView} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );
