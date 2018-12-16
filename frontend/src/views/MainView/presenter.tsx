@@ -3,7 +3,7 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import DetailBoard from "components/DetailBoard";
+import SummaryBoard from "components/SummaryBoard";
 import styles from "./styles";
 
 interface IBoard {
@@ -38,7 +38,10 @@ class MainView extends React.Component<IamProps> {
               {summaryAllPostsOrUndef.map((summaryPost, index) => (
                 <Grid key={index} item={true} xs={12} sm={6}>
                   <Paper className={classes.MainView__paper}>
-                    <DetailBoard id={4} />
+                    <SummaryBoard
+                      title={summaryPost[0]}
+                      posts={summaryPost[1]}
+                    />
                   </Paper>
                 </Grid>
               ))}

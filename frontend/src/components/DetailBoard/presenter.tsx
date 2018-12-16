@@ -16,7 +16,7 @@ const DetailBoard: React.SFC<IProps> = props => {
   const talk = "대화";
   const recommend = "추천";
   const report = "신고";
-
+  console.log("types are" + typeof post);
   return (
     <Card className={classes.BoardDetail__card}>
       <CardContent>

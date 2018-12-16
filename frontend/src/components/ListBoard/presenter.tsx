@@ -21,8 +21,6 @@ interface IProps extends WithStyles<typeof styles> {
   createSortHandler: any;
   stableSort: any;
   getSorting: any;
-  isSelected: any;
-  handleClick: any;
   handleChangeRowsPerPage: any;
   handleChangePage: any;
   rows: any[];
@@ -34,6 +32,7 @@ interface IProps extends WithStyles<typeof styles> {
   rowsPerPage: number;
   rowsPerPageOptions: any[];
   posts: any;
+  detailViewLink: (id: any) => (itemProps: any) => any;
 }
 
 const ListBoard: React.SFC<IProps> = props => {
@@ -44,8 +43,6 @@ const ListBoard: React.SFC<IProps> = props => {
     createSortHandler,
     stableSort,
     getSorting,
-    isSelected,
-    handleClick,
     handleChangeRowsPerPage,
     handleChangePage,
     rows,
@@ -56,7 +53,8 @@ const ListBoard: React.SFC<IProps> = props => {
     page,
     rowsPerPage,
     rowsPerPageOptions,
-    posts
+    posts,
+    detailViewLink
   } = props;
 
   let postsOrUndef;
@@ -110,17 +108,14 @@ const ListBoard: React.SFC<IProps> = props => {
                         page * rowsPerPage + rowsPerPage
                       )
                       .map((n: any) => {
-                        const isSelectedVal = isSelected(n.id);
                         return (
                           <TableRow
-                            style={{ borderBottom: "1px solid  #E0E0E0" }}
+                            className={classes.tableRowCell}
                             hover={true}
-                            onClick={handleClick(event, n.id)}
                             role="checkbox"
-                            aria-checked={isSelectedVal}
                             tabIndex={-1}
                             key={n.id}
-                            selected={isSelectedVal}
+                            component={detailViewLink(n.id)}
                           >
                             <TableCell
                               padding={"none"}

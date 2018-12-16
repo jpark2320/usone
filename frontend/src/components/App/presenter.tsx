@@ -64,8 +64,7 @@ const Routes: React.SFC<IRouteProps> = props => (
     />
     <Route path={"/login"} component={LoginView} />
     <Route path={"/signup"} component={SignupView} />
-    <Route path={"/posts/post/"} component={DetailBoard} />
-
+    <Route path={"/posts/post/:postID/"} component={DetailBoard} />
     <Redirect from={"*"} to={"/"} />
   </Switch>
 );

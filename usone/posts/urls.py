@@ -29,5 +29,10 @@ urlpatterns = [
         views.DeletePost.as_view(),
         name='delete_post'
     ),
-    path('<pk>', views.ViewPost.as_view())
+    # re_path(
+    #     r'^post/(?P<id>\d+)/$',
+    #     views.ViewPost.as_view(),
+    #     name='view_post'
+    # )
+    path('post/<pk>', views.ViewPost.as_view())
 ]

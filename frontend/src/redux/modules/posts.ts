@@ -51,7 +51,7 @@ function createPost(tag, title, region, location, description, category) {
 function getViewPost(id) {
   return dispatch => {
     fetch(
-      `/posts/${id}`
+      `/posts/post/${id}`
     )
       .then(response => response.json())
       .then(json => dispatch(setViewPost(json)))

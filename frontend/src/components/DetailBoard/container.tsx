@@ -5,9 +5,10 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 export interface IProps {
   theme: Theme;
   container: Element;
-  id: any;
+  postID: any;
   post: any;
   getViewPost: (id: any) => object;
+  match: any;
 }
 
 interface IState {
@@ -25,22 +26,28 @@ class Container extends React.Component<IProps, IState> {
   }
 
   public componentDidMount() {
-    const { getViewPost, post, id } = this.props;
+    const postID = this.props.match.params.postID;
+    const { getViewPost, post } = this.props;
     if (!post) {
-      getViewPost(id);
+      getViewPost(postID);
     }
   }
 
   public componentDidUpdate(prevProps, prevState) {
-    const { id } = this.props;
-    if (prevProps.id !== id) {
-      this.props.getViewPost(id);
+    const { postID } = this.props;
+    if (prevProps.postID !== postID) {
+      this.props.getViewPost(postID);
     }
   }
 
   public render() {
     const { post } = this.props;
-    return <DetailBoard {...this.props} post={post} />;
+    return (
+      <div>
+        {post && <DetailBoard {...this.props} post={post} />}}
+        {/* {typeof post !== "undefined" && <DetailBoard post={post} />}} */}
+      </div>
+    );
   }
 }
 
