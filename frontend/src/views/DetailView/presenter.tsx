@@ -9,6 +9,7 @@ export interface IamProps extends WithStyles<typeof styles> {
   theme: Theme;
   container: Element;
   post: any;
+  match: any;
 }
 
 class DetailView extends React.Component<IamProps> {
