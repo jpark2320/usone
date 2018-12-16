@@ -11,26 +11,34 @@ function setFilteredPosts(filteredPosts) {
     filteredPosts
   };
 }
-<<<<<<< HEAD
 function setCreatePost(addedPost) {
-  return { 
-    type: SET_CREATE_POST, 
-    addedPost };
+  return {
+    type: SET_CREATE_POST,
+    addedPost
+  };
 }
-=======
->>>>>>> aa3d5e4... draft for posts with pagination
 
 // API ACTIONS
-function getFilteredPosts(region, category, limit, order, inDescOrder) {
+function getFilteredPosts(
+  region,
+  category,
+  page_size,
+  order,
+  inDescOrder,
+  page?
+) {
+  let postsQuery = `/posts/posts-by-filters/?reg=${region}&cat=${category}&page_size=${page_size}&order=${order}&in-desc-order=${inDescOrder}`;
+  if (page) {
+    postsQuery += `&page=${page}`;
+  }
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
+    fetch(postsQuery)
       .then(response => response.json())
       .then(json => dispatch(setFilteredPosts(json)))
       .catch(err => console.log(err));
   };
 }
 
-<<<<<<< HEAD
 function createPost(tag, title, region, location, description, category) {
   return dispatch => {
     fetch(`/posts/create-post/`, {
@@ -48,16 +56,7 @@ function createPost(tag, title, region, location, description, category) {
       method: "POST"
     })
       .then(response => response.json())
-      .then(json => dispatch(setCreatePost(json)))
-=======
-function getFilteredPostsWithUrlForNextOrPrevPages(PageUrl: string) {
-  console.log(PageUrl);
-  return dispatch => {
-    fetch(PageUrl)
-      .then(response => response.json())
-      .then(json => dispatch(setFilteredPosts(json)))
->>>>>>> aa3d5e4... draft for posts with pagination
-      .catch(err => console.log(err));
+      .then(json => dispatch(setCreatePost(json)));
   };
 }
 
@@ -89,11 +88,7 @@ function applyCreatePost(state, action) {
 // EXPORT
 const actionCreators = {
   getFilteredPosts,
-<<<<<<< HEAD
   createPost
-=======
-  getFilteredPostsWithUrlForNextOrPrevPages
->>>>>>> aa3d5e4... draft for posts with pagination
 };
 export { actionCreators };
 

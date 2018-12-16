@@ -13,20 +13,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getFilteredPosts: (region, category, limit, order, desc) => {
+    getFilteredPosts: (region, category, limit, order, desc, page?) => {
       dispatch(
         postFilteredActions.getFilteredPosts(
           region,
           category,
           limit,
           order,
-          desc
+          desc,
+          page
         )
-      );
-    },
-    getFilteredPostsWithUrlForNextOrPrevPages: PageUrl => {
-      dispatch(
-        postFilteredActions.getFilteredPostsWithUrlForNextOrPrevPages(PageUrl)
       );
     }
   };

@@ -7,14 +7,13 @@ import styles from "./styles";
 interface IProps extends WithStyles<typeof styles> {
   classes: any;
   posts: any;
-  dataReworkRespondforNextPages: (PageUrl) => object;
+  dataReworkRespondforNextPages: (page_size, page) => object;
 }
 interface IState {
   order: any;
   orderBy: string;
   page: number;
   rowsPerPage: number;
-  selected: any[];
   rowsPerPageOptions: any[];
   rows: any[];
   classes: any;
@@ -28,10 +27,9 @@ class Container extends Component<IProps, IState> {
       ...props,
       order: "desc",
       orderBy: "created_at",
-      page: 0,
+      page: 1,
       rowsPerPage: 2,
-      rowsPerPageOptions: [2, 10, 25, 50, 100],
-      selected: [],
+      rowsPerPageOptions: [5, 10, 25, 50, 100],
       pageCounts: [],
       rows: [
         { id: "id", numeric: false, disablePadding: true, label: "번호" },
@@ -61,26 +59,48 @@ class Container extends Component<IProps, IState> {
   }
 
   public componentDidUpdate(prevprop, prevState) {
-    if (
-      prevprop.posts !== this.props.posts ||
-      prevState.rowsPerPage !== this.state.rowsPerPage
-    ) {
+    if (prevprop.posts !== this.props.posts) {
       this.getPages();
     }
-
-    if (this.state.page !== prevState.page) {
-      this.props.dataReworkRespondforNextPages(this.props.posts.next);
+    if (
+      this.state.page !== prevState.page ||
+      prevState.rowsPerPage !== this.state.rowsPerPage
+    ) {
+      const { dataReworkRespondforNextPages, posts } = this.props;
+      let { rowsPerPage } = this.state;
+      let { page } = this.state;
+      if (rowsPerPage > posts.count) {
+        rowsPerPage = posts.count;
+        page = 1;
+        this.setState({ page: 1 });
+      } else if (prevState.rowsPerPage !== this.state.rowsPerPage) {
+        page = 1;
+        this.setState({ page: 1 });
+        rowsPerPage = this.state.rowsPerPage;
+      }
+      dataReworkRespondforNextPages(rowsPerPage, page);
     }
   }
 
   public getPages = () => {
     const returnArray: number[] = [];
-    for (
-      let i = 1;
-      i < this.props.posts.count / this.state.rowsPerPage + 1;
-      i++
-    ) {
-      returnArray.push(i);
+    let { rowsPerPage } = this.state;
+    const { posts } = this.props;
+    if (rowsPerPage > posts.count) {
+      rowsPerPage = posts.count;
+    }
+    if (posts.count / rowsPerPage > 10) {
+      // returnArray.push(1);
+      // for (let i = 1; i < posts.count / 10 + 1; i++) {
+      //   returnArray.push((i * posts.count) / 10);
+      // }
+      for (let i = 1; i < posts.count / rowsPerPage + 1; i++) {
+        returnArray.push(i);
+      }
+    } else {
+      for (let i = 1; i < posts.count / rowsPerPage + 1; i++) {
+        returnArray.push(i);
+      }
     }
 
     this.setState({ pageCounts: returnArray });
@@ -165,38 +185,42 @@ class Container extends Component<IProps, IState> {
     this.setState({ order, orderBy });
   };
 
-  public handleClick = (event: MouseEvent, id: any) => {
-    const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected: any[] = [];
+  public handleChangeRowsPerPage = (event: any) => {
+    this.setState({ rowsPerPage: event.target.value });
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
+    // api rework for row per page changed. rowPerPage = limit.
+  };
+
+  public handlePageSelectChange = (event: any, page: number) => {
+    if (event.target.value) {
+      this.setState({ page: event.target.value });
+    } else {
+      this.setState({ page });
     }
   };
 
-  public handleChangePage = (event: any, page: any) => {
-    this.setState({ page });
+  public handleChangePage = (event: any, page: number = 1) => {
+    // this.setState({ page });
   };
 
-  public handleChangeRowsPerPage = (event: any) => {
-    this.setState({ rowsPerPage: event.target.value });
+  public handleFirstPageButtonClick = event => {
+    this.handlePageSelectChange(event, 1);
   };
 
-  public handlePageSelectChange = (event: any) => {
-    this.setState({ page: event.target.value - 1 });
+  public handleBackButtonClick = event => {
+    this.handlePageSelectChange(event, this.state.page - 1);
   };
 
-  public isSelected = (id: number) => this.state.selected.indexOf(id) !== -1;
+  public handleNextButtonClick = event => {
+    this.handlePageSelectChange(event, this.state.page + 1);
+  };
+
+  public handleLastPageButtonClick = event => {
+    this.handlePageSelectChange(
+      event,
+      Math.max(1, Math.ceil(this.props.posts.count / this.state.rowsPerPage))
+    );
+  };
 
   public render() {
     const { posts } = this.props;
@@ -208,11 +232,13 @@ class Container extends Component<IProps, IState> {
         createSortHandler={this.createSortHandler}
         stableSort={this.stableSort}
         getSorting={this.getSorting}
-        isSelected={this.isSelected}
-        handleClick={this.handleClick}
         handleChangePage={this.handleChangePage}
         handleChangeRowsPerPage={this.handleChangeRowsPerPage}
         handlePageSelectChange={this.handlePageSelectChange}
+        handleFirstPageButtonClick={this.handleFirstPageButtonClick}
+        handleBackButtonClick={this.handleBackButtonClick}
+        handleNextButtonClick={this.handleNextButtonClick}
+        handleLastPageButtonClick={this.handleLastPageButtonClick}
         posts={posts}
       />
     );

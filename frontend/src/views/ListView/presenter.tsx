@@ -27,11 +27,11 @@ class ListView extends React.Component<any, any> {
   };
 
   public render() {
-    const { classes, category, posts, region } = this.props;
     const {
       classes,
       category,
       posts,
+      region,
       dataReworkRespondforNextPages
     } = this.props;
 
@@ -58,13 +58,11 @@ class ListView extends React.Component<any, any> {
                 </div>
               </div>
               <hr className={classes.hr} />
-              {posts ? (
+              {posts && (
                 <ListBoard
                   dataReworkRespondforNextPages={dataReworkRespondforNextPages}
                   posts={posts}
                 />
-              ) : (
-                ""
               )}
               {/* <ListBoard posts={posts} /> */}
               <CreatePost category={category} region={region} />

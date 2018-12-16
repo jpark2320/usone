@@ -13,6 +13,11 @@ import styles from "./styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import FirstPageIcon from "@material-ui/icons/FirstPage";
+import LastPageIcon from "@material-ui/icons/LastPage";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 interface IProps extends WithStyles<typeof styles> {
   order: any;
@@ -21,8 +26,6 @@ interface IProps extends WithStyles<typeof styles> {
   createSortHandler: any;
   stableSort: any;
   getSorting: any;
-  isSelected: any;
-  handleClick: any;
   handleChangeRowsPerPage: any;
   handleChangePage: any;
   rows: any[];
@@ -34,8 +37,75 @@ interface IProps extends WithStyles<typeof styles> {
   rowsPerPage: number;
   rowsPerPageOptions: any[];
   posts: any;
+  handleFirstPageButtonClick: any;
+  handleBackButtonClick: any;
+  handleNextButtonClick: any;
+  handleLastPageButtonClick: any;
+  theme: any;
 }
 
+const TablePaginationActions: React.SFC<IProps> = props => {
+  const {
+    classes,
+    posts,
+    page,
+    rowsPerPage,
+    theme,
+    handleFirstPageButtonClick,
+    handleBackButtonClick,
+    handleNextButtonClick,
+    handleLastPageButtonClick
+  } = props;
+
+  let postsCounts;
+
+  if (!posts) {
+    postsCounts = 1;
+  } else {
+    postsCounts = posts.count;
+  }
+
+  return (
+    <div className={classes.PaginationRoot}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 1}
+        aria-label="First Page"
+      >
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+      </IconButton>
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 1}
+        aria-label="Previous Page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowRight />
+        ) : (
+          <KeyboardArrowLeft />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(postsCounts / rowsPerPage)}
+        aria-label="Next Page"
+      >
+        {theme.direction === "rtl" ? (
+          <KeyboardArrowLeft />
+        ) : (
+          <KeyboardArrowRight />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(postsCounts / rowsPerPage)}
+        aria-label="Last Page"
+      >
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+      </IconButton>
+    </div>
+  );
+};
 const ListBoard: React.SFC<IProps> = props => {
   const {
     order,
@@ -44,8 +114,6 @@ const ListBoard: React.SFC<IProps> = props => {
     createSortHandler,
     stableSort,
     getSorting,
-    isSelected,
-    handleClick,
     handleChangeRowsPerPage,
     handleChangePage,
     rows,
@@ -104,23 +172,15 @@ const ListBoard: React.SFC<IProps> = props => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {stableSort(postsOrUndef, getSorting(order, orderBy))
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((n: any) => {
-                        const isSelectedVal = isSelected(n.id);
+                    {stableSort(postsOrUndef, getSorting(order, orderBy)).map(
+                      (n: any) => {
                         return (
                           <TableRow
                             style={{ borderBottom: "1px solid  #E0E0E0" }}
                             hover={true}
-                            onClick={handleClick(event, n.id)}
                             role="checkbox"
-                            aria-checked={isSelectedVal}
                             tabIndex={-1}
                             key={n.id}
-                            selected={isSelectedVal}
                           >
                             <TableCell
                               padding={"none"}
@@ -185,7 +245,8 @@ const ListBoard: React.SFC<IProps> = props => {
                             </TableCell>
                           </TableRow>
                         );
-                      })}
+                      }
+                    )}
                   </TableBody>
                 </Table>
               </div>
@@ -197,7 +258,7 @@ const ListBoard: React.SFC<IProps> = props => {
                 >
                   <Typography variant={"caption"}>Page</Typography>
                   <Select
-                    value={page + 1}
+                    value={page}
                     classes={{
                       selectMenu: classes.paginationSelectFontSize
                     }}
@@ -221,17 +282,14 @@ const ListBoard: React.SFC<IProps> = props => {
                       caption: classes.hideWhenLessThanMobileXS
                     }}
                     component="div"
-                    count={postsOrUndef.length}
+                    count={posts.count}
                     rowsPerPage={rowsPerPage}
                     rowsPerPageOptions={rowsPerPageOptions}
+                    ActionsComponent={() => (
+                      <TablePaginationActions {...props} />
+                    )}
                     page={page}
                     labelRowsPerPage="열수"
-                    backIconButtonProps={{
-                      "aria-label": "Previous Page"
-                    }}
-                    nextIconButtonProps={{
-                      "aria-label": "Next Page"
-                    }}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                   />
