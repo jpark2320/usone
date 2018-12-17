@@ -20,7 +20,7 @@ class Post(TimeStampedModel):
                                   ('georgia', 'Georgia'),
                                   ('new-york', 'New York'),
                                   ('los-angeles', 'Los Angeles'),
-                                  ('san-francisco', 'San Francisco'),
+                                  ('seattle', 'Seattle'),
                               ))
     category = models.CharField(default='georgia', max_length=100,
                                 choices=(

@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import ListBoard from "./presenter";
 import { WithStyles } from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
@@ -13,7 +14,6 @@ interface IState {
   orderBy: string;
   page: number;
   rowsPerPage: number;
-  selected: any[];
   rowsPerPageOptions: any[];
   rows: any[];
   classes: any;
@@ -147,25 +147,6 @@ class Container extends Component<IProps, IState> {
     this.setState({ order, orderBy });
   };
 
-  public handleClick = (event: MouseEvent, id: any) => {
-    const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected: any[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-  };
-
   public handleChangePage = (event: any, page: any) => {
     this.setState({ page });
   };
@@ -178,7 +159,9 @@ class Container extends Component<IProps, IState> {
     this.setState({ page: event.target.value - 1 });
   };
 
-  public isSelected = (id: number) => this.state.selected.indexOf(id) !== -1;
+  public detailViewLink = (id: any) => itemProps => (
+    <Link to={`/posts/post/${id}`} {...itemProps} />
+  );
 
   public render() {
     const { posts } = this.props;
@@ -190,12 +173,11 @@ class Container extends Component<IProps, IState> {
         createSortHandler={this.createSortHandler}
         stableSort={this.stableSort}
         getSorting={this.getSorting}
-        isSelected={this.isSelected}
-        handleClick={this.handleClick}
         handleChangePage={this.handleChangePage}
         handleChangeRowsPerPage={this.handleChangeRowsPerPage}
         handlePageSelectChange={this.handlePageSelectChange}
         posts={posts}
+        detailViewLink={this.detailViewLink}
       />
     );
   }
