@@ -58,40 +58,50 @@ class PostByFilters(ListAPIView):
         # Order queryset based on sort_field if it is set
         if sort_field:
             queryset = queryset.order_by(sort_field)
-        
+
         return queryset
 
 
 class ListAllImages(ListAPIView):
     serializer_class = serializers.ImageSerializer
     queryset = Image.objects.all()
-    
+
     authentication_classes = ([])
     permission_classes = ([])
 
-    
+
 class CreatePost(CreateAPIView):
     serializer_class = serializers.CreatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
-    
+
     authentication_classes = ([])
     permission_classes = ([])
 
-    
+
 class UpdatePost(UpdateAPIView):
     serializer_class = serializers.CreatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
-    
+
     authentication_classes = ([])
     permission_classes = ([])
 
-    
+
 class DeletePost(DestroyAPIView):
     serializer_class = serializers.CreatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
-    
+
     authentication_classes = ([])
     permission_classes = ([])
+
+
+class ViewPost(RetrieveAPIView):
+    serializer_class = serializers.PostSerializer
+    pagination_class = BasicSizePagination
+
+    authentication_classes = ([])
+    permission_classes = ([])
+
+    queryset = Post.objects.all()

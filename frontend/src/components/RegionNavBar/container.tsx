@@ -12,7 +12,7 @@ const images = [
     url: require("assets/images/city/seattle.jpg"),
     title: "Seattle",
     width: "25%",
-    key: "san-francisco"
+    key: "seattle"
   },
   {
     url: require("assets/images/city/atlanta.jpg"),

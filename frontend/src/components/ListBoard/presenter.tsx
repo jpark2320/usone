@@ -43,6 +43,7 @@ interface IProps extends WithStyles<typeof styles> {
   handleLastPageButtonClick: any;
   theme: any;
   MenuProps: object;
+  detailViewLink: (id: any) => (itemProps: any) => any;
 }
 
 const TablePaginationActions: React.SFC<IProps> = props => {
@@ -127,6 +128,7 @@ const ListBoard: React.SFC<IProps> = props => {
     rowsPerPageOptions,
     posts,
     MenuProps
+    detailViewLink
   } = props;
 
   let postsOrUndef;
@@ -178,11 +180,12 @@ const ListBoard: React.SFC<IProps> = props => {
                       (n: any) => {
                         return (
                           <TableRow
-                            style={{ borderBottom: "1px solid  #E0E0E0" }}
+                            className={classes.tableRowCell}
                             hover={true}
                             role="checkbox"
                             tabIndex={-1}
                             key={n.id}
+                            component={detailViewLink(n.id)}
                           >
                             <TableCell
                               padding={"none"}

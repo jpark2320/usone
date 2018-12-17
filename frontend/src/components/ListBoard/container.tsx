@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import ListBoard from "./presenter";
 import { WithStyles } from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 import styles from "./styles";
 
 interface IProps extends WithStyles<typeof styles> {
@@ -233,6 +234,10 @@ class Container extends Component<IProps, IState> {
     );
   };
 
+  public detailViewLink = (id: any) => itemProps => (
+    <Link to={`/posts/post/${id}`} {...itemProps} />
+  );
+
   public render() {
     const { posts } = this.props;
     return (
@@ -252,6 +257,7 @@ class Container extends Component<IProps, IState> {
         handleLastPageButtonClick={this.handleLastPageButtonClick}
         posts={posts}
         MenuProps={MenuProps}
+        detailViewLink={this.detailViewLink}
       />
     );
   }

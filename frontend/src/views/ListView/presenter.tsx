@@ -64,7 +64,6 @@ class ListView extends React.Component<any, any> {
                   posts={posts}
                 />
               )}
-              {/* <ListBoard posts={posts} /> */}
               <CreatePost category={category} region={region} />
             </div>
           </React.Fragment>

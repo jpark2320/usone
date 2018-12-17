@@ -142,6 +142,10 @@ const styles = (theme: Theme) =>
       [theme.breakpoints.down("xs")]: {
         display: "none"
       }
+    },
+    tableRowCell: {
+      borderBottom: "1px solid  #E0E0E0",
+      textDecoration: "none"
     }
   });
 
