@@ -4,8 +4,8 @@ import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const categoryExternalNameConversion = {
   job: "work",
-  sell: "",
-  buy: "",
+  sell: "sell",
+  buy: "buy",
   house: "rent",
   visa: "visa"
 };
@@ -29,7 +29,8 @@ export interface IProps {
   region: string;
   filteredPosts: any;
   category: string;
-  getFilteredPosts: (region, category, limit, order, desc) => object;
+  getFilteredPosts: (region, category, limit, order, desc, page?) => object;
+  getFilteredPostsWithUrlForNextOrPrevPages: (Pageurl) => object;
 }
 
 class Container extends React.Component<IProps, any> {
@@ -38,19 +39,20 @@ class Container extends React.Component<IProps, any> {
     this.state = {
       ...props
     };
+    this.dataReworkRespondforNextPages = this.dataReworkRespondforNextPages;
   }
 
   public componentDidMount() {
-    const { getFilteredPosts, filteredPosts } = this.props;
+    const { region, getFilteredPosts, filteredPosts, category } = this.props;
 
-    const limit = 50;
+    const page_size = 5;
     const orderBy = "created_at";
     const inDescOrder = "desc";
     if (!filteredPosts) {
       getFilteredPosts(
-        this.props.region,
-        categoryExternalNameConversion[this.state.category],
-        limit,
+        region,
+        categoryExternalNameConversion[category],
+        page_size,
         orderBy,
         inDescOrder
       );
@@ -58,25 +60,35 @@ class Container extends React.Component<IProps, any> {
   }
 
   public componentDidUpdate(prevprop) {
-    const { region, getFilteredPosts } = this.props;
-
-    const limit = 20;
+    const { region, getFilteredPosts, category } = this.props;
+    const page_size = 5;
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
-    if (
-      prevprop.region !== this.props.region ||
-      prevprop.category !== this.props.category
-    ) {
+    if (prevprop.region !== region || prevprop.category !== category) {
       getFilteredPosts(
         region,
-        categoryExternalNameConversion[this.props.category],
-        limit,
+        categoryExternalNameConversion[category],
+        page_size,
         orderBy,
         inDescOrder
       );
     }
   }
+
+  public dataReworkRespondforNextPages = (page_size, page) => {
+    const { region, getFilteredPosts, category } = this.props;
+    const orderBy = "created_at";
+    const inDescOrder = "desc";
+    getFilteredPosts(
+      region,
+      categoryExternalNameConversion[category],
+      page_size,
+      orderBy,
+      inDescOrder,
+      page
+    );
+  };
 
   public render() {
     const { region, filteredPosts, category } = this.props;
@@ -86,6 +98,7 @@ class Container extends React.Component<IProps, any> {
         region={region}
         posts={filteredPosts}
         category={category}
+        dataReworkRespondforNextPages={this.dataReworkRespondforNextPages}
       />
     );
   }

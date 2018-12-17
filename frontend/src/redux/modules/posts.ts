@@ -17,9 +17,20 @@ function setViewPost(post) {
 }
 
 // API ACTIONS
-function getFilteredPosts(region, category, limit, order, inDescOrder) {
+function getFilteredPosts(
+  region,
+  category,
+  page_size,
+  order,
+  inDescOrder,
+  page?
+) {
+  let postsQuery = `/posts/posts-by-filters/?reg=${region}&cat=${category}&page_size=${page_size}&order=${order}&in-desc-order=${inDescOrder}`;
+  if (page) {
+    postsQuery += `&page=${page}`;
+  }
   return dispatch => {
-    fetch(`/posts/posts-by-filters/?reg=${region}&cat=${category}&limit=${limit}&order=${order}&in-desc-order=${inDescOrder}`)
+    fetch(postsQuery)
       .then(response => response.json())
       .then(json => dispatch(setFilteredPosts(json)))
       .catch(err => console.log(err));
@@ -43,8 +54,7 @@ function createPost(tag, title, region, location, description, category) {
       method: "POST"
     })
       .then(response => response.json())
-      .then(json => dispatch(setCreatePost(json)))
-      .catch(err => console.log(err));
+      .then(json => dispatch(setCreatePost(json)));
   };
 }
 

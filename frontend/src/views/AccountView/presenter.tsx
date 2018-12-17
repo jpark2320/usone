@@ -58,6 +58,7 @@ class AccountView extends React.Component<IamProps, any> {
       <div className={classes.tempContainerStyle}>
         <h1> My Account</h1>
         <ExpansionPanel
+          defaultExpanded={true}
           expanded={expanded === "panel1"}
           onChange={this.handleChange("panel1")}
         >

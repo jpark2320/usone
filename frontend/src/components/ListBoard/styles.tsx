@@ -25,6 +25,11 @@ const styles = (theme: Theme) =>
       textOverflow: "ellipsis",
       whiteSpace: "nowrap"
     },
+    PaginationRoot: {
+      flexShrink: 0,
+      color: theme.palette.text.secondary,
+      marginLeft: theme.spacing.unit * 2.5
+    },
     tableWrapper: {},
     tableNoOverFlow: {},
     tableContainer: {},
