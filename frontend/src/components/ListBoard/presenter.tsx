@@ -127,7 +127,7 @@ const ListBoard: React.SFC<IProps> = props => {
     rowsPerPage,
     rowsPerPageOptions,
     posts,
-    MenuProps
+    MenuProps,
     detailViewLink
   } = props;
 
