@@ -97,7 +97,7 @@ function applyCreatePost(state, action) {
 }
 function applyViewPost(state, action) {
   const { post } = action;
-  return { ...state, post };
+  return { post };
 }
 
 // EXPORT
