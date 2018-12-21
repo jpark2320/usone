@@ -9,6 +9,7 @@ import summaryWorkPosts from "./modules/summaryWorkPosts";
 import summaryRentPosts from "./modules/summaryRentPosts";
 import summaryVisaPosts from "./modules/summaryVisaPosts";
 import summaryQandaPosts from "./modules/summaryQandaPosts";
+import summaryPostsReducer from "./modules/sumaryPosts"
 
 const env = process.env.NODE_ENV;
 const history = createHistory();
@@ -26,7 +27,8 @@ const reducer = combineReducers({
   summaryWorkPosts,
   summaryRentPosts,
   summaryVisaPosts,
-  summaryQandaPosts
+  summaryQandaPosts,
+  summaryPostsReducer
 });
 
 let store;
