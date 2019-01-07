@@ -4,6 +4,8 @@ import { push } from "react-router-redux";
 // Actions
 const SAVE_TOKEN = "SAVE_TOKEN";
 const LOGOUT = "LOGOUT";
+const SET_REGION = "SET_REGION"
+const GET_REGION = "GET_REGION";
 
 // Action Creators (used to change Redux state)
 function saveToken(token) {
@@ -16,6 +18,18 @@ function saveToken(token) {
 function logoutToken() {
   return {
     type: LOGOUT
+  };
+}
+
+function setRegion() {
+  return {
+    type: SET_REGION
+  }
+}
+
+function getRegion() {
+  return {
+    type: GET_REGION
   };
 }
 
@@ -105,10 +119,59 @@ function createAccount(username, password1, password2) {
   };
 }
 
+function getUserRegion(region, password1, password2) {
+  return dispatch => {
+    fetch("/rest-auth/registration/", {
+      body: JSON.stringify({
+        password1,
+        password2,
+        username
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (password1 === password2 && json.token) {
+          dispatch(saveToken(json.token));
+          dispatch(push("/"));
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
+function setUserRegion(region) {
+  return dispatch => {
+    fetch("/rest-auth/registration/", {
+      body: JSON.stringify({
+        password1,
+        password2,
+        username
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (password1 === password2 && json.token) {
+          dispatch(saveToken(json.token));
+          dispatch(push("/"));
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 // Initial State
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  region: "georgia"
 };
 
 // Reducer
@@ -118,6 +181,10 @@ function reducer(state = initialState, action) {
       return applySetToken(state, action);
     case LOGOUT:
       return applyLogout(state, action);
+    case SET_REGION:
+      return applySetRegion(state, action);
+    case GET_REGION:
+      return applyGetRegion(state, action);
     default:
       return state;
   }
@@ -141,12 +208,28 @@ function applyLogout(state, action) {
   };
 }
 
+function applySetRegion(state, action) {
+  localStorage.removeItem("jwt");
+  return {
+    isLoggedIn: false
+  };
+}
+
+function applyGetRegion(state, action) {
+  localStorage.removeItem("jwt");
+  return {
+    isLoggedIn: false
+  };
+}
+
 // Exports
 const actionCreators = {
   createAccount,
   facebookLogin,
   logout,
-  usernameLogin
+  usernameLogin,
+  getUserRegion,
+  setUserRegion
 };
 
 export { actionCreators };
