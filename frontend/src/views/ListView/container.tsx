@@ -43,20 +43,18 @@ class Container extends React.Component<IProps, any> {
   }
 
   public componentDidMount() {
-    const { region, getFilteredPosts, filteredPosts, category } = this.props;
+    const { region, getFilteredPosts, category } = this.props;
 
     const page_size = 5;
     const orderBy = "created_at";
     const inDescOrder = "desc";
-    if (!filteredPosts) {
-      getFilteredPosts(
-        region,
-        categoryExternalNameConversion[category],
-        page_size,
-        orderBy,
-        inDescOrder
-      );
-    }
+    getFilteredPosts(
+      region,
+      categoryExternalNameConversion[category],
+      page_size,
+      orderBy,
+      inDescOrder
+    );
   }
 
   public componentDidUpdate(prevprop) {
