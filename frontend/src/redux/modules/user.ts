@@ -119,13 +119,10 @@ function createAccount(username, password1, password2) {
   };
 }
 
-function getUserRegion(region, password1, password2) {
+function getUserRegion() {
   return dispatch => {
     fetch("/rest-auth/registration/", {
       body: JSON.stringify({
-        password1,
-        password2,
-        username
       }),
       headers: {
         "Content-Type": "application/json"

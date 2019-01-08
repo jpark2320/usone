@@ -33,7 +33,6 @@ export interface IPostsProps {
 export interface IProps {
   theme: Theme;
   container: Element;
-  region: string;
   summaryWorkPosts: any;
   getSummaryWorkPosts: (region, limit, order, desc) => object;
   summaryVisaPosts: any;
@@ -42,25 +41,32 @@ export interface IProps {
   getSummaryRentPosts: (region, limit, order, desc) => object;
   summaryQandaPosts: any;
   getSummaryQandaPosts: (region, limit, order, desc) => object;
+  region: any;
+  getUserRegion: () => object;
 }
 
 class Container extends React.Component<IProps> {
   public componentDidMount() {
     const {
-      region,
       getSummaryWorkPosts,
       getSummaryVisaPosts,
       getSummaryRentPosts,
       getSummaryQandaPosts,
+      getUserRegion,
       summaryWorkPosts,
       summaryVisaPosts,
       summaryRentPosts,
-      summaryQandaPosts
+      summaryQandaPosts,
+      region
     } = this.props;
 
     const limit = 10;
     const orderBy = "created_at";
     const inDescOrder = "desc";
+
+    if (!region) {
+      getUserRegion();
+    }
 
     if (!summaryWorkPosts) {
       getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
@@ -78,11 +84,11 @@ class Container extends React.Component<IProps> {
 
   public componentDidUpdate(prevProps, prevState) {
     const {
-      region,
       getSummaryWorkPosts,
       getSummaryVisaPosts,
       getSummaryRentPosts,
-      getSummaryQandaPosts
+      getSummaryQandaPosts,
+      region
     } = this.props;
 
     const limit = 10;
