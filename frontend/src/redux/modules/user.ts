@@ -1,5 +1,5 @@
 // Imports
-import { push } from "react-router-redux";
+import { push } from "connected-react-router";
 
 // Actions
 const SAVE_TOKEN = "SAVE_TOKEN";
