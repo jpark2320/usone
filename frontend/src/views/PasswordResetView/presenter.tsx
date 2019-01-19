@@ -19,7 +19,7 @@ interface IProps {
   handleSubmit: (event: any) => void;
 }
 
-const SignupView: React.SFC<IProps> = props => {
+const PasswordResetView: React.SFC<IProps> = props => {
   const { classes, handleSubmit } = props;
 
   return (
@@ -32,39 +32,21 @@ const SignupView: React.SFC<IProps> = props => {
               <LockIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign Up
+              Password Reset
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
               <FormControl margin="normal" required={true} fullWidth={true}>
-                <InputLabel htmlFor="username">Username</InputLabel>
+                <InputLabel htmlFor="email">Email</InputLabel>
                 <Input
-                  id="username"
-                  name="username"
-                  autoComplete="username"
+                  id="email"
+                  name="email"
+                  autoComplete="email"
                   autoFocus={true}
                 />
               </FormControl>
-              <FormControl margin="normal" required={true} fullWidth={true}>
-                <InputLabel htmlFor="password1">Password</InputLabel>
-                <Input
-                  name="password1"
-                  type="password"
-                  id="password1"
-                  autoComplete="current-password"
-                />
-              </FormControl>
-              <FormControl margin="normal" required={true} fullWidth={true}>
-                <InputLabel htmlFor="password2">Confirm Password</InputLabel>
-                <Input
-                  name="password2"
-                  type="password"
-                  id="password2"
-                  autoComplete="current-password"
-                />
-              </FormControl>
               <Typography variant="caption">
-                By creating an account, you agree to USOne's Conditions of Use
-                and Privacy Notice.
+                To confirm your identification, you will receive an email to
+                reset your password.
               </Typography>
               <Button
                 type="submit"
@@ -73,9 +55,8 @@ const SignupView: React.SFC<IProps> = props => {
                 color="primary"
                 className={classes.submit}
               >
-                Sign Up
+                Submit
               </Button>
-
               <Link to="/login">
                 <Button
                   type="button"
@@ -95,4 +76,4 @@ const SignupView: React.SFC<IProps> = props => {
   );
 };
 
-export default withStyles(styles)(SignupView);
+export default withStyles(styles)(PasswordResetView);

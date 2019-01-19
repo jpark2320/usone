@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import LockIcon from "@material-ui/core/Icon";
+import { Link } from "react-router-dom";
 
 import styles from "./styles";
 
@@ -65,6 +66,26 @@ const LoginView: React.SFC<IProps> = props => {
               >
                 Login
               </Button>
+              <div className={classes.optionLayout}>
+                No account?
+                <Link to="/signup">
+                  <Button
+                    type="submit"
+                    fullWidth={true}
+                    variant="contained"
+                    color="secondary"
+                    className={classes.submit}
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+
+              <div className={classes.optionLayout}>
+                <Link to="/password-reset">
+                  Forgot password? 그럼 클릭해 ㅅㅂ
+                </Link>
+              </div>
             </form>
           </Paper>
         </main>
