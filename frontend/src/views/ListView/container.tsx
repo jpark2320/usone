@@ -42,9 +42,7 @@ class Container extends React.Component<IProps, any> {
     const orderBy = "created_at";
     const inDescOrder = "desc";
 
-    if (!filteredPosts) {
-      getFilteredPosts(region, category, page_size, orderBy, inDescOrder);
-    }
+    getFilteredPosts(region, category, page_size, orderBy, inDescOrder);
   }
 
   public componentDidUpdate(prevprop) {

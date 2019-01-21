@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     posts: { filteredPosts }
   } = state;
   const region = state.user.region;
-  const category = pathToCategory[state.routing.location.pathname];
+  const category = pathToCategory[state.router.location.pathname];
   return { filteredPosts, region, category };
 };
 
