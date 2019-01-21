@@ -7,11 +7,11 @@ import styles from "./styles";
 interface IProps extends WithStyles<typeof styles> {
   images: any;
   region: string;
-  onClickRegion: (region: string) => (actions: object) => void;
+  onChangeUserRegion: any;
 }
 
 const RegionNavBar: React.SFC<IProps> = props => {
-  const { images, classes, region } = props;
+  const { images, classes, region, onChangeUserRegion } = props;
   return (
     <div className={classes.root}>
       {images.map(image => (
@@ -25,7 +25,7 @@ const RegionNavBar: React.SFC<IProps> = props => {
           style={{
             width: image.width
           }}
-          // onClick={onClickRegion(image.key)}
+          onClick={() => onChangeUserRegion(image.key)}
         >
           <span
             className={classes.imageSrc}

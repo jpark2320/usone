@@ -11,9 +11,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChangeUserRegion: region => {
       dispatch(userActions.onChangeUserRegion(region));
-    },
-    getRegion: () => {
-      dispatch(userActions.getRegion());
     }
   };
 };
