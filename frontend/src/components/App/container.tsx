@@ -5,29 +5,8 @@ interface IProps {
   location: Location;
 }
 
-interface IState {
-  region: string;
-}
-
-class Container extends React.Component<IProps, IState> {
-  public state: IState = {
-    region: "georgia"
-  };
-
-  public onClickRegion = (regionParm: string) => (actions: object) => {
-    console.log(regionParm);
-    this.setState({ region: regionParm });
-  };
-
-  public render() {
-    return (
-      <App
-        {...this.props}
-        region={this.state.region}
-        onClickRegion={this.onClickRegion}
-      />
-    );
-  }
-}
+const Container: React.SFC<IProps> = props => {
+  return <App {...props} />;
+};
 
 export default Container;

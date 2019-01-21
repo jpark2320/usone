@@ -4,16 +4,15 @@ import { actionCreators as postWorkActions } from "redux/modules/summaryWorkPost
 import { actionCreators as postVisaActions } from "redux/modules/summaryVisaPosts";
 import { actionCreators as postRentActions } from "redux/modules/summaryRentPosts";
 import { actionCreators as postQandaActions } from "redux/modules/summaryQandaPosts";
-import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
   const {
     summaryWorkPosts: { summaryWorkPosts },
     summaryVisaPosts: { summaryVisaPosts },
     summaryRentPosts: { summaryRentPosts },
-    summaryQandaPosts: { summaryQandaPosts },
-    region: { region }
+    summaryQandaPosts: { summaryQandaPosts }
   } = state;
+  const region = state.user.region;
   return {
     summaryWorkPosts,
     summaryVisaPosts,
@@ -38,9 +37,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(
         postQandaActions.getSummaryQandaPosts(region, limit, order, desc)
       );
-    },
-    getUserRegion: () => {
-      dispatch(userActions.getUserRegion());
     }
   };
 };

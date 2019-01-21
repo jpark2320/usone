@@ -28,6 +28,38 @@ const images = [
   }
 ];
 
-const Container = (props: any) => <RegionNavBar {...props} images={images} />;
+export interface IProps {
+  region: any;
+  onChangeUserRegion: (region: string) => (actions: object) => void;
+  getRegion: () => object;
+}
+
+class Container extends React.Component<IProps> {
+  public componentDidMount() {
+    const { region, getRegion } = this.props;
+
+    if (!region) {
+      getRegion();
+    }
+  }
+
+  public componentDidUpdate(prevProps, prevState) {
+    // const { region, getRegion } = this.props;
+    // if (prevProps.region !== region) {
+    //   getRegion();
+    // }
+  }
+  public render() {
+    const { region, onChangeUserRegion } = this.props;
+    return (
+      <RegionNavBar
+        {...this.props}
+        region={region}
+        onClickRegion={onChangeUserRegion}
+        images={images}
+      />
+    );
+  }
+}
 
 export default Container;

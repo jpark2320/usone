@@ -10,28 +10,20 @@ import SignupView from "views/SignupView";
 import DetailView from "views/DetailView";
 import "normalize.css";
 
-interface IProps {
-  region: string;
-  onClickRegion: (region: string) => (actions: object) => void;
+class App extends React.Component {
+  public render() {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <Header />
+        <Routes />
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
 
-const App: React.SFC<IProps> = props => {
-  const { region, onClickRegion } = props;
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <Header region={region} onClickRegion={onClickRegion} />
-      <Routes region={region} />
-      <Footer />
-    </React.Fragment>
-  );
-};
-
-interface IRouteProps {
-  region: string;
-}
-
-const Routes: React.SFC<IRouteProps> = props => (
+const Routes = () => (
   <Switch>
     <Route path={"/"} exact={true} component={MainView} />
     <Route path={"/sell"} component={ListView} />

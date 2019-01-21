@@ -42,7 +42,6 @@ export interface IProps {
   summaryQandaPosts: any;
   getSummaryQandaPosts: (region, limit, order, desc) => object;
   region: any;
-  getUserRegion: () => object;
 }
 
 class Container extends React.Component<IProps> {
@@ -52,7 +51,6 @@ class Container extends React.Component<IProps> {
       getSummaryVisaPosts,
       getSummaryRentPosts,
       getSummaryQandaPosts,
-      getUserRegion,
       summaryWorkPosts,
       summaryVisaPosts,
       summaryRentPosts,
@@ -63,10 +61,7 @@ class Container extends React.Component<IProps> {
     const limit = 10;
     const orderBy = "created_at";
     const inDescOrder = "desc";
-
-    if (!region) {
-      getUserRegion();
-    }
+    console.log("!!!!!!!   " + region);
 
     if (!summaryWorkPosts) {
       getSummaryWorkPosts(region, limit, orderBy, inDescOrder);

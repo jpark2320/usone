@@ -3,11 +3,11 @@ import ListView from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const categoryExternalNameConversion = {
-  job: "work",
-  sell: "sell",
-  buy: "buy",
-  house: "rent",
-  visa: "visa"
+  "/job": "work",
+  "/sell": "sell",
+  "/buy": "buy",
+  "/house": "rent",
+  "/visa": "visa"
 };
 
 interface IPostProps {
@@ -64,7 +64,9 @@ class Container extends React.Component<IProps, any> {
     const page_size = 5;
     const orderBy = "created_at";
     const inDescOrder = "desc";
-
+    console.log(
+      "category change is " + prevprop.category + "  cate " + category
+    );
     if (prevprop.region !== region || prevprop.category !== category) {
       getFilteredPosts(
         region,
