@@ -61,7 +61,6 @@ class Container extends React.Component<IProps> {
     const limit = 10;
     const orderBy = "created_at";
     const inDescOrder = "desc";
-    console.log("!!!!!!!   " + region);
 
     if (!summaryWorkPosts) {
       getSummaryWorkPosts(region, limit, orderBy, inDescOrder);
