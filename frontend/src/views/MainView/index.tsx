@@ -12,11 +12,13 @@ const mapStateToProps = (state, ownProps) => {
     summaryRentPosts: { summaryRentPosts },
     summaryQandaPosts: { summaryQandaPosts }
   } = state;
+  const region = state.user.region;
   return {
     summaryWorkPosts,
     summaryVisaPosts,
     summaryRentPosts,
-    summaryQandaPosts
+    summaryQandaPosts,
+    region
   };
 };
 

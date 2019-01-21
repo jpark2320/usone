@@ -28,6 +28,23 @@ const images = [
   }
 ];
 
-const Container = (props: any) => <RegionNavBar {...props} images={images} />;
+export interface IProps {
+  region: string;
+  onChangeUserRegion: any;
+}
+
+class Container extends React.Component<IProps> {
+  public render() {
+    const { region, onChangeUserRegion } = this.props;
+    return (
+      <RegionNavBar
+        {...this.props}
+        region={region}
+        onChangeUserRegion={onChangeUserRegion}
+        images={images}
+      />
+    );
+  }
+}
 
 export default Container;
