@@ -2,16 +2,9 @@ import * as React from "react";
 import ListView from "./presenter";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
-const categoryExternalNameConversion = {
-  "/job": "work",
-  "/sell": "sell",
-  "/buy": "buy",
-  "/house": "rent",
-  "/visa": "visa"
-};
-
 interface IPostProps {
   id: number;
+  region: string;
   category: string;
   description: string;
   title: string;
@@ -49,13 +42,7 @@ class Container extends React.Component<IProps, any> {
     const orderBy = "created_at";
     const inDescOrder = "desc";
     if (!filteredPosts) {
-      getFilteredPosts(
-        region,
-        categoryExternalNameConversion[category],
-        page_size,
-        orderBy,
-        inDescOrder
-      );
+      getFilteredPosts(region, category, page_size, orderBy, inDescOrder);
     }
   }
 
@@ -64,17 +51,8 @@ class Container extends React.Component<IProps, any> {
     const page_size = 5;
     const orderBy = "created_at";
     const inDescOrder = "desc";
-    console.log(
-      "category change is " + prevprop.category + "  cate " + category
-    );
     if (prevprop.region !== region || prevprop.category !== category) {
-      getFilteredPosts(
-        region,
-        categoryExternalNameConversion[category],
-        page_size,
-        orderBy,
-        inDescOrder
-      );
+      getFilteredPosts(region, category, page_size, orderBy, inDescOrder);
     }
   }
 
@@ -82,14 +60,7 @@ class Container extends React.Component<IProps, any> {
     const { region, getFilteredPosts, category } = this.props;
     const orderBy = "created_at";
     const inDescOrder = "desc";
-    getFilteredPosts(
-      region,
-      categoryExternalNameConversion[category],
-      page_size,
-      orderBy,
-      inDescOrder,
-      page
-    );
+    getFilteredPosts(region, category, page_size, orderBy, inDescOrder, page);
   };
 
   public render() {

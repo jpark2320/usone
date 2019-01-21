@@ -16,7 +16,6 @@ const mapStateToProps = (state, ownProps) => {
   } = state;
   const region = state.user.region;
   const category = pathToCategory[state.routing.location.pathname];
-  console.log("please check here " + category);
   return { filteredPosts, region, category };
 };
 

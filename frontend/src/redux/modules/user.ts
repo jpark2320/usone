@@ -176,7 +176,6 @@ function applyLogout(state, action) {
 
 function applySetUserRegion(state, action) {
   const region = action.region;
-  console.log(region)
   return { ...state, region };
 }
 
