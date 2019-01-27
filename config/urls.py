@@ -14,6 +14,7 @@ urlpatterns = [
     # User management
     re_path(r'^rest-auth/', include('rest_auth.urls')),
     re_path(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('password-reset/<uidb64>/<token>/', views.empty_view, name='password_reset_confirm'),
     path(
         "users/",
         include("usone.users.urls", namespace="users"),
