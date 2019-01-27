@@ -17,3 +17,7 @@ class ReactAppView(View):
                 """,
                 status=501,
             )
+
+
+def empty_view(request):
+    return HttpResponse('')

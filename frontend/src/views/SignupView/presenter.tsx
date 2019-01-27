@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import LockIcon from "@material-ui/core/Icon";
+import { Link } from "react-router-dom";
 
 import styles from "./styles";
 
@@ -74,6 +75,18 @@ const SignupView: React.SFC<IProps> = props => {
               >
                 Sign Up
               </Button>
+
+              <Link to="/login">
+                <Button
+                  type="button"
+                  fullWidth={true}
+                  variant="contained"
+                  color="default"
+                  className={classes.submit}
+                >
+                  Back
+                </Button>
+              </Link>
             </form>
           </Paper>
         </main>

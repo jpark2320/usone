@@ -61,14 +61,6 @@ const styles: any = (theme: any) => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3
-  },
-  optionLayout: {
-    margin: "20px 0",
-    textAlign: "center",
-    "& a": {
-      color: "#222222",
-      textDecoration: "none"
-    }
   }
 });
 
