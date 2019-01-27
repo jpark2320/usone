@@ -82,9 +82,7 @@ const LoginView: React.SFC<IProps> = props => {
               </div>
 
               <div className={classes.optionLayout}>
-                <Link to="/password-reset">
-                  Forgot password? 그럼 클릭해 ㅅㅂ
-                </Link>
+                <Link to="/password-reset">Forgot password?</Link>
               </div>
             </form>
           </Paper>
