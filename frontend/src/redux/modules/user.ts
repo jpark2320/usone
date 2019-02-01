@@ -4,6 +4,8 @@ import { push } from "connected-react-router";
 // Actions
 const SAVE_TOKEN = "SAVE_TOKEN";
 const LOGOUT = "LOGOUT";
+const SET_USER_REGION = "SET_USER_REGION";
+const GET_USER_REGION = "GET_USER_REGION";
 
 // Action Creators (used to change Redux state)
 function saveToken(token) {
@@ -17,6 +19,19 @@ function logoutToken() {
   return {
     type: LOGOUT
   };
+}
+
+function setUserRegion(region) {
+  return { 
+    type: SET_USER_REGION,
+    region
+  };
+}
+
+function getUserRegion() {
+  return {
+    type: GET_USER_REGION
+  }
 }
 
 // API actions
@@ -122,13 +137,24 @@ function sendPasswordResetEmail(email) {
         dispatch(push("/password-reset-confirm"));
       })
       .catch(err => console.log(err));
+
+function onChangeUserRegion(region) {
+  return dispatch => {
+    dispatch(setUserRegion(region))
+  };
+}
+
+function getRegion() {
+  return dispatch => {
+    dispatch(getUserRegion())
   };
 }
 
 // Initial State
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  region: "georgia"
 };
 
 // Reducer
@@ -138,10 +164,15 @@ function reducer(state = initialState, action) {
       return applySetToken(state, action);
     case LOGOUT:
       return applyLogout(state, action);
+    case SET_USER_REGION:
+      return applySetUserRegion(state, action);
+    case GET_USER_REGION:
+      const region = state.region;
+      return { ...state, region };
     default:
       return state;
   }
-}
+} 
 
 // Reducer Functions
 function applySetToken(state, action) {
@@ -161,6 +192,11 @@ function applyLogout(state, action) {
   };
 }
 
+function applySetUserRegion(state, action) {
+  const region = action.region;
+  return { ...state, region };
+}
+
 // Exports
 const actionCreators = {
   createAccount,
@@ -168,6 +204,8 @@ const actionCreators = {
   logout,
   usernameLogin,
   sendPasswordResetEmail
+  onChangeUserRegion,
+  getRegion
 };
 
 export { actionCreators };
