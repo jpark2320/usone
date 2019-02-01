@@ -1,4 +1,5 @@
 // IMPORTS
+import { push } from "react-router-redux";
 
 // ACTIONS
 const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
@@ -15,10 +16,10 @@ function setCreatePost(addedPost) {
   return { type: SET_CREATE_POST, addedPost };
 }
 function setUpdatePost(addedPost) {
-  return { type: SET_CREATE_POST, addedPost };
+  return { type: SET_UPDATE_POST, addedPost };
 }
 function setDeletePost(addedPost) {
-  return { type: SET_CREATE_POST, addedPost };
+  return { type: SET_DELETE_POST, addedPost };
 }
 function setViewPost(post) {
   return { type: SET_VIEW_POST, post };
@@ -107,7 +108,10 @@ function deletePost(id: number) {
       },
       method: "delete"
     })
-      .then(response => console.log(response.ok, response.status))
+      .then(response => {
+        console.log(response.ok, response.status);
+        dispatch(push("/"));
+      })
       .then(json => dispatch(setDeletePost(json)));
   };
 }
