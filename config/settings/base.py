@@ -255,6 +255,11 @@ REST_FRAMEWORK = {
     ),
 }
 
+REST_AUTH_SERIALIZERS = {
+    'PASSWORD_RESET_SERIALIZER': 
+        'usone.users.serializers.PasswordResetSerializer',
+}
+
 REST_USE_JWT = True
 
 CORS_ORIGIN_ALLOW_ALL = True

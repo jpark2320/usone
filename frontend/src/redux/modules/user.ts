@@ -105,6 +105,26 @@ function createAccount(username, password1, password2) {
   };
 }
 
+function sendPasswordResetEmail(email) {
+  return dispatch => {
+    fetch("/rest-auth/password/reset/", {
+      body: JSON.stringify({
+        email
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(saveToken(json.token));
+        dispatch(push("/password-reset-confirm"));
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 // Initial State
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
@@ -146,7 +166,8 @@ const actionCreators = {
   createAccount,
   facebookLogin,
   logout,
-  usernameLogin
+  usernameLogin,
+  sendPasswordResetEmail
 };
 
 export { actionCreators };

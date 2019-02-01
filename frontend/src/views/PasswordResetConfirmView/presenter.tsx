@@ -2,9 +2,6 @@ import * as React from "react";
 
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
@@ -14,11 +11,10 @@ import styles from "./styles";
 
 interface IProps {
   classes: any;
-  handleSubmit: (event: any) => void;
 }
 
-const PasswordResetView: React.SFC<IProps> = props => {
-  const { classes, handleSubmit } = props;
+const PasswordResetConfirmView: React.SFC<IProps> = props => {
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
@@ -26,31 +22,27 @@ const PasswordResetView: React.SFC<IProps> = props => {
         <main className={classes.main}>
           <CssBaseline />
           <Paper className={classes.paper}>
-            <Typography component="h1" variant="h5">
-              Password Reset
+            <Typography
+              variant="h6"
+              gutterBottom={true}
+              style={{ lineHeight: "normal" }}
+            >
+              An email has been sent to you as you requested.
             </Typography>
-            <form className={classes.form} onSubmit={handleSubmit}>
-              <FormControl margin="normal" required={true} fullWidth={true}>
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus={true}
-                />
-              </FormControl>
-              <Typography variant="caption">
-                To confirm your identification, you will receive an email to
-                reset your password.
-              </Typography>
+            <Typography variant="body1" gutterBottom={true}>
+              Please check your email. If you don't get any email within a
+              minute. Go back and try again.
+            </Typography>
+            <form className={classes.form}>
               <Button
-                type="submit"
+                type="button"
                 fullWidth={true}
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                component={props => <Link to="/login" {...props} />}
               >
-                Submit
+                Log in
               </Button>
               <Button
                 type="button"
@@ -58,7 +50,7 @@ const PasswordResetView: React.SFC<IProps> = props => {
                 variant="contained"
                 color="default"
                 className={classes.submit}
-                component={props => <Link to="/login" {...props} />}
+                component={props => <Link to="/password-reset" {...props} />}
               >
                 Back
               </Button>
@@ -70,4 +62,4 @@ const PasswordResetView: React.SFC<IProps> = props => {
   );
 };
 
-export default withStyles(styles)(PasswordResetView);
+export default withStyles(styles)(PasswordResetConfirmView);
