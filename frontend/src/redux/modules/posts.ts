@@ -3,6 +3,8 @@
 // ACTIONS
 const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
 const SET_CREATE_POST = "SET_CREATE_POST";
+const SET_UPDATE_POST = "SET_UPDATE_POST";
+const SET_DELETE_POST = "SET_DELETE_POST";
 const SET_VIEW_POST = "SET_VIEW_POST";
 
 // ACTION CREATORS
@@ -10,6 +12,12 @@ function setFilteredPosts(filteredPosts) {
   return { type: SET_FILTERED_POSTS, filteredPosts };
 }
 function setCreatePost(addedPost) {
+  return { type: SET_CREATE_POST, addedPost };
+}
+function setUpdatePost(addedPost) {
+  return { type: SET_CREATE_POST, addedPost };
+}
+function setDeletePost(addedPost) {
   return { type: SET_CREATE_POST, addedPost };
 }
 function setViewPost(post) {
@@ -58,11 +66,55 @@ function createPost(tag, title, region, location, description, category) {
   };
 }
 
+function updatePost(
+  id: number,
+  title: string,
+  description: string,
+  region?,
+  location?,
+  tag?,
+  category?
+) {
+  return dispatch => {
+    fetch(id + `/update-post/`, {
+      body: JSON.stringify({
+        id,
+        tag,
+        title,
+        region,
+        location,
+        description,
+        category
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(json => dispatch(setUpdatePost(json)));
+  };
+}
+
+function deletePost(id: number) {
+  return dispatch => {
+    fetch(id + `/delete-post/`, {
+      body: JSON.stringify({
+        id
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "delete"
+    })
+      .then(response => console.log(response.ok, response.status))
+      .then(json => dispatch(setDeletePost(json)));
+  };
+}
+
 function getViewPost(id) {
   return dispatch => {
-    fetch(
-      `/posts/post/${id}`
-    )
+    fetch(`/posts/post/${id}`)
       .then(response => response.json())
       .then(json => dispatch(setViewPost(json)))
       .catch(err => console.log(err));
@@ -79,6 +131,10 @@ function reducer(state = initialState, action) {
       return applySetFilteredPosts(state, action);
     case SET_CREATE_POST:
       return applyCreatePost(state, action);
+    case SET_UPDATE_POST:
+      return applyUpdatePost(state, action);
+    case SET_DELETE_POST:
+      return applyDeletePost(state, action);
     case SET_VIEW_POST:
       return applyViewPost(state, action);
     default:
@@ -95,6 +151,14 @@ function applyCreatePost(state, action) {
   const { addedPost } = action;
   return { ...state, addedPost };
 }
+function applyUpdatePost(state, action) {
+  const { updatedPost } = action;
+  return { ...state, updatedPost };
+}
+function applyDeletePost(state, action) {
+  const { deletedPost } = action;
+  return { ...state, deletedPost };
+}
 function applyViewPost(state, action) {
   const { post } = action;
   return { ...state, post };
@@ -104,6 +168,8 @@ function applyViewPost(state, action) {
 const actionCreators = {
   getFilteredPosts,
   createPost,
+  updatePost,
+  deletePost,
   getViewPost
 };
 export { actionCreators };
