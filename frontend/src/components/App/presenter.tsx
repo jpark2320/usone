@@ -8,6 +8,7 @@ import Footer from "components/Footer";
 import LoginView from "views/LoginView";
 import SignupView from "views/SignupView";
 import PasswordResetView from "views/PasswordResetView";
+import PasswordResetConfirmView from "views/PasswordResetConfirmView";
 import DetailView from "views/DetailView";
 import "normalize.css";
 
@@ -36,6 +37,10 @@ const Routes = () => (
     <Route path={"/login"} component={LoginView} />
     <Route path={"/signup"} component={SignupView} />
     <Route path={"/password-reset"} component={PasswordResetView} />
+    <Route
+      path={"/password-reset-confirm"}
+      component={PasswordResetConfirmView}
+    />
     <Route path={"/posts/post/:postID/"} component={DetailView} />
     <Redirect from={"*"} to={"/"} />
   </Switch>

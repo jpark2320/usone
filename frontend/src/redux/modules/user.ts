@@ -120,6 +120,24 @@ function createAccount(username, password1, password2) {
   };
 }
 
+function sendPasswordResetEmail(email) {
+  return dispatch => {
+    fetch("/rest-auth/password/reset/", {
+      body: JSON.stringify({
+        email
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(json => {
+        dispatch(saveToken(json.token));
+        dispatch(push("/password-reset-confirm"));
+      })
+      .catch(err => console.log(err));
+
 function onChangeUserRegion(region) {
   return dispatch => {
     dispatch(setUserRegion(region))
@@ -185,6 +203,7 @@ const actionCreators = {
   facebookLogin,
   logout,
   usernameLogin,
+  sendPasswordResetEmail
   onChangeUserRegion,
   getRegion
 };
