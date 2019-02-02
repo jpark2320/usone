@@ -1,40 +1,37 @@
-// Imports
+// IMPORTS
 import { push } from "connected-react-router";
 
-// Actions
+// ACTIONS
 const SAVE_TOKEN = "SAVE_TOKEN";
 const LOGOUT = "LOGOUT";
 const SET_USER_REGION = "SET_USER_REGION";
 const GET_USER_REGION = "GET_USER_REGION";
 
-// Action Creators (used to change Redux state)
+// ACTION CREATORS
 function saveToken(token) {
   return {
     token,
     type: SAVE_TOKEN
   };
 }
-
 function logoutToken() {
   return {
     type: LOGOUT
   };
 }
-
 function setUserRegion(region) {
-  return { 
+  return {
     type: SET_USER_REGION,
     region
   };
 }
-
 function getUserRegion() {
   return {
     type: GET_USER_REGION
-  }
+  };
 }
 
-// API actions
+// API ACTIONS
 function logout() {
   return dispatch => {
     fetch("/rest-auth/logout/", {
@@ -50,7 +47,6 @@ function logout() {
       .catch(err => console.log(err));
   };
 }
-
 function facebookLogin(accessToken) {
   return dispatch => {
     fetch("/accounts/login/facebook/", {
@@ -72,7 +68,6 @@ function facebookLogin(accessToken) {
       .catch(err => console.log(err));
   };
 }
-
 function usernameLogin(username, password) {
   return dispatch => {
     fetch("/rest-auth/login/", {
@@ -95,7 +90,6 @@ function usernameLogin(username, password) {
       .catch(err => console.log(err));
   };
 }
-
 function createAccount(username, password1, password2) {
   return dispatch => {
     fetch("/rest-auth/registration/", {
@@ -119,7 +113,6 @@ function createAccount(username, password1, password2) {
       .catch(err => console.log(err));
   };
 }
-
 function sendPasswordResetEmail(email) {
   return dispatch => {
     fetch("/rest-auth/password/reset/", {
@@ -137,27 +130,27 @@ function sendPasswordResetEmail(email) {
         dispatch(push("/password-reset-confirm"));
       })
       .catch(err => console.log(err));
-
+  };
+}
 function onChangeUserRegion(region) {
   return dispatch => {
-    dispatch(setUserRegion(region))
+    dispatch(setUserRegion(region));
   };
 }
-
 function getRegion() {
   return dispatch => {
-    dispatch(getUserRegion())
+    dispatch(getUserRegion());
   };
 }
 
-// Initial State
+// INITIAL STATE
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
   token: localStorage.getItem("jwt"),
   region: "georgia"
 };
 
-// Reducer
+// REDUCER
 function reducer(state = initialState, action) {
   switch (action.type) {
     case SAVE_TOKEN:
@@ -172,9 +165,9 @@ function reducer(state = initialState, action) {
     default:
       return state;
   }
-} 
+}
 
-// Reducer Functions
+// REDUCER FUNCTIONS
 function applySetToken(state, action) {
   const { token } = action;
   localStorage.setItem("jwt", token);
@@ -197,18 +190,17 @@ function applySetUserRegion(state, action) {
   return { ...state, region };
 }
 
-// Exports
+// EXPORT
 const actionCreators = {
   createAccount,
   facebookLogin,
   logout,
   usernameLogin,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
   onChangeUserRegion,
   getRegion
 };
-
 export { actionCreators };
 
-// Reducer Exports
+// DEFAULT REDUCER EXPORTS
 export default reducer;

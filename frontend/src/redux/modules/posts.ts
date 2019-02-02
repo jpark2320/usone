@@ -1,6 +1,5 @@
 // IMPORTS
-import { push } from "react-router-redux";
-// import axios from "axios";
+import { push } from "connected-react-router";
 
 // ACTIONS
 const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
@@ -93,7 +92,7 @@ function updatePost(
       },
       method: "PUT"
     })
-      .then(response => console.log(response.json()))
+      .then(response => response.json())
       .then(json => dispatch(setUpdatePost(json)));
   };
 }
