@@ -19,16 +19,18 @@ urlpatterns = [
         views.CreatePost.as_view(),
         name='create_post'
     ),
-    re_path(
-        r'^update-post/$',
-        views.UpdatePost.as_view(),
-        name='update_post'
-    ),
-    re_path(
-        r'^delete-post/$',
-        views.DeletePost.as_view(),
-        name='delete_post'
-    ),
+    # re_path(
+    #    'post/<pk>'+ r'^update-post/$',
+    #     views.UpdatePost.as_view(),
+    #     name='update_post'
+    # ),
+      path('post/<pk>/update-post/', views.UpdatePost.as_view(), name='update_post'),
+    # re_path(
+    #     r'^delete-post/$',
+    #     views.DeletePost.as_view(),
+    #     name='delete_post'
+    # ),
+     path('post/<pk>/delete-post/', views.DeletePost.as_view(), name='delete_post'),
     # re_path(
     #     r'^post/(?P<id>\d+)/$',
     #     views.ViewPost.as_view(),

@@ -6,13 +6,23 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Divider } from "@material-ui/core";
 import styles from "./styles";
+import CreatePost from "components/CreatePost";
 
 interface IProps extends WithStyles<typeof styles> {
+  shouldEditOpen: boolean;
   post: any;
+  handleDelelteButton: any;
+  handleEditButton: any;
 }
 
 const DetailBoard: React.SFC<IProps> = props => {
-  const { post, classes } = props;
+  const {
+    post,
+    classes,
+    handleDelelteButton,
+    handleEditButton,
+    shouldEditOpen
+  } = props;
   // const talk = "대화";
   // const recommend = "추천";
   // const report = "신고";
@@ -32,7 +42,39 @@ const DetailBoard: React.SFC<IProps> = props => {
             {post.category}
           </Button>
           {post.title} [{post.recommended}]
+          <Button
+            onClick={() => handleEditButton()}
+            style={{ float: "right", backgroundColor: "yellow" }}
+            variant="contained"
+            color="secondary"
+            classes={{
+              root: classes.BoardDetail__category__button,
+              label: classes.BoardDetail__category__button__label
+            }}
+          >
+            Edit post
+          </Button>
+          {shouldEditOpen && (
+            <CreatePost
+              category={post.category}
+              region={post.region}
+              post={post}
+            />
+          )}
+          <Button
+            onClick={() => handleDelelteButton(post.id)}
+            style={{ float: "right", backgroundColor: "red" }}
+            variant="contained"
+            color="secondary"
+            classes={{
+              root: classes.BoardDetail__category__button,
+              label: classes.BoardDetail__category__button__label
+            }}
+          >
+            Delete post
+          </Button>
         </Typography>
+
         <Divider className={classes.BoardDetail__divider} />
         <div className={classes.BoardDetail__post__username__date}>
           <Typography color="textSecondary">{post.userName}</Typography>

@@ -24,6 +24,12 @@ interface ICreatePostProps extends WithStyles<typeof styles> {
   handleClickOpen: () => void;
   handleClose: () => void;
   snackBarHandleClose: () => void;
+  post?: any;
+}
+interface IPost {
+  title: string;
+  tag: string;
+  description: string;
 }
 
 const CreatePost: React.SFC<ICreatePostProps> = props => {
@@ -39,6 +45,12 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
     handleClose,
     snackBarHandleClose
   } = props;
+  let post: IPost = { title: "", tag: "", description: "" };
+
+  if (props.post) {
+    post = props.post;
+    console.log(post);
+  }
 
   return (
     <div>
@@ -69,6 +81,7 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
               id="tags"
               select={true}
               label="Tags"
+              // value={post[0].tag}
               className={classes.textField}
               helperText="카테고리를 선택해 주세요"
               margin="normal"
@@ -82,6 +95,7 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
             </TextField>
             <TextField
               id="title"
+              defaultValue={post.title}
               label="제목"
               select={false}
               className={classes.textField}
@@ -132,6 +146,7 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
             <TextField
               id="description"
               label="상세 내용"
+              defaultValue={post.description}
               placeholder="내용을 입력 하세요..."
               multiline={true}
               className={classes.textField}

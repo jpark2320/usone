@@ -80,7 +80,7 @@ class CreatePost(CreateAPIView):
 
 
 class UpdatePost(UpdateAPIView):
-    serializer_class = serializers.CreatePostSerializer
+    serializer_class = serializers.UpdatePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
 
@@ -89,7 +89,7 @@ class UpdatePost(UpdateAPIView):
 
 
 class DeletePost(DestroyAPIView):
-    serializer_class = serializers.CreatePostSerializer
+    serializer_class = serializers.DeletePostSerializer
     pagination_class = BasicSizePagination
     queryset = Post.objects.all()
 

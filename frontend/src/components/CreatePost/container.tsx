@@ -25,6 +25,17 @@ interface IProps {
     description: string,
     category: string
   ) => void;
+  updatePost: (
+    id: number,
+    tag: string,
+    title: string,
+    region: string,
+    location: string,
+    description: string,
+    category: string
+  ) => void;
+  post?: any;
+  forUpdate?: boolean;
 }
 
 class Container extends React.Component<IProps> {
@@ -43,7 +54,7 @@ class Container extends React.Component<IProps> {
         tags={tags}
         open={open}
         snackBarOpen={snackBarOpen}
-        handleSubmit={this.handleCreatePost}
+        handleSubmit={this.handleCreateOrUpdatePost}
         handleClickOpen={this.handleClickOpen}
         handleClose={this.handleClose}
         snackBarHandleClose={this.snackBarHandleClose}
@@ -63,7 +74,7 @@ class Container extends React.Component<IProps> {
     this.setState({ snackBarOpen: false });
   };
 
-  private handleCreatePost = (event: any) => {
+  private handleCreateOrUpdatePost = (event: any) => {
     event.preventDefault();
     const tag = event.currentTarget.elements.tags.value;
     const title = event.currentTarget.elements.title.value;
@@ -72,7 +83,67 @@ class Container extends React.Component<IProps> {
     const description = event.currentTarget.elements.description.value;
     const category = this.props.category;
 
+    if (this.props.forUpdate) {
+      this.handleCreatePost(
+        tag,
+        title,
+        region,
+        location,
+        description,
+        category
+      );
+    } else {
+      const id = this.props.post.id;
+      this.handleupdatePost(
+        id,
+        tag,
+        title,
+        region,
+        location,
+        description,
+        category
+      );
+    }
+  };
+  private handleCreatePost = (
+    tag,
+    title,
+    region,
+    location,
+    description,
+    category
+  ) => {
     this.props.createPost(tag, title, region, location, description, category);
+    this.setState({ open: false, snackBarOpen: true });
+  };
+
+  private handleupdatePost = (
+    id,
+    tag,
+    title,
+    region,
+    location,
+    description,
+    category
+  ) => {
+    this.props.updatePost(
+      id,
+      tag,
+      title,
+      region,
+      location,
+      description,
+      category
+    );
+    this.props.updatePost(
+      id,
+      title,
+      description,
+      region,
+      location,
+      tag,
+      category
+    );
     this.setState({ open: false, snackBarOpen: true });
   };
 }

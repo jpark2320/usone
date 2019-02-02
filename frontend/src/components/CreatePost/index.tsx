@@ -15,6 +15,27 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           category
         )
       );
+    },
+    updatePost: (
+      id,
+      title,
+      description,
+      tag?,
+      region?,
+      location?,
+      category?
+    ) => {
+      dispatch(
+        postActions.updatePost(
+          id,
+          tag,
+          title,
+          region,
+          location,
+          description,
+          category
+        )
+      );
     }
   };
 };
