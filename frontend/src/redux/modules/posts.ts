@@ -1,5 +1,6 @@
 // IMPORTS
 import { push } from "react-router-redux";
+// import axios from "axios";
 
 // ACTIONS
 const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
@@ -15,11 +16,11 @@ function setFilteredPosts(filteredPosts) {
 function setCreatePost(addedPost) {
   return { type: SET_CREATE_POST, addedPost };
 }
-function setUpdatePost(addedPost) {
-  return { type: SET_UPDATE_POST, addedPost };
+function setUpdatePost(updatedPost) {
+  return { type: SET_UPDATE_POST, updatedPost };
 }
-function setDeletePost(addedPost) {
-  return { type: SET_DELETE_POST, addedPost };
+function setDeletePost(deletedPost) {
+  return { type: SET_DELETE_POST, deletedPost };
 }
 function setViewPost(post) {
   return { type: SET_VIEW_POST, post };
@@ -77,7 +78,7 @@ function updatePost(
   category?
 ) {
   return dispatch => {
-    fetch(id + `/update-post/`, {
+    fetch(`/posts/post/${id}/update-post/`, {
       body: JSON.stringify({
         id,
         tag,
@@ -90,23 +91,23 @@ function updatePost(
       headers: {
         "Content-Type": "application/json"
       },
-      method: "POST"
+      method: "PUT"
     })
-      .then(response => response.json())
+      .then(response => console.log(response.json()))
       .then(json => dispatch(setUpdatePost(json)));
   };
 }
 
 function deletePost(id: number) {
   return dispatch => {
-    fetch(id + `/delete-post/`, {
+    fetch(`/posts/post/${id}/delete-post/`, {
       body: JSON.stringify({
         id
       }),
       headers: {
         "Content-Type": "application/json"
       },
-      method: "delete"
+      method: "DELETE"
     })
       .then(response => {
         console.log(response.ok, response.status);

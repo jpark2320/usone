@@ -135,6 +135,15 @@ class Container extends React.Component<IProps> {
       description,
       category
     );
+    this.props.updatePost(
+      id,
+      title,
+      description,
+      region,
+      location,
+      tag,
+      category
+    );
     this.setState({ open: false, snackBarOpen: true });
   };
 }
