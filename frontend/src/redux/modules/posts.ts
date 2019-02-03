@@ -1,6 +1,5 @@
 // IMPORTS
 import { push } from "connected-react-router";
-
 // ACTIONS
 const SET_FILTERED_POSTS = "SET_FILTERED_POSTS";
 const SET_CREATE_POST = "SET_CREATE_POST";
@@ -69,12 +68,12 @@ function createPost(tag, title, region, location, description, category) {
 
 function updatePost(
   id: number,
-  title: string,
-  description: string,
-  region?,
-  location?,
-  tag?,
-  category?
+  tag,
+  title,
+  region,
+  location,
+  description,
+  category
 ) {
   return dispatch => {
     fetch(`/posts/post/${id}/update-post/`, {

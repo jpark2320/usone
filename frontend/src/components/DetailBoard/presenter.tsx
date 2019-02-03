@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Divider } from "@material-ui/core";
 import styles from "./styles";
-import CreatePost from "components/CreatePost";
+import CreateOrUpdatePostModal from "components/CreateOrUpdatePostModal";
 
 interface IProps extends WithStyles<typeof styles> {
   shouldEditOpen: boolean;
@@ -30,75 +30,72 @@ const DetailBoard: React.SFC<IProps> = props => {
   return (
     <Card className={classes.BoardDetail__card}>
       <CardContent>
-        <Typography className={classes.BoardDetail__title}>
-          <Button
-            variant="contained"
-            color="primary"
-            classes={{
-              root: classes.BoardDetail__category__button,
-              label: classes.BoardDetail__category__button__label
-            }}
-          >
-            {post.category}
-          </Button>
-          {post.title} [{post.recommended}]
-          <Button
-            onClick={() => handleEditButton()}
-            style={{ float: "right", backgroundColor: "yellow" }}
-            variant="contained"
-            color="secondary"
-            classes={{
-              root: classes.BoardDetail__category__button,
-              label: classes.BoardDetail__category__button__label
-            }}
-          >
-            Edit post
-          </Button>
-          {shouldEditOpen && (
-            <CreatePost
-              category={post.category}
-              region={post.region}
-              post={post}
-            />
-          )}
-          <Button
-            onClick={() => handleDelelteButton(post.id)}
-            style={{ float: "right", backgroundColor: "red" }}
-            variant="contained"
-            color="secondary"
-            classes={{
-              root: classes.BoardDetail__category__button,
-              label: classes.BoardDetail__category__button__label
-            }}
-          >
-            Delete post
-          </Button>
-        </Typography>
+        <Card className={classes.BoardDetail__card}>
+          <CardContent>
+            <div className={classes.rightAlignment}>
+              <Button
+                className={classes.BoardDetial__topButton}
+                onClick={() => handleEditButton()}
+                color="primary"
+              >
+                Edit post
+              </Button>
+              {shouldEditOpen && (
+                <CreateOrUpdatePostModal
+                  handleParentModalState={handleEditButton}
+                  category={post.category}
+                  region={post.region}
+                  forUpdate={shouldEditOpen}
+                  post={post}
+                  isModalOpen={shouldEditOpen}
+                />
+              )}
+              <Button
+                className={classes.BoardDetial__topButton}
+                onClick={() => handleDelelteButton(post.id)}
+                color="secondary"
+              >
+                Delete post
+              </Button>
+            </div>
+            <Typography className={classes.BoardDetail__title}>
+              <Button
+                variant="contained"
+                color="primary"
+                classes={{
+                  root: classes.BoardDetail__category__button,
+                  label: classes.BoardDetail__category__button__label
+                }}
+              >
+                {post.category}
+              </Button>
+              {post.title} [{post.recommended}]
+            </Typography>
 
-        <Divider className={classes.BoardDetail__divider} />
-        <div className={classes.BoardDetail__post__username__date}>
-          <Typography color="textSecondary">{post.userName}</Typography>
-          <div className={classes.emptyDiv} />
-          <Typography>{post.createdDate}</Typography>
-        </div>
-        <Typography className={classes.BoardDetail__post__content}>
-          {post.description}
-        </Typography>
-        <Divider className={classes.BoardDetail__divider} />
-        <Typography className={classes.BoardDetail__post__add__comment}>
-          <Button
-            variant="contained"
-            color="primary"
-            classes={{
-              root: classes.BoardDetail__category__button,
-              label: classes.BoardDetail__category__button__label
-            }}
-          >
-            Add a comment
-          </Button>
-        </Typography>
-        <Divider />
-        {/* <Typography>
+            <Divider className={classes.BoardDetail__divider} />
+            <div className={classes.BoardDetail__post__username__date}>
+              <Typography color="textSecondary">{post.userName}</Typography>
+              <div className={classes.emptyDiv} />
+              <Typography>{post.createdDate}</Typography>
+            </div>
+            <Typography className={classes.BoardDetail__post__content}>
+              {post.description}
+            </Typography>
+            <Divider className={classes.BoardDetail__divider} />
+            <Typography className={classes.BoardDetail__post__add__comment}>
+              <Button
+                variant="contained"
+                color="primary"
+                classes={{
+                  root: classes.BoardDetail__category__button,
+                  label: classes.BoardDetail__category__button__label
+                }}
+              >
+                Add a comment
+              </Button>
+            </Typography>
+            <Divider />
+            {/* <Typography>
           {post.comments_set.map(comment => (
             <div>
               <div className={classes.BoardDetail__post__username__date}>
@@ -119,6 +116,8 @@ const DetailBoard: React.SFC<IProps> = props => {
             </div>
           ))}
         </Typography> */}
+          </CardContent>
+        </Card>
       </CardContent>
     </Card>
   );

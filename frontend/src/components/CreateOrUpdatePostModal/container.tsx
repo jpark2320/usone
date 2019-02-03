@@ -17,6 +17,7 @@ interface IProps {
   theme: Theme;
   category: string;
   region: string;
+  isModalOpen: boolean;
   createPost: (
     tag: string,
     title: string,
@@ -36,38 +37,39 @@ interface IProps {
   ) => void;
   post?: any;
   forUpdate?: boolean;
+  handleParentModalState: any;
 }
 
-class Container extends React.Component<IProps> {
-  public state = {
-    open: false,
-    snackBarOpen: false
-  };
+class Container extends React.Component<IProps, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      ...props,
+      isModalOpen: this.props.isModalOpen,
+      snackBarOpen: false
+    };
+  }
 
   public render() {
-    const { open, snackBarOpen } = this.state;
+    const { isModalOpen, snackBarOpen } = this.state;
     return (
       <CreatePost
         {...this.props}
         fullScreen={false}
         category={this.props.category}
         tags={tags}
-        open={open}
+        isModalOpen={isModalOpen}
         snackBarOpen={snackBarOpen}
         handleSubmit={this.handleCreateOrUpdatePost}
-        handleClickOpen={this.handleClickOpen}
         handleClose={this.handleClose}
         snackBarHandleClose={this.snackBarHandleClose}
       />
     );
   }
 
-  private handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
   private handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ isModalOpen: false });
+    this.props.handleParentModalState();
   };
 
   private snackBarHandleClose = () => {
@@ -83,7 +85,7 @@ class Container extends React.Component<IProps> {
     const description = event.currentTarget.elements.description.value;
     const category = this.props.category;
 
-    if (this.props.forUpdate) {
+    if (!this.props.forUpdate) {
       this.handleCreatePost(
         tag,
         title,
@@ -114,7 +116,7 @@ class Container extends React.Component<IProps> {
     category
   ) => {
     this.props.createPost(tag, title, region, location, description, category);
-    this.setState({ open: false, snackBarOpen: true });
+    this.setState({ isModalOpen: false, snackBarOpen: true });
   };
 
   private handleupdatePost = (
@@ -135,16 +137,7 @@ class Container extends React.Component<IProps> {
       description,
       category
     );
-    this.props.updatePost(
-      id,
-      title,
-      description,
-      region,
-      location,
-      tag,
-      category
-    );
-    this.setState({ open: false, snackBarOpen: true });
+    this.setState({ isModalOpen: false, snackBarOpen: true });
   };
 }
 

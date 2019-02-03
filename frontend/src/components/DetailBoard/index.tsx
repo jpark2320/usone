@@ -6,18 +6,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     deletePost: (id: number) => {
       dispatch(postActions.deletePost(id));
-    },
-    updatePost: (tag, title, region, location, description, category) => {
-      dispatch(
-        postActions.updatePost(
-          tag,
-          title,
-          region,
-          location,
-          description,
-          category
-        )
-      );
     }
   };
 };

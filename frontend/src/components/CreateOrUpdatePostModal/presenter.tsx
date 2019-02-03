@@ -13,18 +13,18 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import styles from "./styles";
 
-interface ICreatePostProps extends WithStyles<typeof styles> {
+interface IPropsCreateOrUpdatePostModal extends WithStyles<typeof styles> {
   theme: Theme;
   fullScreen: boolean;
   category: string;
   tags: any[];
-  open: boolean;
   snackBarOpen: boolean;
   handleSubmit: (event: any) => void;
-  handleClickOpen: () => void;
   handleClose: () => void;
   snackBarHandleClose: () => void;
   post?: any;
+  forUpdate?: boolean;
+  isModalOpen: boolean;
 }
 interface IPost {
   title: string;
@@ -32,18 +32,19 @@ interface IPost {
   description: string;
 }
 
-const CreatePost: React.SFC<ICreatePostProps> = props => {
+const CreateOrUpdatePostModal: React.SFC<
+  IPropsCreateOrUpdatePostModal
+> = props => {
   const {
     fullScreen,
     category,
     classes,
     tags,
-    open,
     snackBarOpen,
     handleSubmit,
-    handleClickOpen,
     handleClose,
-    snackBarHandleClose
+    snackBarHandleClose,
+    isModalOpen
   } = props;
   let post: IPost = { title: "", tag: "", description: "" };
 
@@ -54,18 +55,9 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
 
   return (
     <div>
-      <Button
-        className={classes.button}
-        onClick={handleClickOpen}
-        variant="outlined"
-        color="primary"
-        aria-label="Add"
-      >
-        글쓰기
-      </Button>
       <Dialog
         fullScreen={fullScreen}
-        open={open}
+        open={isModalOpen}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         disableBackdropClick={true}
@@ -172,7 +164,7 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         autoHideDuration={6000}
         ContentProps={{ "aria-describedby": "message-id" }}
-        message={<span id="message-id">새 게시글을 작성하였습니다.</span>}
+        message={<span id="message-id">작업을 완료하였습니다.</span>}
         action={[
           <IconButton
             key="close"
@@ -188,4 +180,4 @@ const CreatePost: React.SFC<ICreatePostProps> = props => {
     </div>
   );
 };
-export default withStyles(styles)(CreatePost);
+export default withStyles(styles)(CreateOrUpdatePostModal);

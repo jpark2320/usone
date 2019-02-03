@@ -2,11 +2,12 @@ import * as React from "react";
 import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import ListBoard from "components/ListBoard";
-import CreatePost from "components/CreatePost";
+import CreateOrUpdatePostModal from "components/CreateOrUpdatePostModal";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import styles from "./styles";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 export interface IListViewProps extends WithStyles<typeof styles> {}
 
@@ -20,19 +21,16 @@ class ListView extends React.Component<any, any> {
     };
   }
 
-  public displayInputForMobile = event => {
-    this.setState({
-      showInputBaseForMobile: !this.state.showInputBaseForMobile
-    });
-  };
-
   public render() {
     const {
       classes,
       category,
       posts,
       region,
-      dataReworkRespondforNextPages
+      dataReworkRespondforNextPages,
+      handleClickOpen,
+      isModalOpen,
+      displayInputForMobile
     } = this.props;
 
     return (
@@ -46,7 +44,7 @@ class ListView extends React.Component<any, any> {
                 <Typography>{category} </Typography>
                 <div className={classes.search}>
                   <div className={classes.searchIcon}>
-                    <SearchIcon onClick={this.displayInputForMobile} />
+                    <SearchIcon onClick={displayInputForMobile} />
                   </div>
                   <InputBase
                     placeholder="Search…"
@@ -64,7 +62,23 @@ class ListView extends React.Component<any, any> {
                   posts={posts}
                 />
               )}
-              <CreatePost category={category} region={region} />
+              <Button
+                className={classes.button}
+                onClick={handleClickOpen}
+                variant="outlined"
+                color="primary"
+                aria-label="Add"
+              >
+                글쓰기
+              </Button>
+              {isModalOpen && (
+                <CreateOrUpdatePostModal
+                  handleParentModalState={handleClickOpen}
+                  isModalOpen={isModalOpen}
+                  category={category}
+                  region={region}
+                />
+              )}
             </div>
           </React.Fragment>
         </main>

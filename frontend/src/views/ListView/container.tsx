@@ -30,7 +30,8 @@ class Container extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      ...props
+      ...props,
+      isModalOpen: false
     };
     this.dataReworkRespondforNextPages = this.dataReworkRespondforNextPages;
   }
@@ -61,6 +62,14 @@ class Container extends React.Component<IProps, any> {
     const inDescOrder = "desc";
     getFilteredPosts(region, category, page_size, orderBy, inDescOrder, page);
   };
+  public handleClickOpen = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  };
+  public displayInputForMobile = event => {
+    this.setState({
+      showInputBaseForMobile: !this.state.showInputBaseForMobile
+    });
+  };
 
   public render() {
     const { region, filteredPosts, category } = this.props;
@@ -70,6 +79,9 @@ class Container extends React.Component<IProps, any> {
         region={region}
         posts={filteredPosts}
         category={category}
+        displayInputForMobile={this.displayInputForMobile}
+        isModalOpen={this.state.isModalOpen}
+        handleClickOpen={this.handleClickOpen}
         dataReworkRespondforNextPages={this.dataReworkRespondforNextPages}
       />
     );

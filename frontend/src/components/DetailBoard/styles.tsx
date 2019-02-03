@@ -28,6 +28,8 @@ const styles = (theme: Theme) =>
       padding: "6px",
       minHeight: "28px"
     },
+
+    BoardDetial__topButton: {},
     BoardDetail__divider: {
       height: 3
     },
@@ -50,6 +52,9 @@ const styles = (theme: Theme) =>
     subButton: {
       minWidth: 40,
       padding: "8 8"
+    },
+    rightAlignment: {
+      float: "right"
     }
   });
 
