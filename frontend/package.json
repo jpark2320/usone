@@ -28,7 +28,7 @@
     "jest": "20.0.4",
     "material-ui-flat-pagination": "^3.1.0",
     "materialui-pagination": "^0.0.6",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.13.1",
     "normalize.css": "^8.0.1",
     "object-assign": "4.1.1",
     "pip": "^0.0.1",
